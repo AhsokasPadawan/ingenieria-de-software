@@ -1,0 +1,42 @@
+{
+  "modulo": "Unidad 04",
+  "titulo_general": "Tareas — Unidad 04",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Optimización de CPU",
+      "titulo": "Diagnóstico de carga lenta en una aplicación cotidiana",
+      "enunciado": "Pensá en una app que uses seguido y que notás que tarda en cargar algo puntual (una lista, una imagen, una pantalla).\n\n1. Sin acceso al código real: ¿qué técnica de las vistas en CPU sospechás que NO están aplicando ahí, y por qué creés que ese es el problema?",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 04 (Clase 6 — Diapositiva 21)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Técnicas de Optimización de CPU",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Identificar el elemento lento (lista larga, imágenes o consultas repetidas).\n2) Asociar la demora a la ausencia de una técnica concreta: Lazy Computation si carga todo fuera de pantalla, Caching si reconsulta datos sin cambios, Batching si hace cientos de requests individuales o Hashing si busca linealmente."
+        }
+      ]
+    },
+    {
+      "id_tema": 2,
+      "id_global": 2,
+      "tema": "Optimización de CPU o Memoria",
+      "titulo": "Análisis de un caso real aplicando técnicas de CPU o Memoria",
+      "enunciado": "Elegí una de las dos clases de esta unidad (CPU o Memoria) y contá, en tus palabras, una situación real (un trabajo, una app que usás, un proyecto personal) donde una de las técnicas vistas hubiera evitado un problema de performance, o donde ya la aplicaste sin saber que tenía nombre.",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 04 (Clase 7 — Diapositiva 16)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Diagnóstico de Performance",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Describir el síntoma observado (latencia alta, consumo creciente de RAM o micro-cortes por GC).\n2) Identificar la técnica específica (ej. Lazy Computation, Caching, Batching, Hashing, Object Pooling o desuscripción de eventos) y explicar cómo resuelve el cuello de botella."
+        }
+      ]
+    }
+  ]
+}

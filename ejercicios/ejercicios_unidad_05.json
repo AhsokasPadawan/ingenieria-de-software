@@ -1,0 +1,27 @@
+{
+  "modulo": "Unidad 05",
+  "titulo_general": "Ejercicios Prácticos — Unidad 05",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Gestión de Riesgos y Políticas de IT",
+      "titulo": "Registro de riesgos y política de uso de IA para el TPO de ajedrez",
+      "enunciado": "Consigna (grupos, 20 a 25 minutos): armar el registro de riesgos del proyecto del ajedrez como si fuera un sistema real con usuarios.\n\n1. Identificar al menos cinco riesgos, técnicos y de gestión (ejemplos de partida: dependencia de una librería, pérdida del código, reglas de ajedrez mal implementadas, integrante que abandona, clave de API expuesta en el repositorio).\n2. Ubicarlos en la matriz de probabilidad e impacto y justificar el nivel.\n3. Elegir un tratamiento para cada uno (mitigar, transferir, aceptar o evitar) y nombrar un responsable.\n4. Redactar una política de una carilla sobre uso de IA en el TPO: qué se permite, qué datos no se pueden compartir y quién revisa el código generado.",
+      "recurso_visual": {
+        "tipo": "markdown_tabla",
+        "codigo": "| Riesgo | Probabilidad | Impacto | Tratamiento | Responsable |\n| :--- | :--- | :--- | :--- | :--- |\n| Clave de API expuesta | Posible | Alto | Mitigar (variables de entorno + secret scanning) | Líder técnico |"
+      },
+      "fuente_original": "Unidad 05 (Clase 8) — Diapositiva 20",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Matriz de Riesgos (ISO 31000) y Política de IA",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Listar 5 riesgos combinando fallas técnicas (reglas inválidas, exposición de credenciales, pérdida de código) y humanas/gestión (abandono de integrante, dependencia externa).\n2) Asignar probabilidad e impacto justificando por qué cada nivel es bajo, medio o alto.\n3) Definir controles concretos (tests unitarios, Git con ramas protegidas, variables de entorno) y un dueño.\n4) Redactar la política de IA exigiendo revisión humana obligatoria, pruebas y prohibición de subir secretos o datos personales."
+        }
+      ]
+    }
+  ]
+}

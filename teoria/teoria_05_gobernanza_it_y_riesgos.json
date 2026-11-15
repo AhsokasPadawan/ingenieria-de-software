@@ -1,0 +1,491 @@
+{
+  "modulo": "Unidad 05",
+  "titulo_general": "Gobernanza de IT: Políticas, Normativas y Gestión de Riesgos",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Gobernanza de IT vs. gestión, ISO/IEC 38500, ciclo Evaluar-Dirigir-Monitorear, COBIT 2019 y marcos de referencia, políticas, estándares y procedimientos, marco normativo en Argentina (Ley 25.326, 26.388, 27.699), gestión de riesgos (ISO 31000), matriz y registro de riesgos, y bonus de IA como asesora en C#.",
+  "secciones": [
+    {
+      "titulo": "Clase 8: Gobernanza de IT, Políticas y Normativas",
+      "subtemas": [
+        {
+          "id": "objetivo-unidad-05",
+          "titulo": "Objetivo de la Clase",
+          "bloques": [
+            {
+              "tema": "Quién decide sobre la tecnología y con qué reglas",
+              "definicion": "Gobernar no es frenar: es decidir con criterio y poder explicar por qué se decidió así.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "Qué es la gobernanza de IT y en qué se diferencia de la gestión",
+                  "Políticas, estándares, procedimientos y guías",
+                  "Normativas que condicionan un sistema en Argentina",
+                  "Cómo identificar, evaluar y tratar un riesgo",
+                  "Bonus en C#: conectar una IA al ajedrez del TPO con decisiones de gobernanza"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "que-es-gobernanza-it",
+          "titulo": "¿Qué es la Gobernanza de IT?",
+          "bloques": [
+            {
+              "tema": "Sistema de decisiones y responsabilidades",
+              "definicion": "Conjunto de estructuras, procesos y decisiones con los que la dirección se asegura de que IT apoye los objetivos, use bien sus recursos y mantenga los riesgos bajo control.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Tres preguntas que responde",
+                  "etiqueta_items": "Preguntas",
+                  "items": [
+                    "¿Quién decide qué sobre la tecnología?",
+                    "¿Con qué criterios?",
+                    "¿Quién responde cuando sale mal?"
+                  ]
+                },
+                {
+                  "nombre": "Cinco áreas clásicas (ITGI)",
+                  "etiqueta_items": "Foco",
+                  "items": [
+                    "Alineación estratégica",
+                    "Entrega de valor",
+                    "Gestión de riesgos",
+                    "Gestión de recursos",
+                    "Medición del desempeño"
+                  ]
+                }
+              ],
+              "conclusion": "Le pertenece a la dirección, no solo al área técnica."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "gobernanza-vs-gestion",
+          "titulo": "Gobernanza vs. Gestión",
+          "bloques": [
+            {
+              "tema": "Diferencia entre fijar el rumbo y llevar el barco",
+              "tabla": {
+                "columnas": [
+                  "Dimensión",
+                  "Gobernanza",
+                  "Gestión"
+                ],
+                "filas": [
+                  [
+                    "Verbos",
+                    "Evaluar, dirigir y monitorear",
+                    "Planificar, construir, ejecutar y controlar"
+                  ],
+                  [
+                    "Pregunta",
+                    "¿Estamos haciendo las cosas correctas?",
+                    "¿Estamos haciendo bien las cosas?"
+                  ],
+                  [
+                    "Qué define / hace",
+                    "Objetivos, políticas, responsables y tolerancia al riesgo",
+                    "Proyectos, operación diaria, soporte e incidentes"
+                  ],
+                  [
+                    "Quién",
+                    "Directorio y alta dirección",
+                    "Gerencias, líderes y equipos técnicos"
+                  ],
+                  [
+                    "Horizonte",
+                    "Estratégico (meses a años)",
+                    "Operativo (días a trimestres)"
+                  ]
+                ]
+              },
+              "conclusion": "Sin rumbo (gobernanza), el mejor capitán (gestión) navega en círculos."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintomas-falta-de-gobernanza",
+          "titulo": "Por Qué Importa: Síntomas de Falta de Gobernanza",
+          "bloques": [
+            {
+              "tema": "Impacto en el negocio",
+              "definicion": "Una decisión tecnológica mal tomada afecta ventas, cumplimiento legal, reputación y continuidad.",
+              "detalles": {
+                "etiqueta": "Síntomas frecuentes",
+                "items": [
+                  "Shadow IT: áreas que contratan herramientas por su cuenta sin saber dónde están los datos",
+                  "Decisiones por moda o insistencia en vez de conveniencia real",
+                  "Sistemas críticos sin dueño claro cuando algo falla",
+                  "Incidentes sin registro: se arregla, se olvida y vuelve a pasar",
+                  "Cumplimiento de apuro la semana previa a una auditoría"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "iso-iec-38500-seis-principios",
+          "titulo": "ISO/IEC 38500: Seis Principios",
+          "bloques": [
+            {
+              "tema": "Norma internacional de gobernanza de IT (2024)",
+              "definicion": "Seis principios aplicables a cualquier organización sin importar su tamaño o tecnología.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Responsabilidad",
+                  "definicion": "Roles definidos y quién rinde cuentas por cada decisión."
+                },
+                {
+                  "nombre": "Estrategia",
+                  "definicion": "Planes e inversiones de IT alineados con los objetivos presentes y futuros."
+                },
+                {
+                  "nombre": "Adquisición",
+                  "definicion": "Compras de tecnología con motivos válidos, análisis continuo y transparencia."
+                },
+                {
+                  "nombre": "Desempeño",
+                  "definicion": "IT entrega la calidad de servicio que el negocio necesita."
+                },
+                {
+                  "nombre": "Conformidad",
+                  "definicion": "IT cumple leyes, regulaciones, políticas internas y compromisos."
+                },
+                {
+                  "nombre": "Comportamiento humano",
+                  "definicion": "Considera necesidades, expectativas y ética de las personas alcanzadas."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ciclo-evaluar-dirigir-monitorear",
+          "titulo": "El Ciclo Evaluar – Dirigir – Monitorear (EDM)",
+          "bloques": [
+            {
+              "tema": "Ciclo continuo de gobernanza",
+              "definicion": "ISO/IEC 38500 y COBIT describen la gobernanza como un ciclo que se repite sobre cada principio.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Evaluar",
+                  "definicion": "Analizar uso actual y futuro de IT frente a necesidades, objetivos y factores externos.",
+                  "etiqueta_items": "Ejemplo IA",
+                  "items": [
+                    "Qué valor aporta, qué datos toca, qué leyes alcanzan y qué puede fallar"
+                  ]
+                },
+                {
+                  "nombre": "Dirigir",
+                  "definicion": "Fijar políticas y planes, asignar responsabilidades y autorizar recursos.",
+                  "etiqueta_items": "Ejemplo IA",
+                  "items": [
+                    "Política de uso de IA, presupuesto y responsable nombrado"
+                  ]
+                },
+                {
+                  "nombre": "Monitorear",
+                  "definicion": "Medir desempeño y verificar cumplimiento; lo encontrado vuelve a Evaluar.",
+                  "etiqueta_items": "Ejemplo IA",
+                  "items": [
+                    "Incidentes, costos, calidad de respuestas y cumplimiento"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph LR\n  E[Evaluar] --> D[Dirigir]\n  D --> M[Monitorear]\n  M --> E"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "marcos-de-referencia-y-cobit",
+          "titulo": "Marcos de Referencia y COBIT 2019",
+          "bloques": [
+            {
+              "tema": "Mapa de marcos de referencia",
+              "definicion": "Se adopta lo que el tamaño y riesgo de la organización justifican; implementar todo en una pyme es sobre-ingeniería.",
+              "tabla": {
+                "columnas": [
+                  "Marco / Norma",
+                  "Enfoque principal"
+                ],
+                "filas": [
+                  [
+                    "COBIT 2019 (ISACA)",
+                    "Gobierno y gestión de IT empresarial (40 objetivos en EDM, APO, BAI, DSS, MEA)"
+                  ],
+                  [
+                    "ITIL 4",
+                    "Buenas prácticas de gestión y operación de servicios de IT"
+                  ],
+                  [
+                    "ISO/IEC 27001:2022",
+                    "Requisitos certificables para un Sistema de Gestión de Seguridad de la Información (SGSI)"
+                  ],
+                  [
+                    "NIST CSF 2.0 (2024)",
+                    "Ciberseguridad en 6 funciones: Gobernar, Identificar, Proteger, Detectar, Responder, Recuperar"
+                  ],
+                  [
+                    "ISO 31000:2018",
+                    "Guía general de gestión de riesgos"
+                  ],
+                  [
+                    "ISO/IEC 38500:2024",
+                    "Principios de gobernanza de IT para la dirección"
+                  ]
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "politicas-estandares-procedimientos-guias",
+          "titulo": "Políticas, Estándares, Procedimientos y Guías",
+          "bloques": [
+            {
+              "tema": "Jerarquía documental",
+              "definicion": "Cuanto más abajo en la jerarquía, más seguido cambia: la política es estable como el núcleo; los procedimientos cambian como los adaptadores.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Política",
+                  "definicion": "Qué se debe lograr y por qué; breve, aprobada por la dirección y estable.",
+                  "etiqueta_items": "Ejemplo",
+                  "items": [
+                    "La información de los clientes debe estar protegida"
+                  ]
+                },
+                {
+                  "nombre": "Estándar",
+                  "definicion": "Requisitos concretos, obligatorios y medibles.",
+                  "etiqueta_items": "Ejemplo",
+                  "items": [
+                    "Los datos se cifran en reposo y las contraseñas tienen al menos 12 caracteres"
+                  ]
+                },
+                {
+                  "nombre": "Procedimiento",
+                  "definicion": "Los pasos para hacer algo.",
+                  "etiqueta_items": "Ejemplo",
+                  "items": [
+                    "Cómo rotar las claves de cifrado cada 12 meses"
+                  ]
+                },
+                {
+                  "nombre": "Guía",
+                  "definicion": "Recomendaciones no obligatorias.",
+                  "etiqueta_items": "Ejemplo",
+                  "items": [
+                    "Buenas prácticas para manejar secretos en un repositorio"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "politicas-tipicas-en-it",
+          "titulo": "Políticas Típicas en IT",
+          "bloques": [
+            {
+              "tema": "Cobertura habitual y características de una buena política",
+              "detalles": {
+                "etiqueta": "Políticas clave",
+                "items": [
+                  "Uso aceptable de equipos y sistemas",
+                  "Control de acceso (mínimo privilegio, altas/bajas, MFA)",
+                  "Gestión de cambios (aprobación, pruebas, rollback)",
+                  "Copias de seguridad y retención",
+                  "Desarrollo seguro (code review, dependencias, secretos fuera del repo)",
+                  "Clasificación de información y respuesta a incidentes",
+                  "Uso de IA generativa y relación con terceros/proveedores (SLA)"
+                ]
+              },
+              "conclusion": "Una buena política es breve, comprensible, con responsable, fecha de revisión y verificable."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "normativas-y-marco-argentino",
+          "titulo": "Normativas, Cumplimiento y Marco Argentino",
+          "bloques": [
+            {
+              "tema": "De dónde vienen las obligaciones",
+              "definicion": "Cumplir no es lo mismo que estar seguro: el cumplimiento es el piso, no el techo.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Fuentes de obligación",
+                  "etiqueta_items": "Tipos",
+                  "items": [
+                    "Leyes y regulaciones (sanciones legales)",
+                    "Estándares voluntarios que se vuelven obligatorios al certificar o por contrato",
+                    "Contratos (SLA, confidencialidad)",
+                    "Políticas internas (consecuencias disciplinarias)"
+                  ]
+                },
+                {
+                  "nombre": "Marco normativo en Argentina",
+                  "etiqueta_items": "Leyes clave",
+                  "items": [
+                    "Ley 25.326 (Protección de Datos Personales, art. 9 seguridad, art. 10 confidencialidad) y Res. AAIP 47/2018",
+                    "Ley 26.388 (delitos informáticos en el Código Penal)",
+                    "Ley 27.699 (Convenio 108+ del Consejo de Europa)"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "gestion-de-riesgos-iso-31000",
+          "titulo": "¿Qué es un Riesgo y Cómo se Gestiona?",
+          "bloques": [
+            {
+              "tema": "Concepto y proceso continuo (ISO 31000:2018)",
+              "definicion": "Riesgo es el efecto de la incertidumbre sobre los objetivos (en la práctica, probabilidad × impacto). Riesgo cero no existe.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Cuatro piezas del riesgo",
+                  "etiqueta_items": "Elementos",
+                  "items": [
+                    "Activo: lo que se protege (datos, sistema, reputación)",
+                    "Amenaza: lo que podría dañarlo",
+                    "Vulnerabilidad: debilidad que permite que ocurra",
+                    "Control: medida que reduce el riesgo (ej. MFA, backups)"
+                  ]
+                },
+                {
+                  "nombre": "Proceso continuo",
+                  "etiqueta_items": "Etapas",
+                  "items": [
+                    "1. Alcance, contexto y criterios (apetito de riesgo)",
+                    "2. Identificar",
+                    "3. Analizar (probabilidad e impacto)",
+                    "4. Evaluar y priorizar",
+                    "5. Tratar",
+                    "6. Monitorear y revisar"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "matriz-y-tratamiento-de-riesgos",
+          "titulo": "Matriz, Tratamiento y Registro de Riesgos",
+          "bloques": [
+            {
+              "tema": "Priorizar y responder proporcionalmente",
+              "definicion": "Un control que cuesta más que el riesgo que evita es sobre-ingeniería con burocracia.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Opciones de tratamiento",
+                  "etiqueta_items": "Respuestas",
+                  "items": [
+                    "Mitigar: reducir probabilidad o impacto con controles",
+                    "Transferir: pasar parte a un tercero (seguro, SLA); nunca se transfiere la responsabilidad final",
+                    "Aceptar: asumirlo documentado y firmado",
+                    "Evitar: dejar de hacer la actividad que lo genera"
+                  ]
+                },
+                {
+                  "nombre": "Ejemplos en matriz",
+                  "etiqueta_items": "Casos",
+                  "items": [
+                    "R1 Phishing a empleado (Probable × Impacto Medio)",
+                    "R2 Caída prolongada de nube (Improbable × Impacto Alto)",
+                    "R3 Error humano en despliegue (Posible × Impacto Medio)",
+                    "R4 Notebook sin cifrar (Posible × Impacto Alto)"
+                  ]
+                }
+              ],
+              "conclusion": "Riesgo residual es lo que queda tras aplicar controles; el Registro de Riesgos es una tabla viva con dueño, nivel, tratamiento y fecha."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "bonus-ia-en-ajedrez-gobernanza",
+          "titulo": "Bonus: Una IA como Asesora de Ajedrez (C#)",
+          "bloques": [
+            {
+              "tema": "La IA es un adaptador: asesora, no arbitra",
+              "definicion": "El núcleo (IChessAdvisor, AdvisedMoveSelector) no sabe de HTTP ni claves y valida cada sugerencia contra jugadas legales.",
+              "detalles": {
+                "etiqueta": "Decisiones de gobernanza en código",
+                "items": [
+                  "Clave de API en variable de entorno, nunca en el repositorio",
+                  "Minimización de datos: se envía solo FEN y jugadas legales (Ley 25.326)",
+                  "Validación de salida: la respuesta del modelo es entrada no confiable",
+                  "Respaldo local (RandomChessAdvisor) ante caídas o timeouts",
+                  "Límites de timeout y MaxTokens para controlar costos y bloqueos",
+                  "Registro de decisiones (IAdvisorLog) para auditoría y transparencia al usuario"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// ============================================================================\n// Unidad 4 (Gobernanza de IT) — Bonus: una IA como asesora de ajedrez\n//\n// Convención: comentarios en español, identificadores en inglés.\n//\n// Idea central: el modelo de IA es un ADAPTADOR. Sugiere una jugada; el núcleo\n// decide si es válida. La IA asesora, no arbitra.\n//\n//   Núcleo (no sabe nada de HTTP, claves ni proveedores):\n//       UciMove, IChessAdvisor, AdvisedMoveSelector, IAdvisorLog\n//   Adaptadores (detalles intercambiables):\n//       LlmChessAdvisor (API de IA por HTTP), RandomChessAdvisor (respaldo)\n//\n// Requisitos: .NET 6 o superior (usa record struct y System.Text.Json).\n// Para probarlo como programa suelto, compilar con la constante BONUS_DEMO\n// (<DefineConstants>BONUS_DEMO</DefineConstants> en el .csproj). Sin esa\n// constante, el archivo se integra al TPO sin traer un Main propio.\n//\n// Cada decisión de gobernanza de la clase está marcada con [GOBERNANZA].\n//\n// Nota: este ejemplo fue escrito pensando en la API de Mensajes de Anthropic.\n// Antes de usarlo, revisar en la documentación oficial (docs.claude.com) la\n// URL, las cabeceras y el nombre del modelo vigentes.\n// ============================================================================\n\n#nullable enable\n\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Text;\nusing System.Text.Json;\nusing System.Text.RegularExpressions;\nusing System.Threading;\nusing System.Threading.Tasks;\n\nnamespace ChessExamples.AiAdvisor\n{\n    // ========================================================================\n    // NÚCLEO\n    // ========================================================================\n\n    // Una jugada en notación UCI: casilla origen + casilla destino (+ promoción).\n    // Ejemplos: \"e2e4\", \"g1f3\", \"e7e8q\".\n    public readonly record struct UciMove(string Text)\n    {\n        private static readonly Regex Pattern =\n            new(@\"^[a-h][1-8][a-h][1-8][qrbn]?$\", RegexOptions.Compiled);\n\n        public static bool TryParse(string? text, out UciMove move)\n        {\n            move = default;\n            if (text is null) return false;\n            var normalized = text.Trim().ToLowerInvariant();\n            if (!Pattern.IsMatch(normalized)) return false;\n            move = new UciMove(normalized);\n            return true;\n        }\n\n        public override string ToString() => Text;\n    }\n\n    // El contrato que el núcleo necesita. No dice cómo se decide la jugada:\n    // puede ser una API de IA, un algoritmo minimax o un azar.\n    public interface IChessAdvisor\n    {\n        string Name { get; }\n\n        // Recibe la posición (FEN) y las jugadas legales. Devuelve una sugerencia\n        // o null si no tiene ninguna. Puede lanzar excepciones: el núcleo las contiene.\n        Task<UciMove?> SuggestMoveAsync(\n            string fen, IReadOnlyList<UciMove> legalMoves, CancellationToken ct);\n    }\n\n    // [GOBERNANZA] Registro de decisiones: qué se sugirió, qué se jugó y por qué.\n    // Sirve para auditar (tema de la próxima clase).\n    public record AdvisorDecision(\n        string Fen, string AdvisorName, string? Suggested, string Final, string Outcome);\n\n    public interface IAdvisorLog\n    {\n        void Record(AdvisorDecision decision);\n    }\n\n    public sealed class ConsoleAdvisorLog : IAdvisorLog\n    {\n        public void Record(AdvisorDecision d) =>\n            Console.WriteLine(\n                $\"[advisor] {d.AdvisorName} sugirió={d.Suggested ?? \"-\"} \" +\n                $\"jugada={d.Final} resultado={d.Outcome}\");\n    }\n\n    // El corazón del ejemplo. Acá viven las reglas que el núcleo NO delega:\n    //  - la jugada final siempre es una jugada legal;\n    //  - si el asesor falla, se demora o devuelve algo inválido, el juego sigue.\n    public sealed class AdvisedMoveSelector\n    {\n        private readonly IChessAdvisor primary;\n        private readonly IChessAdvisor fallback;\n        private readonly IAdvisorLog log;\n        private readonly TimeSpan timeout;\n\n        public AdvisedMoveSelector(\n            IChessAdvisor primary, IChessAdvisor fallback, IAdvisorLog log, TimeSpan timeout)\n        {\n            this.primary = primary;\n            this.fallback = fallback;\n            this.log = log;\n            this.timeout = timeout;   // [GOBERNANZA] límite de tiempo: control de recursos y disponibilidad\n        }\n\n        public async Task<UciMove> ChooseAsync(\n            string fen, IReadOnlyList<UciMove> legalMoves, CancellationToken ct = default)\n        {\n            if (legalMoves.Count == 0)\n                throw new ArgumentException(\"No hay jugadas legales.\", nameof(legalMoves));\n\n            string outcome;\n            UciMove? suggested = null;\n\n            try\n            {\n                using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);\n                cts.CancelAfter(timeout);\n\n                suggested = await primary.SuggestMoveAsync(fen, legalMoves, cts.Token);\n\n                if (suggested is null)\n                {\n                    outcome = \"sin-sugerencia\";\n                }\n                // [GOBERNANZA] La salida del modelo es una entrada NO confiable:\n                // se valida contra las jugadas legales antes de usarla.\n                else if (!legalMoves.Contains(suggested.Value))\n                {\n                    outcome = \"jugada-ilegal\";\n                }\n                else\n                {\n                    log.Record(new AdvisorDecision(\n                        fen, primary.Name, suggested.Value.Text, suggested.Value.Text, \"aceptada\"));\n                    return suggested.Value;\n                }\n            }\n            catch (OperationCanceledException) when (!ct.IsCancellationRequested)\n            {\n                outcome = \"timeout\";\n            }\n            catch (HttpRequestException)\n            {\n                outcome = \"error-de-red\";\n            }\n\n            // [GOBERNANZA] Respaldo local: si la IA no está, el juego continúa\n            // (continuidad del servicio, Unidad 6).\n            var backup = await fallback.SuggestMoveAsync(fen, legalMoves, ct);\n            var final = backup is { } b && legalMoves.Contains(b) ? b : legalMoves[0];\n\n            log.Record(new AdvisorDecision(\n                fen, primary.Name, suggested?.Text, final.Text, \"respaldo:\" + outcome));\n            return final;\n        }\n    }\n\n    // ========================================================================\n    // ADAPTADORES\n    // ========================================================================\n\n    // Respaldo y doble de prueba: elige una jugada legal al azar.\n    public sealed class RandomChessAdvisor : IChessAdvisor\n    {\n        private readonly Random random;\n\n        public RandomChessAdvisor(int? seed = null) =>\n            random = seed is null ? new Random() : new Random(seed.Value);\n\n        public string Name => \"random\";\n\n        public Task<UciMove?> SuggestMoveAsync(\n            string fen, IReadOnlyList<UciMove> legalMoves, CancellationToken ct)\n        {\n            UciMove? move = legalMoves.Count == 0 ? null : legalMoves[random.Next(legalMoves.Count)];\n            return Task.FromResult(move);\n        }\n    }\n\n    public record LlmAdvisorOptions(\n        string ApiKey,\n        string Model = \"claude-sonnet-5-5\",\n        string Endpoint = \"https://api.anthropic.com/v1/messages\",\n        int MaxTokens = 20);   // [GOBERNANZA] tope de tokens: controla el costo\n\n    // Adaptador que habla con una API de IA por HTTP.\n    // Se puede reemplazar por otro proveedor sin tocar el núcleo.\n    public sealed class LlmChessAdvisor : IChessAdvisor\n    {\n        private const string SystemPrompt =\n            \"Sos un asesor de ajedrez. Respondés únicamente con una jugada en notación \" +\n            \"UCI (por ejemplo e2e4), elegida de la lista de jugadas legales provista. \" +\n            \"No agregues explicaciones.\";\n\n        private readonly HttpClient http;\n        private readonly LlmAdvisorOptions options;\n\n        public LlmChessAdvisor(HttpClient http, LlmAdvisorOptions options)\n        {\n            this.http = http;\n            this.options = options;\n        }\n\n        public string Name => \"llm:\" + options.Model;\n\n        public async Task<UciMove?> SuggestMoveAsync(\n            string fen, IReadOnlyList<UciMove> legalMoves, CancellationToken ct)\n        {\n            // [GOBERNANZA] Minimización de datos: se envía SOLO la posición y las\n            // jugadas legales. Nada de nombres, cuentas ni datos personales\n            // (principio de finalidad y seguridad de la Ley 25.326).\n            var body = new\n            {\n                model = options.Model,\n                max_tokens = options.MaxTokens,\n                system = SystemPrompt,\n                messages = new[]\n                {\n                    new { role = \"user\", content = BuildPrompt(fen, legalMoves) }\n                }\n            };\n\n            using var request = new HttpRequestMessage(HttpMethod.Post, options.Endpoint)\n            {\n                Content = new StringContent(\n                    JsonSerializer.Serialize(body), Encoding.UTF8, \"application/json\")\n            };\n            request.Headers.Add(\"x-api-key\", options.ApiKey);\n            request.Headers.Add(\"anthropic-version\", \"2023-06-01\");\n\n            using var response = await http.SendAsync(request, ct);\n            response.EnsureSuccessStatusCode();\n\n            var json = await response.Content.ReadAsStringAsync(ct);\n            return ExtractMove(json);\n        }\n\n        // Si algún día se mezclara texto escrito por una persona en el prompt,\n        // habría que tratarlo como no confiable (inyección de instrucciones).\n        // Acá la entrada la genera el propio juego, por eso el riesgo es bajo.\n        public static string BuildPrompt(string fen, IReadOnlyList<UciMove> legalMoves) =>\n            $\"Posición (FEN): {fen}\\n\" +\n            $\"Jugadas legales (UCI): {string.Join(' ', legalMoves)}\\n\" +\n            \"Elegí la mejor jugada de la lista. Respondé únicamente con la jugada.\";\n\n        // Público y estático para poder probarlo sin red.\n        // Busca la primera jugada con formato UCI dentro del texto de la respuesta.\n        public static UciMove? ExtractMove(string json)\n        {\n            try\n            {\n                using var doc = JsonDocument.Parse(json);\n                if (!doc.RootElement.TryGetProperty(\"content\", out var content) ||\n                    content.ValueKind != JsonValueKind.Array)\n                    return null;\n\n                foreach (var block in content.EnumerateArray())\n                {\n                    if (!block.TryGetProperty(\"type\", out var type) || type.GetString() != \"text\")\n                        continue;\n                    var text = block.TryGetProperty(\"text\", out var t) ? t.GetString() : null;\n                    if (text is null) continue;\n\n                    var match = Regex.Match(text.ToLowerInvariant(), @\"\\b[a-h][1-8][a-h][1-8][qrbn]?\\b\");\n                    if (match.Success && UciMove.TryParse(match.Value, out var move))\n                        return move;\n                }\n                return null;\n            }\n            catch (JsonException)\n            {\n                return null;\n            }\n        }\n    }\n\n    public static class AdvisorFactory\n    {\n        // [GOBERNANZA] La clave de API vive en una variable de entorno, NUNCA en\n        // el repositorio. Si no está configurada, el juego usa el respaldo local.\n        public static IChessAdvisor CreateFromEnvironment(HttpClient http, IChessAdvisor fallback)\n        {\n            var apiKey = Environment.GetEnvironmentVariable(\"ANTHROPIC_API_KEY\");\n            if (string.IsNullOrWhiteSpace(apiKey))\n            {\n                Console.WriteLine(\"[advisor] ANTHROPIC_API_KEY no está definida: se usa el respaldo local.\");\n                return fallback;\n            }\n\n            var model = Environment.GetEnvironmentVariable(\"CHESS_AI_MODEL\");\n            var options = string.IsNullOrWhiteSpace(model)\n                ? new LlmAdvisorOptions(apiKey)\n                : new LlmAdvisorOptions(apiKey, model);\n            return new LlmChessAdvisor(http, options);\n        }\n    }\n\n    // ========================================================================\n    // PRUEBAS (sin framework: alcanza con llamar a AdvisorChecks.RunAllAsync())\n    // Dobles de prueba: el núcleo se prueba sin red y sin clave de API.\n    // ========================================================================\n\n    internal sealed class FixedAdvisor : IChessAdvisor\n    {\n        private readonly UciMove? move;\n        public FixedAdvisor(UciMove? move) => this.move = move;\n        public string Name => \"fixed\";\n        public Task<UciMove?> SuggestMoveAsync(string fen, IReadOnlyList<UciMove> m, CancellationToken ct) =>\n            Task.FromResult(move);\n    }\n\n    internal sealed class ThrowingAdvisor : IChessAdvisor\n    {\n        public string Name => \"throwing\";\n        public Task<UciMove?> SuggestMoveAsync(string fen, IReadOnlyList<UciMove> m, CancellationToken ct) =>\n            throw new HttpRequestException(\"API caída (simulada)\");\n    }\n\n    internal sealed class SlowAdvisor : IChessAdvisor\n    {\n        public string Name => \"slow\";\n        public async Task<UciMove?> SuggestMoveAsync(string fen, IReadOnlyList<UciMove> m, CancellationToken ct)\n        {\n            await Task.Delay(Timeout.Infinite, ct);   // se queda esperando hasta que lo cancelen\n            return null;\n        }\n    }\n\n    internal sealed class MemoryLog : IAdvisorLog\n    {\n        public List<AdvisorDecision> Decisions { get; } = new();\n        public void Record(AdvisorDecision d) => Decisions.Add(d);\n    }\n\n    public static class AdvisorChecks\n    {\n        private const string StartFen = \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\";\n\n        private static readonly IReadOnlyList<UciMove> Legal = new[]\n        {\n            new UciMove(\"e2e4\"), new UciMove(\"d2d4\"), new UciMove(\"g1f3\"), new UciMove(\"b1c3\")\n        };\n\n        private static void Check(bool condition, string name)\n        {\n            Console.WriteLine((condition ? \"OK     \" : \"FALLÓ  \") + name);\n            if (!condition) throw new InvalidOperationException(\"Falló: \" + name);\n        }\n\n        private static AdvisedMoveSelector Selector(IChessAdvisor primary, MemoryLog log) =>\n            new(primary, new RandomChessAdvisor(seed: 1), log, TimeSpan.FromMilliseconds(100));\n\n        public static async Task RunAllAsync()\n        {\n            // 1. Una sugerencia legal se acepta tal cual.\n            var log = new MemoryLog();\n            var move = await Selector(new FixedAdvisor(new UciMove(\"g1f3\")), log).ChooseAsync(StartFen, Legal);\n            Check(move.Text == \"g1f3\" && log.Decisions[0].Outcome == \"aceptada\", \"sugerencia legal aceptada\");\n\n            // 2. Una sugerencia ILEGAL jamás llega al tablero: se usa el respaldo.\n            log = new MemoryLog();\n            move = await Selector(new FixedAdvisor(new UciMove(\"e2e5\")), log).ChooseAsync(StartFen, Legal);\n            Check(Legal.Contains(move) && log.Decisions[0].Outcome == \"respaldo:jugada-ilegal\",\n                  \"jugada ilegal descartada\");\n\n            // 3. Si el asesor no tiene sugerencia, el juego continúa.\n            log = new MemoryLog();\n            move = await Selector(new FixedAdvisor(null), log).ChooseAsync(StartFen, Legal);\n            Check(Legal.Contains(move) && log.Decisions[0].Outcome == \"respaldo:sin-sugerencia\",\n                  \"sin sugerencia: respaldo\");\n\n            // 4. Si la API cae, el juego continúa.\n            log = new MemoryLog();\n            move = await Selector(new ThrowingAdvisor(), log).ChooseAsync(StartFen, Legal);\n            Check(Legal.Contains(move) && log.Decisions[0].Outcome == \"respaldo:error-de-red\",\n                  \"API caída: respaldo\");\n\n            // 5. Si la API tarda demasiado, el juego continúa.\n            log = new MemoryLog();\n            move = await Selector(new SlowAdvisor(), log).ChooseAsync(StartFen, Legal);\n            Check(Legal.Contains(move) && log.Decisions[0].Outcome == \"respaldo:timeout\",\n                  \"timeout: respaldo\");\n\n            // 6. Se registra cada decisión (auditoría).\n            Check(log.Decisions.Count == 1, \"cada decisión queda registrada\");\n\n            // 7. El parseo de la respuesta tolera ruido y rechaza basura.\n            Check(LlmChessAdvisor.ExtractMove(\"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"e2e4\\\"}]}\")?.Text == \"e2e4\",\n                  \"respuesta limpia\");\n            Check(LlmChessAdvisor.ExtractMove(\"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Mi jugada: g1f3.\\\"}]}\")?.Text == \"g1f3\",\n                  \"respuesta con texto alrededor\");\n            Check(LlmChessAdvisor.ExtractMove(\"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"no sé\\\"}]}\") is null,\n                  \"respuesta sin jugada\");\n            Check(LlmChessAdvisor.ExtractMove(\"esto no es json\") is null, \"respuesta que no es JSON\");\n        }\n    }\n\n#if BONUS_DEMO\n    // ========================================================================\n    // DEMO: dotnet run, con la constante BONUS_DEMO definida.\n    // En el TPO real, las jugadas legales las produce el generador de jugadas\n    // del núcleo; acá se escriben a mano solo para mostrar el flujo.\n    // ========================================================================\n    public static class Demo\n    {\n        public static async Task Main()\n        {\n            await AdvisorChecks.RunAllAsync();\n            Console.WriteLine();\n\n            using var http = new HttpClient();   // en producción: IHttpClientFactory\n            var fallback = new RandomChessAdvisor();\n            var advisor = AdvisorFactory.CreateFromEnvironment(http, fallback);\n            var selector = new AdvisedMoveSelector(\n                advisor, fallback, new ConsoleAdvisorLog(), TimeSpan.FromSeconds(10));\n\n            const string fen = \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\";\n            var legal = new[] { new UciMove(\"e2e4\"), new UciMove(\"d2d4\"), new UciMove(\"g1f3\"), new UciMove(\"b1c3\") };\n\n            // [GOBERNANZA] Transparencia: se avisa cuándo juega la IA.\n            Console.WriteLine(\"Turno de la IA...\");\n            var move = await selector.ChooseAsync(fen, legal);\n            Console.WriteLine($\"La IA juega: {move}\");\n        }\n    }\n#endif\n}\n",
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}

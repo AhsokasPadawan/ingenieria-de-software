@@ -1,0 +1,547 @@
+{
+  "modulo": "Unidad 04",
+  "titulo_general": "Optimización de Software: Técnicas de CPU y Memoria RAM",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Eficiencia algorítmica y notación Big O, loop crítico, bottlenecks, profilers, 8 técnicas de optimización de CPU, tipos de memoria, Heap vs. Stack, Memory Leak, Stack Overflow, memoria estática, Garbage Collector y profiling de memoria.",
+  "secciones": [
+    {
+      "titulo": "Clase 6: Optimización de Software — Técnicas de CPU",
+      "subtemas": [
+        {
+          "id": "objetivo-clase-6-cpu",
+          "titulo": "Objetivo de la Clase: Optimización de CPU",
+          "bloques": [
+            {
+              "tema": "Medir antes de optimizar",
+              "definicion": "La optimización es otro requisito no funcional más, como la seguridad o la mantenibilidad.",
+              "detalles": {
+                "etiqueta": "Principio de Knuth",
+                "items": [
+                  "Premature optimization is the root of all evil (Donald Knuth)",
+                  "Optimizar sin medir es sobre-ingeniería: medí, encontrá el cuello de botella real y recién ahí optimizá"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "complejidad-algoritmica-y-big-o",
+          "titulo": "Eficiencia Algorítmica y Notación Big O",
+          "bloques": [
+            {
+              "tema": "Notación Big O",
+              "definicion": "Mide la forma en que crece el trabajo (tiempo) y la memoria (espacio) cuando crece el tamaño de la entrada n, sin depender de la máquina.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "O(1) — Constante",
+                  "definicion": "Buscar por clave en un diccionario; cuesta igual con 10 o 10 millones de elementos."
+                },
+                {
+                  "nombre": "O(n) — Lineal",
+                  "definicion": "Recorrer una lista buscando un valor; el costo crece proporcional a n."
+                },
+                {
+                  "nombre": "O(n²) — Cuadrática",
+                  "definicion": "Bucle anidado sobre la misma colección; con 1.000 elementos son 1.000.000 de comparaciones."
+                },
+                {
+                  "nombre": "Complejidad espacial",
+                  "definicion": "Una matriz de n×n floats ocupa n²×4 bytes; la memoria tampoco es gratis."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Notación Big O: mide cómo crece el trabajo de un algoritmo a medida\n    // que crece el tamaño de la entrada (n) — no el tiempo exacto en\n    // milisegundos, sino la FORMA en la que ese tiempo escala.\n    public class ComplejidadEjemplos\n    {\n        // O(1) — tiempo constante: no importa cuántos elementos tenga el\n        // diccionario, buscar por clave siempre cuesta \"lo mismo\".\n        public bool BuscarPorId(Dictionary<int, string> productos, int id)\n        {\n            return productos.ContainsKey(id);\n        }\n\n        // O(n) — tiempo lineal: en el peor caso, hay que recorrer todos\n        // los elementos una vez. El costo crece proporcional a n.\n        public bool BuscarPorIdLineal(List<(int Id, string Nombre)> productos, int id)\n        {\n            foreach (var producto in productos)\n            {\n                if (producto.Id == id) return true;\n            }\n            return false;\n        }\n\n        // O(n²) — tiempo cuadrático: un bucle anidado sobre la misma\n        // colección. Con 10 elementos son 100 comparaciones; con 1.000\n        // elementos son 1.000.000 — crece muy rápido y suele ser la\n        // primera señal de que conviene otra estructura de datos.\n        public List<(int, int)> EncontrarParesDuplicados(List<int> valores)\n        {\n            var duplicados = new List<(int, int)>();\n            for (int i = 0; i < valores.Count; i++)\n            {\n                for (int j = i + 1; j < valores.Count; j++)\n                {\n                    if (valores[i] == valores[j]) duplicados.Add((i, j));\n                }\n            }\n            return duplicados;\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "loop-critico-y-bottleneck",
+          "titulo": "El Loop Crítico y el Bottleneck",
+          "bloques": [
+            {
+              "tema": "Hot path y cuello de botella",
+              "definicion": "Todo programa que corre repetidamente tiene un loop crítico (Input → Lógica → Output); el bottleneck es el segmento que más tiempo consume.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Ejemplos de loop crítico",
+                  "etiqueta_items": "Dominios",
+                  "items": [
+                    "Juego: input del jugador → física / gameplay → render",
+                    "Servidor web: parsear request → lógica de negocio → armar respuesta"
+                  ]
+                },
+                {
+                  "nombre": "Causas comunes de bottleneck",
+                  "etiqueta_items": "Factores",
+                  "items": [
+                    "Algoritmos ineficientes (alta complejidad)",
+                    "Uso intensivo de CPU, memoria, disco o red",
+                    "Estructuras de datos inadecuadas para el acceso"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph LR\n  IN[Input: procesar entrada] --> LOG[Lógica: ejecutar trabajo]\n  LOG --> OUT[Output: producir salida]\n  OUT --> IN",
+              "conclusion": "El cuello de botella no se adivina: se mide."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Bottleneck (cuello de botella): el segmento de código que más tiempo\n    // consume dentro de un loop crítico. No se adivina — se mide con un\n    // profiler. Optimizar sin medir es la misma sobre-ingeniería que\n    // agregar un patrón de diseño que nadie pidió: se paga complejidad\n    // por un problema que quizás no existe.\n    public class HotPathExample\n    {\n        // El \"loop crítico\" no es exclusivo de videojuegos: acá, el mismo\n        // problema en el ciclo de vida de un request HTTP.\n        public void ProcessRequest(HttpRequestData request)\n        {\n            ValidateInput(request);   // Procesamiento de \"input\"\n            var result = RunBusinessLogic(request); // \"Lógica\" — el hot path más común\n            SendResponse(result);     // Procesamiento de \"output\"\n        }\n\n        private void ValidateInput(HttpRequestData request) { }\n        private object RunBusinessLogic(HttpRequestData request) => null;\n        private void SendResponse(object result) { }\n    }\n\n    public class HttpRequestData { }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "profilers",
+          "titulo": "Profilers",
+          "bloques": [
+            {
+              "tema": "Medir dónde se va el tiempo",
+              "definicion": "Un profiler mide en dónde se consume el tiempo realmente, en vez de adivinar.",
+              "tabla": {
+                "columnas": [
+                  "Stack tecnológico",
+                  "Herramientas de profiling"
+                ],
+                "filas": [
+                  [
+                    "Videojuegos",
+                    "Unity Profiler, PIX"
+                  ],
+                  [
+                    ".NET / C#",
+                    "dotnet-trace, Visual Studio Profiler"
+                  ],
+                  [
+                    "Web",
+                    "Chrome DevTools"
+                  ],
+                  [
+                    "Java",
+                    "VisualVM"
+                  ]
+                ]
+              },
+              "conclusion": "La herramienta cambia; la disciplina de medir antes de optimizar es siempre la misma."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-precomputation",
+          "titulo": "Técnica 1: Precomputation",
+          "bloques": [
+            {
+              "tema": "Precomputation",
+              "definicion": "Si un cálculo no depende de nada que cambie en tiempo real, resolvelo una sola vez de antemano y reutilizá el resultado.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Tabla de senos precalculada al iniciar y consultada en el hot path",
+                  "Tabla precalculada de tasas impositivas o conversión de moneda"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Precomputation: evitar cálculo repetido en un hot spot, resolviéndolo\n    // una sola vez de antemano y reutilizando el resultado. El mismo patrón\n    // sirve para precalcular una tabla de conversión de moneda o de tasas\n    // impositivas que no cambian durante la ejecución.\n    public class PrecomputationExample\n    {\n        private const int TableSize = 360;\n        private float[] _sinTable;\n        private int _secondsPerDay;\n\n        public void Initialize()\n        {\n            GenerateTables();\n            _secondsPerDay = 60 * 60 * 24;\n        }\n\n        public void OnHotPath(int angleDegrees)\n        {\n            // Usa la tabla precalculada en vez de recalcular seno cada vez.\n            float angleSin = _sinTable[angleDegrees % TableSize];\n        }\n\n        private void GenerateTables()\n        {\n            _sinTable = new float[TableSize];\n            for (int i = 0; i < TableSize; i++)\n            {\n                _sinTable[i] = (float)Math.Sin(Math.PI / 180 * i);\n            }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-lazy-computation",
+          "titulo": "Técnica 2: Lazy Computation",
+          "bloques": [
+            {
+              "tema": "Lazy Computation",
+              "definicion": "Lo opuesto a precomputation: no calcules ni cargues nada hasta el momento exacto en que hace falta.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "En una lista larga de usuarios, no cargar el avatar de cada uno hasta que ese ítem sea visible en pantalla al hacer scroll"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Lazy computation: demorar un cálculo o una carga hasta el momento en\n    // que realmente se necesita. Ejemplo universal: en una lista larga de\n    // usuarios, no cargar la imagen de avatar de cada uno hasta que el\n    // usuario haga scroll y ese ítem se vuelva visible en pantalla.\n    public class LazyAvatarLoader\n    {\n        private readonly Dictionary<int, byte[]> _loadedAvatars = new();\n\n        public byte[] GetAvatar(int userId, bool isVisibleOnScreen)\n        {\n            if (!isVisibleOnScreen)\n            {\n                return null; // No se carga nada si el ítem ni siquiera se ve.\n            }\n            if (!_loadedAvatars.ContainsKey(userId))\n            {\n                _loadedAvatars[userId] = DownloadAvatarFromServer(userId);\n            }\n            return _loadedAvatars[userId];\n        }\n\n        private byte[] DownloadAvatarFromServer(int userId) => Array.Empty<byte>();\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-batching",
+          "titulo": "Técnica 3: Batching",
+          "bloques": [
+            {
+              "tema": "Batching",
+              "definicion": "Agrupar operaciones similares y ejecutarlas todas juntas evita pagar el costo fijo de cada operación individual n veces.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Guardar 500 registros con un único SaveBatch() en vez de 500 viajes individuales de red a la base de datos"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Batching: agrupar operaciones similares y aplicarlas todas juntas, en\n    // vez de una por una. Ejemplo universal: guardar 500 registros con un\n    // solo INSERT por lotes en vez de 500 viajes individuales a la base de\n    // datos — cada viaje tiene un costo fijo de red que el batching evita repetir.\n    public class BatchRepository\n    {\n        // Mal: un viaje a la base de datos por cada registro.\n        public void SaveOneByOne(List<Order> orders, IOrderRepository repository)\n        {\n            foreach (var order in orders)\n            {\n                repository.Save(order); // n viajes a la base de datos.\n            }\n        }\n\n        // Bien: un solo viaje para todo el lote.\n        public void SaveBatched(List<Order> orders, IOrderRepository repository)\n        {\n            repository.SaveBatch(orders); // 1 viaje a la base de datos.\n        }\n    }\n\n    public class Order { }\n    public interface IOrderRepository\n    {\n        void Save(Order order);\n        void SaveBatch(List<Order> orders);\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-caching",
+          "titulo": "Técnica 4: Caching",
+          "bloques": [
+            {
+              "tema": "Caching",
+              "definicion": "Guardar el resultado de algo costoso para no volver a pagarlo si se pide de nuevo poco después.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Cachear una cotización de moneda por 10 minutos en vez de llamar a una API externa en cada request",
+                  "El caché puede vivir detrás de una interfaz (IExchangeRateProvider) aplicando Nivel 4 de DI"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Caching: guardar temporalmente el resultado de una operación costosa\n    // (una consulta a la base de datos, una llamada a una API externa) para\n    // no repetirla si se vuelve a pedir lo mismo poco después.\n    public class CachedExchangeRateService\n    {\n        private readonly Dictionary<string, (decimal Rate, DateTime FetchedAt)> _cache = new();\n        private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(10);\n\n        public decimal GetRate(string currencyPair, IExchangeRateProvider provider)\n        {\n            if (_cache.TryGetValue(currencyPair, out var cached) &&\n                DateTime.UtcNow - cached.FetchedAt < _cacheDuration)\n            {\n                return cached.Rate; // Hit de caché: no se llama a la API externa.\n            }\n\n            decimal freshRate = provider.FetchRate(currencyPair); // Miss: se paga el costo real.\n            _cache[currencyPair] = (freshRate, DateTime.UtcNow);\n            return freshRate;\n        }\n    }\n\n    public interface IExchangeRateProvider\n    {\n        decimal FetchRate(string currencyPair);\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-especializacion",
+          "titulo": "Técnica 5: Especialización",
+          "bloques": [
+            {
+              "tema": "Especialización",
+              "definicion": "En vez de un método gigante con if/switch por cada caso, dividir el comportamiento en clases específicas mediante polimorfismo.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "INotificationSender con EmailNotificationSender, SmsNotificationSender y PushNotificationSender",
+                  "Agregar un canal nuevo no toca las clases existentes (Open/Closed)"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Especialización: en vez de un método gigante con un if/switch por\n    // cada caso, se divide el comportamiento en clases específicas —\n    // uso correcto de polimorfismo, no una jerarquía forzada.\n    public interface INotificationSender\n    {\n        void Send(string recipient, string message);\n    }\n\n    public class EmailNotificationSender : INotificationSender\n    {\n        public void Send(string recipient, string message) { /* SMTP */ }\n    }\n\n    public class SmsNotificationSender : INotificationSender\n    {\n        public void Send(string recipient, string message) { /* proveedor de SMS */ }\n    }\n\n    public class PushNotificationSender : INotificationSender\n    {\n        public void Send(string recipient, string message) { /* servicio push */ }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-expected-path",
+          "titulo": "Técnica 6: Optimización del Expected Path",
+          "bloques": [
+            {
+              "tema": "Expected Path",
+              "definicion": "Cuando hay un caso común y uno raro, comprobá primero el común para que la mayoría de las ejecuciones no pague el costo de evaluar la rama rara.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Comprobar isAuthenticated primero porque la gran mayoría de los requests ya vienen autenticados"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Optimización del Expected Path: se comprueba primero la condición\n    // más probable, para que el caso común no pague el costo de evaluar\n    // ramas menos frecuentes antes de llegar a la suya.\n    public class RequestAuthExample\n    {\n        public void HandleRequest(bool isAuthenticated)\n        {\n            if (isAuthenticated)\n            {\n                // Caso común: la gran mayoría de los requests ya vienen autenticados.\n                ProcessAuthenticatedRequest();\n            }\n            else\n            {\n                // Caso raro: solo entra acá el pequeño porcentaje sin sesión válida.\n                RedirectToLogin();\n            }\n        }\n\n        private void ProcessAuthenticatedRequest() { }\n        private void RedirectToLogin() { }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-hashing",
+          "titulo": "Técnica 7: Hashing",
+          "bloques": [
+            {
+              "tema": "Hashing",
+              "definicion": "Big O en acción: buscar por clave en un diccionario es O(1); recorrer una lista es O(n).",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Indexar productos por SKU en un Dictionary en vez de recorrer una List",
+                  "En videojuegos, ubicar objetos por celda del mundo mediante hashing espacial"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Hashing: buscar por clave en un diccionario (hash table) es O(1);\n    // buscar recorriendo una lista es O(n). Con pocos elementos no se nota\n    // — con miles, es la diferencia entre una consulta instantánea y una lenta.\n    public class ProductLookup\n    {\n        private readonly Dictionary<string, Product> _productsBySku = new();\n\n        public void Index(Product product) => _productsBySku[product.Sku] = product;\n\n        public Product FindBySku(string sku) =>\n            _productsBySku.TryGetValue(sku, out var product) ? product : null; // O(1)\n    }\n\n    public class Product { public string Sku; }\n\n    // Ejemplo de videojuegos: el mismo principio, aplicado a ubicar objetos\n    // por posición en el mundo en vez de por clave — hashing espacial.\n    public class GridHashing\n    {\n        public int GridCellSize = 10;\n        private readonly Dictionary<(int, int), List<string>> _grid = new();\n\n        public void Insert(string entityId, float worldX, float worldZ)\n        {\n            var cell = WorldToGridCell(worldX, worldZ);\n            if (!_grid.ContainsKey(cell)) _grid[cell] = new List<string>();\n            _grid[cell].Add(entityId);\n        }\n\n        private (int, int) WorldToGridCell(float x, float z) =>\n            ((int)(x / GridCellSize), (int)(z / GridCellSize));\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tecnica-cpu-object-pooling",
+          "titulo": "Técnica 8: Object Pooling",
+          "bloques": [
+            {
+              "tema": "Object Pooling (Concepto ancla)",
+              "definicion": "Pre-instanciar los objetos que se van a necesitar y reutilizarlos (Get / Return) en vez de crearlos y destruirlos en caliente.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "En videojuegos: pool de proyectiles",
+                  "En backend: connection pools de base de datos, donde abrir conexiones es caro y se reutilizan"
+                ]
+              },
+              "diagrama_mermaid": "graph LR\n  P[Pool: objetos inactivos] -->|Get| U[En uso]\n  U -->|Return| P"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Object Pool — el concepto ancla de esta clase: pre-instancia los\n    // objetos que van a hacer falta y los reutiliza (activar/desactivar) en\n    // vez de crearlos y destruirlos en caliente. Ejemplo de videojuegos\n    // (proyectiles), pero el mismo patrón sostiene, por ejemplo, los\n    // connection pools de una base de datos: abrir una conexión es caro,\n    // así que se abren varias de antemano y se reutilizan por request en\n    // vez de abrir y cerrar una por cada consulta.\n    public class ProjectilePool\n    {\n        private readonly Queue<Projectile> _pooled = new();\n        private readonly Func<Projectile> _factory;\n\n        public ProjectilePool(Func<Projectile> factory, int initialSize)\n        {\n            _factory = factory;\n            for (int i = 0; i < initialSize; i++)\n            {\n                var projectile = _factory();\n                projectile.IsActive = false;\n                _pooled.Enqueue(projectile);\n            }\n        }\n\n        public Projectile Get()\n        {\n            if (_pooled.Count > 0)\n            {\n                var projectile = _pooled.Dequeue();\n                projectile.IsActive = true;\n                return projectile;\n            }\n            // El pool se quedó corto: se crea uno de más como salvavidas,\n            // aunque esto es exactamente el costo que el patrón busca\n            // evitar — señal de que initialSize se quedó chico para el\n            // pico real de demanda.\n            var extra = _factory();\n            extra.IsActive = true;\n            return extra;\n        }\n\n        public void Return(Projectile projectile)\n        {\n            projectile.IsActive = false;\n            _pooled.Enqueue(projectile);\n        }\n    }\n\n    public class Projectile { public bool IsActive; }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "donde-vive-optimizacion-cpu",
+          "titulo": "Dónde Vive la Optimización en la Arquitectura",
+          "bloques": [
+            {
+              "tema": "Detalles de implementación fuera del núcleo",
+              "definicion": "Casi todas estas técnicas son detalles técnicos y no deberían filtrarse al núcleo.",
+              "detalles": {
+                "etiqueta": "Regla arquitectónica",
+                "items": [
+                  "Un caché puede vivir en un adaptador o decorador implementando la misma interfaz que el núcleo espera",
+                  "Si mañana cambia la estrategia de caché, el núcleo no se entera"
+                ]
+              },
+              "conclusion": "El núcleo se mantiene ignorante de los detalles técnicos."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Clase 7: Optimización de Software — Técnicas de Memoria RAM",
+      "subtemas": [
+        {
+          "id": "tipos-de-memoria",
+          "titulo": "Tipos de Memoria",
+          "bloques": [
+            {
+              "tema": "Jerarquía de memoria en ejecución",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Caché del procesador (L1/L2/L3)",
+                  "definicion": "Mucho más rápida y chica que la RAM, ubicada entre la CPU y la RAM."
+                },
+                {
+                  "nombre": "RAM",
+                  "definicion": "Donde vive todo lo que el programa necesita mientras corre; volátil y de acceso rápido."
+                },
+                {
+                  "nombre": "Almacenamiento (Disco / SSD)",
+                  "definicion": "Persistente y mucho más lenta, para datos que sobreviven al cierre del programa."
+                }
+              ],
+              "conclusion": "Si el software renderiza gráficos existe además la VRAM en la GPU, pero no es relevante para la mayoría del software."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "heap-y-stack",
+          "titulo": "Heap y Stack",
+          "bloques": [
+            {
+              "tema": "Heap vs. Stack",
+              "definicion": "El Stack guarda variables locales y llamadas a funciones; el Heap almacena objetos dinámicos.",
+              "tabla": {
+                "columnas": [
+                  "Heap",
+                  "Stack"
+                ],
+                "filas": [
+                  [
+                    "Mayor tiempo de asignación/liberación",
+                    "Asignación/liberación más rápidas"
+                  ],
+                  [
+                    "Riesgo de fragmentación",
+                    "Administración automática por el sistema"
+                  ],
+                  [
+                    "Sujeto al costo del Garbage Collector",
+                    "Menos propenso a memory leaks"
+                  ],
+                  [
+                    "Tamaño disponible más grande",
+                    "Tamaño limitado"
+                  ],
+                  [
+                    "Ideal para objetos de mayor duración",
+                    "No apto para datos de largo plazo; riesgo de stack overflow en recursión"
+                  ]
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Heap vs Stack: un struct (tipo de valor) vive en el stack cuando es\n    // una variable local — se apila y se libera automáticamente al salir\n    // de scope. Una class (tipo de referencia) siempre vive en el heap,\n    // aunque la referencia en sí (el \"puntero\" a esa posición) esté en el stack.\n    public struct RequestResultValue // Tipo de valor: vive en el stack si es variable local.\n    {\n        public int StatusCode;\n        public bool Success;\n    }\n\n    public class RequestResultReference // Tipo de referencia: el objeto en sí vive en el heap.\n    {\n        public int StatusCode;\n        public bool Success;\n    }\n\n    public class HeapVsStackExample\n    {\n        public void HandleRequest()\n        {\n            // 'localValue' se guarda en el stack. Se libera automáticamente\n            // al terminar HandleRequest() — sin intervención del Garbage Collector.\n            RequestResultValue localValue = new RequestResultValue { StatusCode = 200, Success = true };\n\n            // 'localReference' es una variable en el stack, pero apunta a un\n            // objeto RequestResultReference que fue reservado en el heap.\n            // Ese objeto en el heap solo se libera cuando el Garbage\n            // Collector determina que ya nadie lo referencia.\n            RequestResultReference localReference = new RequestResultReference { StatusCode = 200, Success = true };\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "memory-leak",
+          "titulo": "Memory Leak",
+          "bloques": [
+            {
+              "tema": "Fuga de memoria",
+              "definicion": "Memoria que ya no se usa, pero que el programa sigue reteniendo.",
+              "detalles": {
+                "etiqueta": "Causa más común en C#",
+                "items": [
+                  "Suscribirse a un evento y nunca desuscribirse",
+                  "Mientras el emisor siga vivo mantiene una referencia al suscriptor, impidiendo que el GC lo libere"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Memory Leak: el patrón más común en C# (no solo en videojuegos) es\n    // suscribirse a un evento y nunca desuscribirse. Mientras el emisor del\n    // evento siga vivo, va a mantener una referencia al suscriptor — y el\n    // Garbage Collector nunca va a poder liberar al suscriptor, aunque el\n    // objeto ya no se use en ningún otro lado.\n    public class EventEmitter\n    {\n        public event Action OnSomethingHappened;\n\n        public void Trigger() => OnSomethingHappened?.Invoke();\n    }\n\n    public class LeakySubscriber\n    {\n        private readonly EventEmitter _emitter;\n\n        public LeakySubscriber(EventEmitter emitter)\n        {\n            _emitter = emitter;\n            _emitter.OnSomethingHappened += HandleEvent;\n        }\n\n        // Fuga de memoria: no hay forma de desuscribirse — aunque el resto\n        // del programa deje de usar este objeto, 'emitter' sigue teniendo\n        // una referencia a HandleEvent, así que el GC nunca libera esto.\n\n        private void HandleEvent() { /* ... */ }\n    }\n\n    public class FixedSubscriber : IDisposable\n    {\n        private readonly EventEmitter _emitter;\n\n        public FixedSubscriber(EventEmitter emitter)\n        {\n            _emitter = emitter;\n            _emitter.OnSomethingHappened += HandleEvent;\n        }\n\n        public void Dispose()\n        {\n            // Se desuscribe explícitamente: ahora el GC sí puede liberar\n            // este objeto cuando corresponda.\n            _emitter.OnSomethingHappened -= HandleEvent;\n        }\n\n        private void HandleEvent() { /* ... */ }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "stack-overflow",
+          "titulo": "Stack Overflow",
+          "bloques": [
+            {
+              "tema": "Desbordamiento de pila",
+              "definicion": "Una llamada recursiva sin condición de salida llena el espacio del stack y termina el programa con una excepción.",
+              "conclusion": "Se evita con un caso base claro para que cada llamada se apile y desapile normalmente."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Stack Overflow: una llamada recursiva sin condición de salida llena\n    // el espacio del stack y termina el programa con una excepción.\n    public class StackOverflowExample\n    {\n        // Ejemplo de lo que NO hay que hacer: falta el caso base.\n        int CalculateFactorialBroken(int n)\n        {\n            return n * CalculateFactorialBroken(n - 1); // Nunca llega a un caso base: stack overflow.\n        }\n\n        // Versión correcta: con condición de salida, cada llamada se apila\n        // y se desapila normalmente sin agotar el stack.\n        int CalculateFactorialFixed(int n)\n        {\n            if (n <= 1) return 1; // Caso base: corta la recursión.\n            return n * CalculateFactorialFixed(n - 1);\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "memoria-estatica",
+          "titulo": "Memoria Estática",
+          "bloques": [
+            {
+              "tema": "Campos static",
+              "definicion": "Un campo static se comparte entre todas las instancias de la clase y vive durante toda la ejecución del programa.",
+              "detalles": {
+                "etiqueta": "Ejemplo",
+                "items": [
+                  "Si una promoción global cambia un descuento estático, afecta a todos los cálculos posteriores en cualquier instancia"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Memoria Estática: un campo static se comparte entre todas las\n    // instancias de la clase y vive durante toda la ejecución del programa,\n    // no por instancia individual.\n    public class DiscountPolicy\n    {\n        // Compartido por todas las instancias: si una promoción global lo\n        // cambia, afecta a todos los cálculos de precio que vengan después.\n        public static float GlobalDiscountRate = 0f;\n    }\n\n    public class ShoppingCart\n    {\n        public decimal Subtotal;\n\n        public decimal CalculateTotal()\n        {\n            // Todas las instancias de ShoppingCart leen el mismo valor estático.\n            return Subtotal * (decimal)(1 - DiscountPolicy.GlobalDiscountRate);\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "garbage-collector",
+          "titulo": "Garbage Collector",
+          "bloques": [
+            {
+              "tema": "Recolección de basura en .NET",
+              "definicion": "En C# no se libera memoria a mano: se quita la última referencia y el GC libera el objeto cuando deja de ser alcanzable.",
+              "detalles": {
+                "etiqueta": "Cómo funciona",
+                "items": [
+                  "No usa conteo de referencias: es generacional por trazado (mark-and-sweep)",
+                  "Agrupa objetos por antigüedad y revisa generaciones jóvenes con más frecuencia porque la mayoría muere joven",
+                  "GC.Collect() fuerza la recolección con costo alto: se reserva para momentos puntuales, nunca en el hot path"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Garbage Collector: asignar memoria nueva dentro de un hot path (por\n    // ejemplo, un 'new' innecesario en cada request o cada frame) genera\n    // presión de GC constante. La versión \"mala\" ilustra el problema; la\n    // \"buena\" reutiliza. Nota: el GC de .NET no funciona por conteo de\n    // referencias — es generacional, por trazado (mark-and-sweep): agrupa\n    // los objetos por \"cuánto sobrevivieron\" y revisa las generaciones\n    // jóvenes con mucha más frecuencia que las viejas.\n    public class GcPressureExample\n    {\n        // Mal: crea una lista nueva en el heap en cada llamada, aunque el\n        // contenido termine siendo descartado — presión de GC innecesaria.\n        public void ProcessRequestBad(List<int> incomingIds)\n        {\n            List<int> matchedIds = new List<int>();\n            // ... se llena y se usa matchedIds acá ...\n        }\n\n        private readonly List<int> _reusableList = new List<int>();\n\n        // Bien: la lista se reserva una sola vez y se reutiliza, solo se\n        // limpia su contenido en cada llamada (Clear no libera la memoria reservada).\n        public void ProcessRequestGood(List<int> incomingIds)\n        {\n            _reusableList.Clear();\n            // ... se llena y se usa _reusableList acá ...\n        }\n\n        // GC.Collect() fuerza la recolección manualmente. Tiene un costo alto\n        // en performance: se reserva para momentos muy puntuales (por ejemplo,\n        // una pantalla de carga o un job de mantenimiento nocturno), nunca\n        // dentro del hot path normal de la aplicación.\n        public void ForceCollectionDuringMaintenanceWindow()\n        {\n            GC.Collect();\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "liberacion-memoria-segun-lenguaje",
+          "titulo": "Liberación de Memoria según el Lenguaje",
+          "bloques": [
+            {
+              "tema": "Comparación entre lenguajes",
+              "tabla": {
+                "columnas": [
+                  "Lenguaje",
+                  "Cómo se libera"
+                ],
+                "filas": [
+                  [
+                    "C++",
+                    "Manual y explícita (delete): un olvido es una fuga garantizada"
+                  ],
+                  [
+                    "C# / JavaScript",
+                    "Garbage Collector automático: se quita la referencia y el GC decide cuándo liberar"
+                  ]
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// Liberación de memoria en C#: a diferencia de C++ (delete explícito),\n    // en C# no se libera memoria \"a mano\" — se quita la última referencia\n    // al objeto, y el Garbage Collector se encarga de liberarlo cuando\n    // determine que ya no es alcanzable.\n    public class Session\n    {\n        public Session()\n        {\n            Console.WriteLine(\"Session created\");\n        }\n\n        public void Close()\n        {\n            Console.WriteLine(\"Session closed\");\n        }\n    }\n\n    public class LiberacionDeMemoriaExample\n    {\n        public void Run()\n        {\n            Session session = new Session();\n            session.Close();\n            session = null; // Se quita la referencia: ahora el objeto es candidato para el GC.\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "profiling-memoria-y-arquitectura",
+          "titulo": "Profiling de Memoria y Arquitectura",
+          "bloques": [
+            {
+              "tema": "Snapshots y ubicación en la arquitectura",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Profiling por snapshots",
+                  "definicion": "Comparando dos fotos consecutivas de la memoria se detectan leaks si algo creció sin deber hacerlo.",
+                  "etiqueta_items": "Trade-offs",
+                  "items": [
+                    "Object Pooling reduce fragmentación; Lazy Computation puede aumentarla"
+                  ]
+                },
+                {
+                  "nombre": "Dónde vive en la arquitectura",
+                  "definicion": "Un caché con límite o un pool de objetos viven en un adaptador o decorador, nunca en el núcleo.",
+                  "etiqueta_items": "Principio",
+                  "items": [
+                    "Al núcleo solo le importa el contrato"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}

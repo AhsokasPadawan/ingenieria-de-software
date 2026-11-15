@@ -1,0 +1,1445 @@
+{
+  "modulo": "Unidad 01",
+  "titulo_general": "Ingenio y Diseño: Frontera Dominio/Framework, SOLID, Patrones y Testabilidad",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Requisitos funcionales y no funcionales, principio rector de diseño, sobre-ingeniería, arquitectura hexagonal, principios SOLID, inyección de dependencias, composición sobre herencia y patrones clásicos.",
+  "secciones": [
+    {
+      "titulo": "Clase 1: Requisitos y la Frontera Dominio / Framework",
+      "subtemas": [
+        {
+          "id": "objetivo-clase-1",
+          "titulo": "Objetivo de la Clase",
+          "bloques": [
+            {
+              "tema": "Eje de la materia: Ingenio y Diseño",
+              "definicion": "El resto de la materia se apoya en esta frontera.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "Requisitos funcionales y no funcionales",
+                  "Principio rector: principios con justificación, no dogma",
+                  "Frontera entre dominio y framework",
+                  "Arquitectura hexagonal"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "requisitos-funcionales-y-no-funcionales",
+          "titulo": "Requisitos Funcionales y No Funcionales",
+          "bloques": [
+            {
+              "tema": "Requisitos del sistema",
+              "definicion": "Un requisito describe qué debe hacer el sistema o qué cualidad debe tener.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Funcionales",
+                  "definicion": "Qué hace el sistema (acciones, procesos y respuestas).",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "El usuario puede cancelar una reserva"
+                  ]
+                },
+                {
+                  "nombre": "No funcionales",
+                  "definicion": "Qué tan bien lo hace (calidad, rendimiento y restricciones).",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "La cancelación debe procesarse en menos de 2 segundos",
+                    "El sistema debe soportar 10.000 usuarios simultáneos"
+                  ]
+                }
+              ],
+              "conclusion": "Ninguno es menos importante que el otro."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "clasificacion-requisitos-practica",
+          "titulo": "Clasificación Práctica de Requisitos",
+          "bloques": [
+            {
+              "tema": "Diferencia operativa entre funcional y no funcional",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Requisitos Funcionales",
+                  "definicion": "Describen funciones específicas, comportamientos e interacción entre usuario y software.",
+                  "etiqueta_items": "Objetivo",
+                  "items": [
+                    "Permitir que el usuario cumpla tareas concretas y alcance sus metas"
+                  ]
+                },
+                {
+                  "nombre": "Requisitos No Funcionales",
+                  "definicion": "Describen características de calidad, limitaciones operativas y propiedades del sistema.",
+                  "etiqueta_items": "Objetivo",
+                  "items": [
+                    "Garantizar que el software funcione de manera eficiente, segura y confiable"
+                  ]
+                }
+              ],
+              "tabla": {
+                "columnas": [
+                  "Requisito",
+                  "Tipo",
+                  "Por qué"
+                ],
+                "filas": [
+                  [
+                    "El sistema debe permitir subir una foto de perfil",
+                    "Funcional",
+                    "Describe una acción directa del usuario"
+                  ],
+                  [
+                    "La app debe cargar en menos de 3 segundos",
+                    "No funcional",
+                    "Define un atributo de rendimiento"
+                  ],
+                  [
+                    "El usuario puede eliminar su cuenta",
+                    "Funcional",
+                    "Describe una función concreta del sistema"
+                  ],
+                  [
+                    "Los datos deben viajar encriptados",
+                    "No funcional",
+                    "Establece una restricción de seguridad"
+                  ]
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "principio-rector-que-por-que-cuando-romperla",
+          "titulo": "El Principio Rector de la Materia",
+          "bloques": [
+            {
+              "tema": "Principios con justificación, no dogma",
+              "definicion": "Cada tema de esta materia se presenta en tres partes.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "La regla, enunciada con claridad."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "La justificación que la sostiene."
+                },
+                {
+                  "nombre": "Cuándo romperla",
+                  "definicion": "Las condiciones para desviarse a conciencia."
+                }
+              ],
+              "conclusion": "Una regla que no entendés te traiciona en el primer caso borde."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ejemplo-principio-rector",
+          "titulo": "Ejemplo Aplicado del Principio Rector",
+          "bloques": [
+            {
+              "tema": "Regla cotidiana analizada en tres partes",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Hay que cruzar solo con el semáforo en verde."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Reduce el riesgo de un accidente."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "No hay autos a la vista y cruzar no agrega riesgo real."
+                }
+              ],
+              "conclusion": "Así se analiza cada regla de diseño en adelante."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sobre-ingenieria",
+          "titulo": "La Amenaza Transversal: Sobre-ingeniería",
+          "bloques": [
+            {
+              "tema": "Sobre-ingeniería",
+              "definicion": "El enemigo silencioso: crear abstracciones para problemas que todavía no existen.",
+              "conclusion": "La escalabilidad real viene de la modularidad y la composición, no de acumular capas por las dudas."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sobre-ingenieria-en-codigo",
+          "titulo": "Sobre-ingeniería en Código",
+          "bloques": [
+            {
+              "tema": "Señales de abstracción innecesaria",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Una interfaz con una sola implementación que nunca va a tener otra: abstracción de más",
+                  "Un Factory para crear un objeto que se instancia una sola vez en todo el programa: capa de más"
+                ]
+              },
+              "conclusion": "La pregunta que lo resuelve: ¿este problema existe hoy, o lo estoy imaginando por las dudas?"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "problema-capas-tradicionales",
+          "titulo": "¿Qué Problema Resuelve la Frontera?",
+          "bloques": [
+            {
+              "tema": "El problema de las arquitecturas en capas tradicionales",
+              "definicion": "Las arquitecturas en capas (aplicación → servicios → persistencia → DB) parecen ordenadas, pero nada impide que la lógica de negocio se mezcle con la base de datos.",
+              "detalles": {
+                "etiqueta": "Consecuencia",
+                "items": [
+                  "Cambiar de motor de base de datos obliga a tocar medio sistema"
+                ]
+              },
+              "conclusion": "Ese dolor es exactamente lo que la frontera núcleo/adaptador evita."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "nucleo-y-adaptadores",
+          "titulo": "Núcleo y Adaptadores",
+          "bloques": [
+            {
+              "tema": "Las dos partes de todo sistema",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Núcleo (dominio)",
+                  "definicion": "Las reglas del negocio.",
+                  "etiqueta_items": "Características",
+                  "items": [
+                    "No sabe qué framework, motor o base de datos se usa"
+                  ]
+                },
+                {
+                  "nombre": "Adaptadores",
+                  "definicion": "Todo lo que conecta al núcleo con el mundo exterior.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "UI",
+                    "Base de datos",
+                    "Frameworks",
+                    "APIs"
+                  ]
+                }
+              ],
+              "conclusion": "Regla: las dependencias siempre apuntan hacia adentro."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "frontera-en-distintos-sistemas",
+          "titulo": "El Mismo Patrón en Distintos Sistemas",
+          "bloques": [
+            {
+              "tema": "La frontera es universal",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "E-commerce",
+                  "etiqueta_items": "Separación",
+                  "items": [
+                    "Núcleo: precio, stock, descuentos",
+                    "Adaptadores: pasarela de pago, DB, UI"
+                  ]
+                },
+                {
+                  "nombre": "App móvil",
+                  "etiqueta_items": "Separación",
+                  "items": [
+                    "Núcleo: reglas del dominio",
+                    "Adaptadores: SDK del sistema operativo, notificaciones"
+                  ]
+                },
+                {
+                  "nombre": "IoT",
+                  "etiqueta_items": "Separación",
+                  "items": [
+                    "Núcleo: reglas sobre los datos del sensor",
+                    "Adaptadores: protocolo de conexión"
+                  ]
+                }
+              ],
+              "conclusion": "El núcleo cambia de contenido. La frontera, no."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "arquitectura-hexagonal-puertos-y-adaptadores",
+          "titulo": "Arquitectura Hexagonal: Puertos y Adaptadores",
+          "bloques": [
+            {
+              "tema": "Puertos y Adaptadores",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Puertos",
+                  "definicion": "Interfaces expuestas por el núcleo: qué necesita, no cómo se resuelve."
+                },
+                {
+                  "nombre": "Adaptadores",
+                  "definicion": "Implementan esos puertos con tecnología concreta."
+                }
+              ],
+              "conclusion": "Cambiar de framework, DB o motor equivale a cambiar un adaptador, nunca tocar el núcleo."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tipos-de-puertos",
+          "titulo": "Dos Tipos de Puertos",
+          "bloques": [
+            {
+              "tema": "Puertos de entrada y de salida",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Puertos de entrada (driving)",
+                  "definicion": "Cómo el mundo le pide algo al núcleo.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Una API REST que dispara un caso de uso"
+                  ]
+                },
+                {
+                  "nombre": "Puertos de salida (driven)",
+                  "definicion": "Qué necesita el núcleo del mundo exterior.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Guardar algo en una base de datos"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph LR\n  EXT1[API REST / UI] --> PE[Puerto de Entrada]\n  PE --> N((Núcleo))\n  N --> PS[Puerto de Salida]\n  DB[(Base de Datos)] -.->|Implementa| PS",
+              "conclusion": "El núcleo define ambos como interfaces; nunca implementa ninguno."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "un-nucleo-varios-adaptadores",
+          "titulo": "Un Núcleo, Varios Adaptadores",
+          "bloques": [
+            {
+              "tema": "Múltiples canales sobre el mismo dominio",
+              "definicion": "El mismo núcleo puede recibir pedidos desde una API web, una consola o un proceso automático.",
+              "detalles": {
+                "etiqueta": "Características",
+                "items": [
+                  "Los tres usan el mismo puerto de entrada, cada uno con su propio adaptador",
+                  "El núcleo no distingue quién le pidió algo, solo qué le pidieron"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "testabilidad-real",
+          "titulo": "Por Qué Importa: Testabilidad Real",
+          "bloques": [
+            {
+              "tema": "Probar el núcleo sin infraestructura",
+              "definicion": "Un test no necesita una base de datos real: alcanza con una implementación falsa del puerto.",
+              "detalles": {
+                "etiqueta": "Ventajas",
+                "items": [
+                  "Tests más rápidos",
+                  "Tests más simples",
+                  "No dependen de un servidor prendido"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "portabilidad-y-claridad",
+          "titulo": "Por Qué Importa: Portabilidad y Claridad",
+          "bloques": [
+            {
+              "tema": "Beneficios estructurales a largo plazo",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Portabilidad",
+                  "definicion": "El mismo núcleo sobrevive a un cambio de tecnología externa."
+                },
+                {
+                  "nombre": "Claridad mental",
+                  "definicion": "Queda claro qué es mi problema y qué es un detalle reemplazable."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "cuando-no-conviene-hexagonal",
+          "titulo": "Cuándo NO Conviene Esta Frontera",
+          "bloques": [
+            {
+              "tema": "Límite de aplicación",
+              "definicion": "El código descartable no necesita esta disciplina.",
+              "detalles": {
+                "etiqueta": "Casos donde evitarla",
+                "items": [
+                  "Prototipos descartables",
+                  "Pruebas de concepto de pocos días"
+                ]
+              },
+              "conclusion": "Se traza la frontera cuando el sistema va a vivir, no antes; trazarla de más también es sobre-ingeniería."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-frontera-hexagonal",
+          "titulo": "En Síntesis — Clase 1",
+          "bloques": [
+            {
+              "tema": "Ideas clave de la frontera dominio/framework",
+              "detalles": {
+                "etiqueta": "Resumen",
+                "items": [
+                  "Un requisito puede ser funcional o no funcional",
+                  "Toda regla de esta materia se explica con qué / por qué / cuándo romperla",
+                  "El núcleo son las reglas del negocio; los adaptadores son los detalles técnicos",
+                  "La arquitectura hexagonal formaliza esa frontera con puertos de entrada y salida",
+                  "La frontera se traza cuando el sistema va a vivir, no antes"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Clase 2: SOLID, Inyección de Dependencias y Composición sobre Herencia",
+      "subtemas": [
+        {
+          "id": "objetivo-clase-2",
+          "titulo": "Objetivo de la Clase 2",
+          "bloques": [
+            {
+              "tema": "Llevar la frontera al código",
+              "definicion": "Una frontera bien dibujada necesita herramientas para sostenerse en código real.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "SOLID, con sus cinco letras una por una",
+                  "Inyección de dependencias por constructor",
+                  "Composición sobre herencia",
+                  "Patrones clásicos: Strategy, Observer y Factory"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "repaso-frontera-en-codigo",
+          "titulo": "Repaso Rápido: De la Frontera a C#",
+          "bloques": [
+            {
+              "tema": "Conexión con la clase anterior",
+              "detalles": {
+                "etiqueta": "Puntos clave",
+                "items": [
+                  "El núcleo son las reglas del negocio; los adaptadores son los detalles técnicos",
+                  "Las dependencias siempre apuntan hacia adentro",
+                  "El núcleo expone puertos: interfaces que dicen qué necesita, no cómo se resuelve"
+                ]
+              },
+              "conclusion": "Pregunta guía: ¿cómo se ve eso, línea por línea, en una clase de C#?"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-panorama-general",
+          "titulo": "SOLID: Panorama General",
+          "bloques": [
+            {
+              "tema": "Cinco principios para diseñar clases mantenibles",
+              "detalles": {
+                "etiqueta": "Principios",
+                "items": [
+                  "S — Single Responsibility",
+                  "O — Open/Closed",
+                  "L — Liskov Substitution",
+                  "I — Interface Segregation",
+                  "D — Dependency Inversion"
+                ]
+              },
+              "conclusion": "No son mandamientos: son reglas con su propio cuándo romperlas."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-single-responsibility",
+          "titulo": "S — Single Responsibility",
+          "bloques": [
+            {
+              "tema": "Principio de Responsabilidad Única",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Una clase debería tener una sola razón para cambiar."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Si una clase mezcla dos responsabilidades, un cambio en una puede romper la otra sin que se note."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Clases muy chicas y estables, donde separar de más agrega indirección sin beneficio real."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace SingleResponsibility\n    {\n        // MAL: mezcla lógica de juego, entrada de teclado y sonido en una sola clase.\n        public class Character\n        {\n            public void Move(Vector2 direction) { /* lógica de movimiento */ }\n            public void ReadKeyboardInput() { /* lee el input del teclado */ }\n            public void PlayFootstepSound() { /* reproduce el sonido de paso */ }\n        }\n\n        // BIEN: cada responsabilidad, su propia clase.\n        // CharacterMovement es núcleo (lógica pura); CharacterInput y CharacterAudio\n        // son adaptadores (tocan el motor/el hardware).\n        public class CharacterMovement\n        {\n            public void Move(Vector2 direction) { /* lógica pura, sin saber de input ni audio */ }\n        }\n\n        public class CharacterInput\n        {\n            public Vector2 ReadDirection() => Vector2.Zero; // adaptador: lee del teclado/mando\n        }\n\n        public class CharacterAudio\n        {\n            public void PlayFootstep() { /* adaptador: reproduce el sonido */ }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-open-closed",
+          "titulo": "O — Open/Closed",
+          "bloques": [
+            {
+              "tema": "Principio Abierto/Cerrado",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Una clase debería poder extenderse sin modificar su código existente."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Cada vez que se modifica código que ya funciona, se arriesga a romper algo que ya andaba bien."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Si nadie va a extender esa clase nunca, preparar puntos de extensión es sobre-ingeniería."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace OpenClosed\n    {\n        // MAL: agregar un enemigo nuevo obliga a volver a abrir este método.\n        public class DamageCalculatorBad\n        {\n            public int CalculateDamage(string enemyType)\n            {\n                if (enemyType == \"Goblin\") return 10;\n                else if (enemyType == \"Dragon\") return 50;\n                // cada enemigo nuevo = tocar este if otra vez\n                return 0;\n            }\n        }\n\n        // BIEN: cada enemigo sabe su propio daño. Agregar uno nuevo no toca nada existente.\n        public interface IEnemy { int Damage { get; } }\n        public class Goblin : IEnemy { public int Damage => 10; }\n        public class Dragon : IEnemy { public int Damage => 50; }\n        public class Imp : IEnemy { public int Damage => 15; } // nuevo, sin tocar las otras clases\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-liskov-substitution",
+          "titulo": "L — Liskov Substitution",
+          "bloques": [
+            {
+              "tema": "Principio de Sustitución de Liskov",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Una subclase debe poder reemplazar a su clase base sin romper nada."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Si Perro hereda de Animal pero rompe lo que Animal prometía, cualquier código que use Animal se puede romper con un Perro."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Rara vez conviene; normalmente es señal de que la herencia elegida no era la correcta."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace LiskovSubstitution\n    {\n        public class Player { }\n\n        public class Enemy\n        {\n            public virtual void Chase(Player player) { /* se mueve hacia el jugador */ }\n        }\n\n        public class FixedTurret : Enemy\n        {\n            public override void Chase(Player player)\n            {\n                throw new NotSupportedException(\"Las torretas fijas no persiguen\");\n                // Cualquier código que reciba un Enemy y llame Chase() se rompe\n                // si ese Enemy resulta ser un FixedTurret. Eso es violar Liskov.\n            }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-interface-segregation",
+          "titulo": "I — Interface Segregation",
+          "bloques": [
+            {
+              "tema": "Principio de Segregación de Interfaces",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Mejor muchas interfaces chicas y específicas que una gigante."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Nadie debería depender de métodos que no usa."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Interfaces muy cohesivas, donde separar más las fragmenta sin necesidad real."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace InterfaceSegregation\n    {\n        // MAL: obliga a implementar métodos que no todos los personajes usan.\n        public interface ICharacterBad\n        {\n            void Attack();\n            void Fly();\n            void Swim();\n            void Dig();\n        }\n\n        // BIEN: cada personaje implementa solo las capacidades que tiene.\n        // (Esta misma idea —capacidades chicas y combinables— reaparece más abajo\n        // en el ejemplo de composición sobre herencia.)\n        public interface IAttacker { void Attack(); }\n        public interface IFlyer { void Fly(); }\n        public interface ISwimmer { void Swim(); }\n\n        public class Bird : IAttacker, IFlyer\n        {\n            public void Attack() { /* ... */ }\n            public void Fly() { /* ... */ }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "solid-dependency-inversion",
+          "titulo": "D — Dependency Inversion",
+          "bloques": [
+            {
+              "tema": "Principio de Inversión de Dependencias",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Depender de abstracciones (interfaces), no de clases concretas."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Es la regla detrás de la frontera núcleo/adaptador."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Tipos muy estables del lenguaje (string, int) no necesitan abstraerse."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "inyeccion-de-dependencias",
+          "titulo": "Inyección de Dependencias en Código",
+          "bloques": [
+            {
+              "tema": "Inyección por constructor",
+              "definicion": "Las dependencias entran por el constructor, no se crean adentro de la clase con un new escondido.",
+              "detalles": {
+                "etiqueta": "Claves prácticas",
+                "items": [
+                  "Una clase que recibe sus dependencias se puede testear con un doble falso",
+                  "Un constructor con demasiados parámetros no es un problema de DI: señala que la clase viola S"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace DependencyLevel1_DirectReference\n    {\n        public class GameState { }\n\n        public class DiskSaveSystem\n        {\n            public void Write(GameState state) { /* ... */ }\n        }\n\n        // NIVEL 1: referencia directa. GameManager crea su propia dependencia, a mano.\n        public class GameManager\n        {\n            private DiskSaveSystem saveSystem = new DiskSaveSystem();\n\n            public void SaveGame(GameState state) => saveSystem.Write(state);\n            // Problema: GameManager queda pegado para siempre a DiskSaveSystem.\n            // No se puede guardar en la nube, ni testear sin tocar el disco real.\n        }\n    }\n\n    namespace DependencyLevel2_Singleton\n    {\n        public class GameState { }\n\n        // NIVEL 2: Singleton. Un único punto de acceso global.\n        public class DiskSaveSystem\n        {\n            public static DiskSaveSystem Instance { get; } = new DiskSaveSystem();\n            private DiskSaveSystem() { }\n            public void Write(GameState state) { /* ... */ }\n        }\n\n        public class GameManager\n        {\n            public void SaveGame(GameState state) => DiskSaveSystem.Instance.Write(state);\n            // Mejora: ya no se crea una instancia nueva en cada lugar que la necesita.\n            // Lo que sigue mal: GameManager sigue sabiendo el nombre concreto\n            // DiskSaveSystem — sigue \"soldado\", solo que ahora accede distinto.\n        }\n    }\n\n    namespace DependencyLevel3_ServiceLocator\n    {\n        public class GameState { }\n        public interface ISaveSystem { void Write(GameState state); }\n\n        // NIVEL 3: Service Locator. Se pide una INTERFAZ, no una clase concreta.\n        public static class Services\n        {\n            private static Dictionary<Type, object> registered = new();\n            public static void Register<T>(T instance) => registered[typeof(T)] = instance;\n            public static T Get<T>() => (T)registered[typeof(T)];\n        }\n\n        public class GameManager\n        {\n            public void SaveGame(GameState state)\n            {\n                var saveSystem = Services.Get<ISaveSystem>();\n                saveSystem.Write(state);\n                // Mejora: clavija, no cable soldado — cualquier ISaveSystem sirve.\n                // Lo que sigue mal: la dependencia está escondida adentro del método,\n                // no se ve mirando la clase. Y si nadie la registró antes, explota en runtime.\n            }\n        }\n    }\n\n    namespace DependencyLevel4_DependencyInjection\n    {\n        public class GameState { }\n        public interface ISaveSystem { void Write(GameState state); }\n\n        // NIVEL 4: Inyección de dependencias. La dependencia entra por el constructor,\n        // visible, obligatoria, chequeada en tiempo de compilación.\n        public class GameManager\n        {\n            private readonly ISaveSystem saveSystem;\n\n            public GameManager(ISaveSystem saveSystem) // <- acá, visible\n            {\n                this.saveSystem = saveSystem;\n            }\n\n            public void SaveGame(GameState state) => saveSystem.Write(state);\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "composicion-sobre-herencia",
+          "titulo": "Composición sobre Herencia",
+          "bloques": [
+            {
+              "tema": "Construir por capacidades",
+              "definicion": "Elegir relaciones tiene-un en vez de jerarquías rígidas es-un.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Problema de la herencia",
+                  "definicion": "Obliga a elegir una sola rama del árbol.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Una caja que se empuja, se prende fuego y suelta enemigos: ¿de qué hereda?"
+                  ]
+                },
+                {
+                  "nombre": "Solución con composición",
+                  "definicion": "Permite mezclar capacidades libremente sin un árbol rígido."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace VehicleWithInheritance\n    {\n        // CON HERENCIA: parece razonable al principio...\n        public class Vehicle { public virtual void Move() { } }\n        public class Car : Vehicle { }\n        public class Airplane : Vehicle { public override void Move() { /* volar */ } }\n        public class Boat : Vehicle { public override void Move() { /* navegar */ } }\n\n        // ...hasta que aparece un vehículo anfibio (auto que también flota).\n        // ¿De qué hereda? ¿De Car o de Boat? En C# no se puede heredar de los dos.\n        public class AmphibiousCar : Car\n        {\n            // ¿Cómo agrego \"también flota como un Boat\" sin copiar y pegar código?\n        }\n    }\n\n    namespace VehicleWithComposition\n    {\n        // CON COMPOSICIÓN: las capacidades se combinan, no se heredan.\n        public interface IMovementCapability { void Move(); }\n\n        public class LandMovement : IMovementCapability\n        {\n            public void Move() { /* conducir */ }\n        }\n\n        public class WaterMovement : IMovementCapability\n        {\n            public void Move() { /* flotar */ }\n        }\n\n        public class Vehicle\n        {\n            private readonly List<IMovementCapability> capabilities = new();\n            public void AddCapability(IMovementCapability capability) => capabilities.Add(capability);\n        }\n\n        public static class Demo\n        {\n            public static void BuildAmphibiousVehicle()\n            {\n                // El anfibio simplemente tiene DOS capacidades. Sin pelear con el árbol.\n                var amphibiousVehicle = new Vehicle();\n                amphibiousVehicle.AddCapability(new LandMovement());\n                amphibiousVehicle.AddCapability(new WaterMovement());\n            }\n        }\n    }\n\n    // ========================================================================\n    // Composición vs. herencia — el ejemplo de la caja (con comportamiento real)\n    // ========================================================================\n    namespace CompositionBoxExample\n    {\n        public interface ICapability\n        {\n            void Activate(Box box); // qué pasa cuando esta capacidad se activa\n        }\n\n        public class Pushable : ICapability\n        {\n            public void Activate(Box box) => box.Position += Vector2.Right;\n        }\n\n        public class Flammable : ICapability\n        {\n            public void Activate(Box box) => box.IsOnFire = true;\n        }\n\n        public class SpawnsEnemies : ICapability\n        {\n            public void Activate(Box box) => box.SpawnEnemies(3);\n        }\n\n        public class Box\n        {\n            public Vector2 Position;\n            public bool IsOnFire;\n            private readonly List<ICapability> capabilities = new();\n\n            public void AddCapability(ICapability capability) => capabilities.Add(capability);\n\n            public void Break()\n            {\n                foreach (var capability in capabilities)\n                    capability.Activate(this); // cada capacidad hace lo suyo\n            }\n\n            public void SpawnEnemies(int count) { /* ... */ }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ejemplo-composicion-zelda",
+          "titulo": "Ejemplo: The Legend of Zelda: Tears of the Kingdom",
+          "bloques": [
+            {
+              "tema": "Objetos definidos por propiedades combinables",
+              "definicion": "Los objetos del mundo no pertenecen a una clase fija; el resultado de una interacción sale de sus propiedades, no de un tipo rígido.",
+              "detalles": {
+                "etiqueta": "Propiedades combinables",
+                "items": [
+                  "Es inflamable",
+                  "Es conductor",
+                  "Es liviano",
+                  "Flota"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "cuando-conviene-la-herencia",
+          "titulo": "Cuándo SÍ Conviene la Herencia",
+          "bloques": [
+            {
+              "tema": "Criterio de uso de la herencia",
+              "definicion": "Conviene en variaciones chicas, estables y genuinamente es-un.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Una jerarquía corta de 3 o 4 estados de comportamiento puro"
+                ]
+              },
+              "conclusion": "La regla es: por defecto, componé; heredá solo cuando la relación es-un es real y poco profunda."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patrones-de-diseno-introduccion",
+          "titulo": "Patrones de Diseño: Recetas ya Probadas",
+          "bloques": [
+            {
+              "tema": "Patrones de diseño",
+              "definicion": "Soluciones reutilizables a problemas de diseño que se repiten una y otra vez.",
+              "detalles": {
+                "etiqueta": "Patrones de la clase",
+                "items": [
+                  "Strategy",
+                  "Observer",
+                  "Factory"
+                ]
+              },
+              "conclusion": "No son magia: son nombres para decisiones de composición."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patron-strategy",
+          "titulo": "Patrón Strategy",
+          "bloques": [
+            {
+              "tema": "Strategy",
+              "definicion": "Encapsula distintos algoritmos intercambiables detrás de una misma interfaz.",
+              "detalles": {
+                "etiqueta": "Características y ejemplo",
+                "items": [
+                  "Es composición sobre herencia aplicada directamente: un objeto estrategia intercambiable en vez de una subclase por comportamiento",
+                  "Ejemplo: distintas IAs de enemigo bajo un mismo contrato"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace PatternStrategy\n    {\n        public interface IAttackStrategy { void Attack(); }\n\n        public class Enemy\n        {\n            private IAttackStrategy strategy;\n            public Enemy(IAttackStrategy strategy) => this.strategy = strategy; // TIENE-UNA estrategia\n            public void Attack() => strategy.Attack();\n        }\n    }\n}",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patron-observer",
+          "titulo": "Patrón Observer",
+          "bloques": [
+            {
+              "tema": "Observer",
+              "definicion": "Un objeto notifica que algo pasó; uno o más escuchan sin que el emisor los conozca.",
+              "detalles": {
+                "etiqueta": "Aplicación",
+                "items": [
+                  "Los eventos entre núcleo y adaptadores funcionan así"
+                ]
+              },
+              "conclusion": "Regla no negociable: el que se suscribe, se desuscribe."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patron-factory",
+          "titulo": "Patrón Factory",
+          "bloques": [
+            {
+              "tema": "Factory",
+              "definicion": "Centraliza la creación de objetos, en vez de esparcir new por todo el código.",
+              "detalles": {
+                "etiqueta": "Cuándo usarlo y cuándo no",
+                "items": [
+                  "Útil cuando construir un objeto tiene lógica propia para decidir qué implementación concreta usar según una condición",
+                  "Un Factory para algo que se crea una sola vez en todo el programa es sobre-ingeniería"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-solid-di-composicion",
+          "titulo": "En Síntesis — Clase 2",
+          "bloques": [
+            {
+              "tema": "Ideas clave de SOLID, DI y patrones",
+              "detalles": {
+                "etiqueta": "Resumen",
+                "items": [
+                  "SOLID son cinco principios para diseñar clases mantenibles, no mandamientos",
+                  "La inyección de dependencias hace tangible la frontera núcleo/adaptador en código",
+                  "Por defecto, componé; heredá solo cuando la relación es-un es real y poco profunda",
+                  "Strategy, Observer y Factory son composición con nombre propio"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Clase 3: Patrones de Diseño Clásicos y Testabilidad del Núcleo",
+      "subtemas": [
+        {
+          "id": "objetivo-clase-3",
+          "titulo": "Objetivo de la Clase 3",
+          "bloques": [
+            {
+              "tema": "Completar el set de patrones clásicos",
+              "definicion": "Sumamos State y Command al repertorio y vemos cómo testear cada uno sin infraestructura.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "Repaso de Strategy, Observer y Factory",
+                  "Patrón State",
+                  "Patrón Command",
+                  "Testing de State y Command sin UI"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "cinco-patrones-clasicos",
+          "titulo": "Los 5 Patrones Clásicos del Núcleo",
+          "bloques": [
+            {
+              "tema": "Composición aplicada en el núcleo",
+              "definicion": "Los cinco patrones son composición: un objeto tiene una referencia a una interfaz, nunca hereda de una clase concreta.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Ya vistos",
+                  "etiqueta_items": "Patrones",
+                  "items": [
+                    "Strategy: algoritmos intercambiables detrás de la misma interfaz",
+                    "Observer: un emisor notifica sin conocer a quién",
+                    "Factory: centraliza una decisión de creación"
+                  ]
+                },
+                {
+                  "nombre": "Nuevos en esta clase",
+                  "etiqueta_items": "Patrones",
+                  "items": [
+                    "State: comportamiento según estado interno",
+                    "Command: acción encapsulada como objeto"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patron-state",
+          "titulo": "Patrón State",
+          "bloques": [
+            {
+              "tema": "State",
+              "definicion": "Encapsula el comportamiento que cambia según el estado interno de un objeto.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Cada estado es un objeto que sabe su propio comportamiento y a qué estado transicionar, evitando enjambres de if/switch."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Agregar un estado nuevo no obliga a tocar los ifs existentes; es Open/Closed aplicado a las fases de un sistema o partida."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Pocos estados (2 o 3) estables que nunca van a crecer; ahí un enum con switch es más claro."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace StatePatternExample\n    {\n        public interface IGameState\n        {\n            IGameState HandleMove(Move move); // devuelve el próximo estado\n        }\n\n        public class WhiteTurnState : IGameState\n        {\n            public IGameState HandleMove(Move move)\n            {\n                // acá se aplicaría el movimiento sobre el tablero...\n                return new BlackTurnState(); // transición explícita, sin ifs externos\n            }\n        }\n\n        public class BlackTurnState : IGameState\n        {\n            public IGameState HandleMove(Move move)\n            {\n                return new WhiteTurnState();\n            }\n        }\n\n        // Test de ejemplo (referenciado en los apuntes del profesor).\n        public class StateTests\n        {\n            public void WhiteTurn_AfterValidMove_TransitionsToBlackTurn()\n            {\n                var someValidMove = new Move(new Position(1, 0), new Position(2, 0)); // Arrange\n                IGameState state = new WhiteTurnState();\n\n                var next = state.HandleMove(someValidMove);                            // Act\n\n                // Assert.IsInstanceOf<BlackTurnState>(next);                          // Assert\n            }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ejemplo-state-among-us",
+          "titulo": "Ejemplo de State: Among Us",
+          "bloques": [
+            {
+              "tema": "Fases de una partida como estados",
+              "definicion": "Cada fase habilita ciertas acciones y prohíbe otras, por ejemplo no poder votar durante la fase de tareas.",
+              "detalles": {
+                "etiqueta": "Estados de la partida",
+                "items": [
+                  "Lobby",
+                  "Tareas",
+                  "Reunión de emergencia",
+                  "Votación",
+                  "Resultado",
+                  "Fin de partida"
+                ]
+              },
+              "diagrama_mermaid": "stateDiagram-v2\n  [*] --> Lobby\n  Lobby --> Tareas\n  Tareas --> ReunionEmergencia\n  ReunionEmergencia --> Votacion\n  Votacion --> Resultado\n  Resultado --> Tareas\n  Resultado --> FinPartida"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patron-command",
+          "titulo": "Patrón Command",
+          "bloques": [
+            {
+              "tema": "Command",
+              "definicion": "Encapsula una acción como un objeto con todo lo necesario para ejecutarla (Execute) y opcionalmente revertirla (Undo).",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Convierte una acción en un objeto que expone Execute() y Undo()."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Permite guardar historial de acciones, deshacer/rehacer y encolar acciones para ejecutar después."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Acciones triviales sin necesidad de historial ni deshacer; llamar al método directo es más simple."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace CommandPatternExample\n    {\n        public interface ICommand\n        {\n            void Execute();\n            void Undo();\n        }\n\n        public class MoveCommand : ICommand\n        {\n            private readonly Board board;\n            private readonly Position from;\n            private readonly Position to;\n            private Piece capturedPiece; // se completa recién al ejecutar\n\n            public MoveCommand(Board board, Position from, Position to)\n            {\n                this.board = board;\n                this.from = from;\n                this.to = to;\n            }\n\n            public void Execute()\n            {\n                capturedPiece = board.PieceAt(to);   // guardamos lo necesario para deshacer\n                board.MovePiece(from, to);\n            }\n\n            public void Undo()\n            {\n                board.MovePiece(to, from);\n                if (capturedPiece != null)\n                    board.PlacePiece(capturedPiece, to); // devolvemos la pieza capturada\n            }\n        }\n\n        // Test de ejemplo (referenciado en los apuntes del profesor).\n        public class CommandTests\n        {\n            public void MoveCommand_ExecuteThenUndo_RestoresOriginalBoard()\n            {\n                var board = new Board();\n                var from = new Position(1, 0);\n                var to = new Position(2, 0);\n                board.PlacePiece(new Piece(\"Pawn\", \"White\"), from);\n\n                var boardBefore = board.Clone();                // Arrange\n                var command = new MoveCommand(board, from, to);\n\n                command.Execute();                               // Act\n                command.Undo();\n\n                // Assert.AreEqual(boardBefore, board);          // Assert\n            }\n        }\n    }\n}",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "command-aplicado-al-ajedrez",
+          "titulo": "Command Aplicado al Ajedrez",
+          "bloques": [
+            {
+              "tema": "MoveCommand en el TPO",
+              "definicion": "Un MoveCommand encapsula un movimiento completo para poder aplicarlo y revertirlo exactamente.",
+              "detalles": {
+                "etiqueta": "Datos encapsulados",
+                "items": [
+                  "Qué pieza se mueve",
+                  "Casilla de origen",
+                  "Casilla de destino",
+                  "Qué pieza capturó (si capturó alguna)"
+                ]
+              },
+              "conclusion": "Execute() aplica el movimiento y Undo() lo revierte usando esos mismos datos guardados."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "testar-state-y-command-sin-ui",
+          "titulo": "Testar State y Command sin UI",
+          "bloques": [
+            {
+              "tema": "Verificación pura en el núcleo",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Testar un State",
+                  "definicion": "Dado un estado inicial y un evento, verificar si termina en el estado esperado.",
+                  "etiqueta_items": "Ejemplo",
+                  "items": [
+                    "Dado TurnoBlancas, al ejecutar un movimiento válido, pasa a TurnoNegras"
+                  ]
+                },
+                {
+                  "nombre": "Testar un Command",
+                  "definicion": "Comparar el estado antes de Execute(), después de Execute() y después de Undo().",
+                  "etiqueta_items": "Invariante",
+                  "items": [
+                    "El estado después de Undo() debe ser idéntico al estado antes de Execute()"
+                  ]
+                }
+              ],
+              "conclusion": "Ningún test del núcleo necesita dibujar un tablero ni levantar infraestructura."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-clase-3",
+          "titulo": "En Síntesis — Clase 3",
+          "bloques": [
+            {
+              "tema": "State, Command y su valor en el TPO",
+              "detalles": {
+                "etiqueta": "Resumen",
+                "items": [
+                  "State reemplaza un enjambre de ifs por objetos que saben su propio comportamiento",
+                  "Command convierte una acción en un objeto y habilita deshacer/rehacer",
+                  "Ambos se testean sin ninguna UI",
+                  "No son obligatorios: son herramientas limpias si el dominio requiere fases de partida o deshacer movimientos"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Clase 4: Testing, Metodologías Ágiles y el Proyecto Integrador",
+      "subtemas": [
+        {
+          "id": "objetivo-clase-4",
+          "titulo": "Objetivo de la Clase 4",
+          "bloques": [
+            {
+              "tema": "Probar el núcleo y organizar la entrega",
+              "definicion": "Diseñar bien y no poder probarlo es solo la mitad del trabajo.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "Cómo se prueba un núcleo bien diseñado",
+                  "Metodologías ágiles: Scrum, Kanban, XP",
+                  "El proyecto integrador (TPO) del cuatrimestre"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tipos-de-pruebas",
+          "titulo": "Tipos de Pruebas y Pirámide",
+          "bloques": [
+            {
+              "tema": "Niveles de testing",
+              "definicion": "La pirámide prioriza muchas pruebas unitarias en la base y pocas pruebas de sistema en la punta.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Unitarias",
+                  "definicion": "Una unidad de lógica aislada; rápidas y numerosas."
+                },
+                {
+                  "nombre": "Integración",
+                  "definicion": "Varias unidades trabajando juntas."
+                },
+                {
+                  "nombre": "Sistema",
+                  "definicion": "La aplicación completa."
+                },
+                {
+                  "nombre": "Aceptación",
+                  "definicion": "Verifica si cumple lo que el usuario pidió."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "nucleo-puro-facil-de-testear",
+          "titulo": "Por Qué el Núcleo Puro es Fácil de Testear",
+          "bloques": [
+            {
+              "tema": "Beneficio directo de la frontera",
+              "definicion": "Sin infraestructura: no hace falta base de datos, servidor ni UI para correr un test.",
+              "detalles": {
+                "etiqueta": "Características",
+                "items": [
+                  "Un test de función pura corre en milisegundos",
+                  "Se ejecuta miles de veces sin efectos secundarios",
+                  "Ejemplo: validar un movimiento de ajedrez (MoveValidator)"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace CoreTestability\n    {\n        public class Position { }\n        public class Piece\n        {\n            public List<Position> PossibleMoves(Board board, Position origin) => new();\n        }\n        public class Board\n        {\n            public Piece PieceAt(Position position) => null;\n        }\n\n        public class MoveValidator\n        {\n            // Testabilidad real: esta función es pura. Mismo tablero + mismo movimiento\n            // = mismo resultado, siempre. No necesita ninguna infraestructura para testearse.\n            public bool IsValidMove(Board board, Position origin, Position destination)\n            {\n                var piece = board.PieceAt(origin);\n                if (piece == null) return false;\n                return piece.PossibleMoves(board, origin).Contains(destination);\n            }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "dobles-de-prueba-mock-stub-fake",
+          "titulo": "Dobles de Prueba: Mock, Stub y Fake",
+          "bloques": [
+            {
+              "tema": "Probar clases que dependen de un puerto",
+              "definicion": "Se reemplaza la dependencia real por una implementación falsa de la interfaz.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Mock",
+                  "definicion": "Verifica que se lo haya llamado de cierta forma."
+                },
+                {
+                  "nombre": "Stub",
+                  "definicion": "Devuelve datos fijos, sin lógica."
+                },
+                {
+                  "nombre": "Fake",
+                  "definicion": "Implementación simplificada pero funcional (ej. lista en memoria en vez de base de datos real)."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace TestDoubles\n    {\n        public class Reservation\n        {\n            public int Id { get; }\n            public Reservation(int id) => Id = id;\n        }\n\n        public interface IReservationRepository\n        {\n            Reservation FindById(int id);\n            void Save(Reservation reservation);\n        }\n\n        // STUB: siempre devuelve el mismo dato fijo. No importa qué le pidan, responde igual.\n        public class StubReservationRepository : IReservationRepository\n        {\n            public Reservation FindById(int id) => new Reservation(id);\n            public void Save(Reservation reservation) { /* no hace nada */ }\n        }\n\n        public interface IEmailSender { void Send(string message); }\n\n        // MOCK: guarda evidencia de cómo lo usaron, para poder verificarlo en el Assert.\n        public class MockEmailSender : IEmailSender\n        {\n            public int TimesSendWasCalled { get; private set; }\n            public string LastMessageSent { get; private set; }\n\n            public void Send(string message)\n            {\n                TimesSendWasCalled++;\n                LastMessageSent = message;\n            }\n        }\n        // En el test: Assert.AreEqual(1, mockSender.TimesSendWasCalled);\n\n        // FAKE: funciona de verdad, pero simplificado — una lista en memoria\n        // en vez de una base de datos real.\n        public class InMemoryReservationRepository : IReservationRepository\n        {\n            private readonly Dictionary<int, Reservation> storage = new();\n\n            public Reservation FindById(int id) => storage[id];\n            public void Save(Reservation reservation) => storage[reservation.Id] = reservation;\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "estructura-test-arrange-act-assert",
+          "titulo": "Estructura de un Test: Arrange-Act-Assert",
+          "bloques": [
+            {
+              "tema": "Patrón AAA",
+              "definicion": "Un test que no separa estas tres partes es difícil de leer y de mantener.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Arrange",
+                  "definicion": "Preparar el estado inicial y las dependencias."
+                },
+                {
+                  "nombre": "Act",
+                  "definicion": "Ejecutar la acción que se quiere probar."
+                },
+                {
+                  "nombre": "Assert",
+                  "definicion": "Verificar que el resultado sea el esperado."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace ArrangeActAssert\n    {\n        public class Reservation\n        {\n            public int Id { get; }\n            public bool IsCancelled { get; private set; }\n            public Reservation(int id) => Id = id;\n            public void Cancel() => IsCancelled = true;\n        }\n\n        public class ReservationTests\n        {\n            public void CancelReservation_MarksReservationAsCancelled()\n            {\n                var reservation = new Reservation(id: 1);     // Arrange\n                reservation.Cancel();                          // Act\n                // Assert.IsTrue(reservation.IsCancelled);      // Assert\n            }\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tdd-test-driven-development",
+          "titulo": "TDD: Test-Driven Development",
+          "bloques": [
+            {
+              "tema": "Ciclo Rojo - Verde - Refactor",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Qué",
+                  "definicion": "Escribir el test antes que el código que lo cumple."
+                },
+                {
+                  "nombre": "Por qué",
+                  "definicion": "Obliga a pensar el contrato antes de resolverlo y deja una red de seguridad para refactorizar."
+                },
+                {
+                  "nombre": "Cuándo romperlo",
+                  "definicion": "Exploración inicial de un problema que todavía no se entiende bien."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "namespace TestDrivenDevelopment\n    {\n        // PASO 1 (rojo): el test se escribe primero. Falla — Reservation todavía no existe.\n        public class ReservationTests\n        {\n            public void NewReservation_StartsAsNotCancelled()\n            {\n                var reservation = new Reservation(id: 1);\n                // Assert.IsFalse(reservation.IsCancelled);\n            }\n        }\n\n        // PASO 2 (verde): el mínimo código necesario para que el test pase.\n        public class Reservation\n        {\n            public int Id { get; }\n            public bool IsCancelled { get; private set; }\n            public Reservation(int id) => Id = id;\n        }\n\n        // PASO 3 (refactor): con el test como red de seguridad, se puede mejorar\n        // el diseño interno sin miedo a romper nada — el test avisa si algo se rompe.\n    }\n}",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "metodologias-agiles-panorama",
+          "titulo": "Metodologías Ágiles: Panorama",
+          "bloques": [
+            {
+              "tema": "Entrega continua de valor",
+              "definicion": "Formas de organizar el trabajo para entregar software funcionando seguido, en vez de todo junto al final.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Scrum",
+                  "definicion": "Ciclos cortos con objetivo cerrado (sprints)."
+                },
+                {
+                  "nombre": "Kanban",
+                  "definicion": "Flujo continuo visualizado en un tablero."
+                },
+                {
+                  "nombre": "XP (Extreme Programming)",
+                  "definicion": "Prácticas técnicas concretas como pair programming e integración continua."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "scrum-en-profundidad",
+          "titulo": "Scrum, en Profundidad",
+          "bloques": [
+            {
+              "tema": "Elementos principales de Scrum",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Sprint",
+                  "definicion": "Período corto y fijo (1 a 4 semanas) con un objetivo concreto."
+                },
+                {
+                  "nombre": "Backlog",
+                  "definicion": "Lista priorizada de todo lo que falta hacer."
+                },
+                {
+                  "nombre": "Daily standup",
+                  "definicion": "Reunión corta diaria: qué hice, qué voy a hacer y qué me traba."
+                },
+                {
+                  "nombre": "Retrospectiva",
+                  "definicion": "Al cerrar el sprint, revisar qué mejorar para el próximo."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "kanban-y-xp",
+          "titulo": "Kanban y Extreme Programming (XP)",
+          "bloques": [
+            {
+              "tema": "Flujo continuo y prácticas técnicas",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Kanban",
+                  "definicion": "Tablero Por hacer / Haciendo / Hecho sin sprints fijos; mide el tiempo de ciclo.",
+                  "etiqueta_items": "Regla clave",
+                  "items": [
+                    "Límite de trabajo en curso (WIP limit) para evitar infinitas tareas en progreso"
+                  ]
+                },
+                {
+                  "nombre": "XP",
+                  "definicion": "Prácticas para sostener entregas rápidas sin acumular deuda técnica.",
+                  "etiqueta_items": "Prácticas clave",
+                  "items": [
+                    "Pair programming: dos personas, una computadora, revisión continua",
+                    "Integración continua: integrar el código de todos varias veces al día"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "walking-skeleton-y-tpo",
+          "titulo": "Walking Skeleton y Proyecto Integrador (TPO)",
+          "bloques": [
+            {
+              "tema": "El TPO del cuatrimestre: Ajedrez",
+              "definicion": "Un walking skeleton es una versión mínima del sistema completo de punta a punta que ya camina y crece en incrementos.",
+              "detalles": {
+                "etiqueta": "Por qué ajedrez",
+                "items": [
+                  "Núcleo de lógica pura sin UI",
+                  "Oportunidades reales de patrones: Command (deshacer/rehacer), Strategy (dificultades de IA), State (fases de partida), Observer (eventos a la UI)",
+                  "Evolución incremental: primero un peón que se mueve, al final jaque mate"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-clase-4",
+          "titulo": "En Síntesis — Clase 4",
+          "bloques": [
+            {
+              "tema": "Ideas clave de testing y metodologías ágiles",
+              "detalles": {
+                "etiqueta": "Resumen",
+                "items": [
+                  "El núcleo puro se testea rápido y sin infraestructura",
+                  "Arrange-Act-Assert da estructura clara a cualquier test",
+                  "Ágil entrega software funcionando seguido, no todo junto al final",
+                  "El TPO del cuatrimestre es un ajedrez"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}

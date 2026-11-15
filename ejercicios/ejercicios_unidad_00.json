@@ -1,0 +1,24 @@
+{
+  "modulo": "Unidad 00",
+  "titulo_general": "Ejercicios Prácticos — Unidad 00",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Arquitectura y Reglas de Negocio",
+      "titulo": "Análisis de plataforma de streaming: núcleo vs. tecnología",
+      "enunciado": "Analizar el siguiente sistema: Plataforma de streaming.\n\nResponder:\n1. ¿Qué reglas del negocio tiene, sin importar la tecnología?\n2. ¿Qué partes dependen de un framework o motor puntual?\n3. Si mañana cambia esa tecnología, ¿qué debería seguir funcionando igual?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 00 — Diapositiva 20",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Separación de responsabilidades y frontera núcleo / adaptadores",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Identificar las reglas de negocio independientes de la tecnología: suscripciones activas, catálogo y permisos por plan, historial de reproducción, control parental y recomendaciones.\n2) Identificar las partes dependientes de frameworks o infraestructura: reproductor de video (HLS/DASH), base de datos, pasarela de pagos, CDN, interfaz web o móvil y autenticación externa.\n3) Definir qué debe seguir funcionando igual ante un cambio tecnológico: toda la lógica de dominio del punto 1, protegida detrás de interfaces o puertos para que cambiar el motor de video, la base de datos o la UI solo requiera reemplazar adaptadores."
+        }
+      ]
+    }
+  ]
+}

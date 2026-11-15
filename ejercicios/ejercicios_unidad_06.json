@@ -1,0 +1,42 @@
+{
+  "modulo": "Unidad 06",
+  "titulo_general": "Ejercicios Prácticos — Unidad 06",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Métricas, GQM y Ley de Goodhart",
+      "titulo": "Definición de KPIs, KRI y contramedidas para el TPO de ajedrez",
+      "enunciado": "Consigna (15 a 20 minutos): definan cómo medirían si su TPO de ajedrez va bien.\n\n1. Definan una meta (por ejemplo: entregar un ajedrez correcto y mantenible) y las preguntas que se derivan de ella.\n2. Tres KPIs, cada uno con su fórmula, quién lo mide y con qué dato.\n3. Un KRI: una señal de alerta temprana de que el proyecto está en riesgo.\n4. Para cada KPI: ¿cómo se podría trampear (ley de Goodhart) y qué contramedida pondrían?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 06 (Clase 9 — Parte A) — Diapositiva 13",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "GQM, KPIs/KRIs y Ley de Goodhart",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Aplicar GQM partiendo de la meta de calidad y mantenibilidad.\n2) Definir 3 KPIs accionables (ej. tasa de tests unitarios que pasan sobre reglas del núcleo, tiempo de revisión de PRs, defectos encontrados post-merge) con fórmula y fuente.\n3) Definir un KRI temprano (ej. cantidad de días sin integrar al branch principal o PRs sin revisión).\n4) Contramedida ante Goodhart: emparejar métricas que se tensionen entre sí (cobertura + calidad de asserts en code review)."
+        }
+      ]
+    },
+    {
+      "id_tema": 2,
+      "id_global": 2,
+      "tema": "Ética Profesional y Controles de Integridad",
+      "titulo": "Resolución de dilemas éticos y técnicos en desarrollo",
+      "enunciado": "Elijan uno de los siguientes dilemas (15 minutos):\n\n1. Tu jefe pide que el informe mensual de disponibilidad no cuente las caídas por mantenimiento, aunque no se avisaron, para llegar al 99,9% del SLA. ¿Qué hacés?\n2. A dos días de la entrega, un test falla y el equipo propone borrar el assert. ¿Qué hacés?\n3. Un compañero pega código generado por IA que no entiende y que incluye una clave de API real. ¿Qué hacés, y qué política lo habría evitado?\n\nRespondan: ¿qué está en juego y para quién? ¿qué opciones hay? ¿qué control (técnico o de gobernanza) evitaría que todo dependa de la valentía individual?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 06 (Clase 9 — Parte B) — Diapositiva 26",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Ética ACM/IEEE-CS y Controles Preventivos",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Identificar afectados y conflicto con el principio de honestidad e interés público/contractual.\n2) Proponer opciones constructivas (registrar las caídas reales y explicar la causa; corregir el código o documentar el defecto en lugar de borrar el assert; rotar la clave expuesta inmediatamente).\n3) Diseñar controles estructurales: monitoreo automático independiente para el SLA, ramas protegidas con CI obligatorio y secret scanning en pre-commit/CI."
+        }
+      ]
+    }
+  ]
+}

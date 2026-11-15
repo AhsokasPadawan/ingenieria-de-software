@@ -1,0 +1,24 @@
+{
+  "modulo": "Unidad 03",
+  "titulo_general": "Tareas — Unidad 03",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "SLA en Servicios Tercerizados",
+      "titulo": "Análisis del SLA percibido en un servicio cotidiano",
+      "enunciado": "Pensá en un servicio que uses a diario y que probablemente esté tercerizado (la atención al cliente de tu banco, el soporte técnico de tu proveedor de internet, el delivery de una app de comida).\n\n1. Describí, según tu propia experiencia como usuario, qué SLA creés que tiene ese servicio (aunque nunca lo hayas visto formalmente).\n2. Contá una situación en la que ese SLA se cumplió, o una en la que sentiste que no se cumplió.",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 03 (Clase 5 — Diapositiva 21)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Métricas SLA y Experiencia de Servicio",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Identificar métricas observables del servicio: tiempo máximo de primera respuesta, horario de disponibilidad, tiempo de resolución o entrega y tasa de resolución en primer contacto.\n2) Relatar un caso concreto contrastando lo ocurrido con los umbrales esperados del SLA."
+        }
+      ]
+    }
+  ]
+}

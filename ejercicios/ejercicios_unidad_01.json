@@ -1,0 +1,81 @@
+{
+  "modulo": "Unidad 01",
+  "titulo_general": "Ejercicios Prácticos — Unidad 01",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Frontera Dominio / Framework",
+      "titulo": "Separación Núcleo vs. Adaptador en plataforma de streaming",
+      "enunciado": "Retomamos el sistema de la clase pasada: una plataforma de streaming.\n\nEn grupos, completar dos columnas: Núcleo (dominio) / Adaptador (detalle técnico).\n\n1. ¿Qué reglas quedan en cada columna?\n2. ¿Qué pasaría si mañana cambia el framework de UI? ¿Y si cambia la base de datos?",
+      "recurso_visual": {
+        "tipo": "markdown_tabla",
+        "codigo": "| Núcleo (dominio) | Adaptador (detalle técnico) |\n| :--- | :--- |\n| Reglas de negocio puras | Framework, DB, UI, APIs |"
+      },
+      "fuente_original": "Unidad 01 (Clase 1) — Diapositiva 20",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Arquitectura Hexagonal (Puertos y Adaptadores)",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Ubicar en Núcleo las reglas de negocio: planes de suscripción, validación de acceso al catálogo, historial de reproducción y límites por cuenta.\n2) Ubicar en Adaptador los detalles técnicos: UI web o móvil, motor de video, base de datos, pasarela de pago y autenticación externa.\n3) Si cambia la UI o la base de datos, solo se reemplaza el adaptador correspondiente implementando el mismo puerto; el núcleo permanece intacto."
+        }
+      ]
+    },
+    {
+      "id_tema": 2,
+      "id_global": 2,
+      "tema": "Composición sobre Herencia y Strategy",
+      "titulo": "Diseño de medios de pago: herencia vs. composición",
+      "enunciado": "Retomamos el sistema de reservas del núcleo/adaptador.\n\nEn grupos: diseñar una jerarquía de medios de pago (tarjeta, transferencia, efectivo) primero con herencia, después con composición (Strategy).\n\n1. ¿Qué problema aparece si mañana se agrega pago mixto (parte tarjeta, parte efectivo)?\n2. ¿Cuál de los dos diseños lo resuelve mejor, y por qué?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 01 (Clase 2) — Diapositiva 19",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Composición sobre Herencia / Patrón Strategy",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Con herencia rígida (MedioPago -> Tarjeta / Transferencia / Efectivo), agregar pago mixto obliga a crear subclases combinatorias o duplicar lógica porque una clase solo hereda de una rama.\n2) Con composición (Strategy), la reserva o el pago compone una lista de estrategias IMedioPago con su monto parcial.\n3) El diseño por composición lo resuelve mejor porque permite combinar múltiples medios de pago en tiempo de ejecución sin tocar las estrategias existentes (Open/Closed)."
+        }
+      ]
+    },
+    {
+      "id_tema": 3,
+      "id_global": 3,
+      "tema": "Patrones State y Command",
+      "titulo": "Estados de partida de ajedrez y datos de MoveCommand",
+      "enunciado": "En grupos, en papel:\n\n1. Diseñen los estados de una partida de ajedrez simplificada. ¿Qué estados hay? ¿Qué transiciones son válidas?\n2. ¿Qué datos necesitaría guardar un MoveCommand para poder deshacer un movimiento que capturó una pieza?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 01 (Clase 3) — Diapositiva 17",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Patrones State y Command",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Definir estados: TurnoBlancas, TurnoNegras, Jaque, JaqueMate y Tablas, con transiciones explícitas tras cada movimiento válido.\n2) En MoveCommand guardar: pieza movida, casilla origen, casilla destino y pieza capturada (null si la casilla estaba vacía) para restaurarla en Undo()."
+        }
+      ]
+    },
+    {
+      "id_tema": 4,
+      "id_global": 4,
+      "tema": "Testing del Núcleo",
+      "titulo": "Casos de test para movimiento de la torre en ajedrez",
+      "enunciado": "En grupos: escribir en papel (sin código) los casos de test para: ¿puede la torre moverse de A a B?\n\n1. ¿Cuántos casos necesitan para cubrir movimientos válidos e inválidos?\n2. ¿Alguno de esos casos depende de saber cómo se dibuja el tablero en pantalla?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 01 (Clase 4) — Diapositiva 19",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Testing unitario de lógica pura",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Cubrir al menos: movimiento horizontal libre, vertical libre, intento diagonal (inválido), camino bloqueado por pieza propia o rival, destino con pieza propia (inválido), destino con pieza rival (captura válida) y origen igual a destino (inválido).\n2) Ninguno depende de la UI porque la validación opera únicamente sobre el modelo Board y Position."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "modulo": "Unidad 01",
+  "titulo_general": "Tareas — Unidad 01",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "SOLID, Inyección de Dependencias y Composición",
+      "titulo": "Refactorización de una clase aplicando SOLID, DI y composición",
+      "enunciado": "Elegí una clase que hayas escrito en algún TP anterior (o inventá una corta).\n\n1. Identificá qué principio SOLID rompe hoy, y por qué.\n2. Reescribila aplicando inyección de dependencias por constructor.\n3. Si tiene una jerarquía de herencia, proponé cómo se vería con composición en su lugar.",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 01 (Clase 2 — Diapositiva 20)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Refactorización SOLID, DI por constructor y Composición",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Detectar acoplamientos concretos (new dentro de la clase que viola D), múltiples razones de cambio (viola S) o interfaces infladas (viola I).\n2) Extraer interfaces para las dependencias externas y pasarlas por constructor.\n3) Si existe herencia rígida, reemplazarla inyectando componentes o estrategias intercambiables."
+        }
+      ]
+    },
+    {
+      "id_tema": 2,
+      "id_global": 2,
+      "tema": "Patrón Command y Testing",
+      "titulo": "Implementación de un Command con Execute(), Undo() y test de reversión",
+      "enunciado": "Implementen un Command simple con Execute() y Undo() para cualquier acción de un TP anterior (o inventen una corta).\n\n1. Escriban un test que verifique: estado antes de Execute() == estado después de Undo().",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 01 (Clase 3 — Diapositiva 18)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Patrón Command y Test Unitario",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Definir interfaz ICommand con Execute() y Undo().\n2) Guardar en la clase concreta el estado previo necesario para revertir.\n3) En el test (AAA): clonar estado inicial, ejecutar Execute() y luego Undo(), y verificar igualdad con Assert.AreEqual."
+        }
+      ]
+    },
+    {
+      "id_tema": 3,
+      "id_global": 3,
+      "tema": "Testing Unitario y Dobles de Prueba",
+      "titulo": "Tres casos de test Arrange-Act-Assert sobre una función pura",
+      "enunciado": "Elegí una función pura de algún TP anterior (o escribí una corta).\n\n1. Escribí 3 casos de test en formato Arrange-Act-Assert.\n2. Indicá si alguno necesitaría un doble de prueba (mock/stub/fake), y por qué.",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 01 (Clase 4 — Diapositiva 20)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Arrange-Act-Assert y Test Doubles",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Elegir una función determinista sin efectos secundarios.\n2) Redactar 3 tests cubriendo caso normal, caso borde y caso inválido separando Arrange, Act y Assert.\n3) Justificar que una función pura no requiere dobles de prueba salvo que dependa de un puerto externo."
+        }
+      ]
+    }
+  ]
+}

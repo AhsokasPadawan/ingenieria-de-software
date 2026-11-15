@@ -1,0 +1,42 @@
+{
+  "modulo": "Unidad 04",
+  "titulo_general": "Ejercicios Prácticos — Unidad 04",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Optimización de CPU y Profiling",
+      "titulo": "Diagnóstico y técnicas para endpoint de búsqueda lento",
+      "enunciado": "Caso: un endpoint de e-commerce recorre toda la tabla de productos en cada request para aplicar el filtro de búsqueda, y arma el HTML desde cero cada vez, incluso cuando dos usuarios piden la misma búsqueda con un minuto de diferencia.\n\n1. En grupos: ¿qué técnica (o técnicas) de CPU aplicarían, y por qué?\n2. ¿Qué medirían con un profiler antes de tocar una línea de código?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 04 (Clase 6) — Diapositiva 20",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Hashing, Caching y Profiling",
+          "complejidad_esperada": "Reducir búsqueda de O(n) a O(1) promedio",
+          "estrategia_sugerida": "1) Aplicar Hashing / indexación para evitar el recorrido lineal O(n) de toda la tabla en cada request, y Caching (por ejemplo con TTL de unos minutos) para no recalcular búsquedas y HTML idénticos.\n2) Con un profiler (ej. dotnet-trace o Visual Studio Profiler) medir qué porcentaje del tiempo se va en consulta/filtrado de datos frente al armado del HTML."
+        }
+      ]
+    },
+    {
+      "id_tema": 2,
+      "id_global": 2,
+      "tema": "Optimización de Memoria y Leaks",
+      "titulo": "Detección de fuga de memoria en aplicación de escritorio",
+      "enunciado": "Caso: una aplicación de escritorio se va poniendo cada vez más lenta y consume cada vez más memoria cuanto más tiempo lleva abierta, aunque el usuario esté haciendo siempre lo mismo (abrir y cerrar la misma ventana de reportes repetidas veces).\n\n1. ¿Qué sospechan que está pasando?\n2. ¿Qué mostraría un snapshot de memoria comparado con uno de 10 minutos antes, si la sospecha es correcta?",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 04 (Clase 7) — Diapositiva 15",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Memory Leak y Profiling por Snapshots",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Sospechar un memory leak: probablemente la ventana de reportes se suscribe a un evento de un objeto de vida larga y nunca se desuscribe al cerrarse (falta Dispose), impidiendo que el GC la libere.\n2) Al comparar dos snapshots separados por 10 minutos, el conteo de instancias retenidas de la ventana de reportes y sus objetos asociados habrá crecido proporcionalmente a las veces que se abrió y cerró."
+        }
+      ]
+    }
+  ]
+}

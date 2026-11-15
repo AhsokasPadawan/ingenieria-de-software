@@ -1,0 +1,24 @@
+{
+  "modulo": "Unidad 03",
+  "titulo_general": "Ejercicios Prácticos — Unidad 03",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "BPO, Core vs. Commodity y SLA",
+      "titulo": "Análisis de tercerización y métricas SLA en e-commerce",
+      "enunciado": "Caso: una empresa de e-commerce mediana tiene estos procesos: el algoritmo de recomendación de productos (su ventaja competitiva), el soporte al cliente por chat, el procesamiento de pagos y la limpieza de sus oficinas.\n\n1. En grupos: apliquen la prueba de modularidad y la regla core/commodity a cada proceso. ¿Cuáles tercerizarían?\n2. Para uno de los que decidieron tercerizar, redacten 2 o 3 métricas concretas que pondrían en su SLA.",
+      "recurso_visual": null,
+      "fuente_original": "Unidad 03 (Clase 5) — Diapositiva 20",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Prueba de modularidad, Core vs. Commodity y SLA",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Clasificar procesos: el algoritmo de recomendación es Core (no se terceriza porque es ventaja competitiva y depende del negocio interno); soporte por chat, procesamiento de pagos y limpieza son Commodity y pasan la prueba de modularidad (candidatos a BPO).\n2) Ejemplo de métricas SLA para procesamiento de pagos: disponibilidad mensual >= 99.9%, tiempo de respuesta de la API <= 500 ms en p95, y tasa de éxito de transacciones >= 99.5%."
+        }
+      ]
+    }
+  ]
+}

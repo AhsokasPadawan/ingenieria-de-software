@@ -1,0 +1,24 @@
+{
+  "modulo": "Unidad 05",
+  "titulo_general": "Tareas — Unidad 05",
+  "ejercicios": [
+    {
+      "id_tema": 1,
+      "id_global": 1,
+      "tema": "Gobernanza de IT y Normativas",
+      "titulo": "Análisis de políticas, riesgos y normativa en una organización real",
+      "enunciado": "Elegí una organización que conozcas (la universidad, un banco, una app que uses, un lugar donde trabajes) y respondé en un documento breve (media carilla):\n\n1. Tres políticas de IT que imaginás que existen en esa organización y qué problema evita cada una.\n2. Tres riesgos de IT que la afectan (para cada uno: activo, amenaza, vulnerabilidad y tratamiento posible).\n3. Una normativa o ley que creés que le aplica y por qué.\n4. Bonus: ¿qué política te parece sobre-ingeniería, es decir, un control que cuesta más de lo que protege?",
+      "recurso_visual": null,
+      "fuente_original": "Tarea en Teams — Unidad 05 (Clase 8 — Diapositiva 21)",
+      "es_ejercicio_propuesto_diapositivas": true,
+      "resolucion_propuesta": [
+        {
+          "fuente_propuesta": "Criterio de Resolución",
+          "clasificacion": "Políticas, Riesgos y Cumplimiento Normativo",
+          "complejidad_esperada": null,
+          "estrategia_sugerida": "1) Seleccionar una organización concreta y deducir políticas de acceso, backups o desarrollo seguro.\n2) Desglosar 3 riesgos identificando explícitamente activo, amenaza, vulnerabilidad y tratamiento.\n3) Vincular con normativa aplicable (por ejemplo Ley 25.326 si trata datos personales en Argentina).\n4) Evaluar proporcionalidad detectando un control burocrático excesivo."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,479 @@
+{
+  "modulo": "Unidad 03",
+  "titulo_general": "Tercerización (BPO) y SLA como Contrato",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Tercerización de procesos de negocio (BPO), tipos Back/Front Office, prueba de modularidad y regla Core vs. Commodity, SLA como interfaz contractual, evaluación de proveedores (RFI, RFP, matriz ponderada), vendor management y software factory.",
+  "secciones": [
+    {
+      "titulo": "Clase 5: Tercerización (BPO) y SLA como Contrato",
+      "subtemas": [
+        {
+          "id": "objetivo-unidad-03",
+          "titulo": "Objetivo de la Clase",
+          "bloques": [
+            {
+              "tema": "Arquitectura a escala organizacional",
+              "definicion": "La tercerización aplica el mismo problema de núcleo, fronteras y contratos a proveedores externos en lugar de módulos internos.",
+              "detalles": {
+                "etiqueta": "Contenidos",
+                "items": [
+                  "Qué es la tercerización (BPO) y cómo decidir qué tercerizar",
+                  "Qué es un SLA y por qué funciona como una interfaz",
+                  "Cómo se evalúa y gestiona a un proveedor",
+                  "Qué es una software factory"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "que-es-bpo",
+          "titulo": "¿Qué es la Tercerización (BPO)?",
+          "bloques": [
+            {
+              "tema": "Business Process Outsourcing (BPO)",
+              "definicion": "Contratar a una empresa externa para que se haga cargo de un proceso completo y recurrente del negocio (personas, procedimientos y tecnología incluidos).",
+              "detalles": {
+                "etiqueta": "Ejemplos y distinción clave",
+                "items": [
+                  "Ejemplo: contratar un call center externo que gestiona los reclamos de clientes de punta a punta",
+                  "A diferencia de un freelancer puntual, en BPO se delega un proceso completo con continuidad en el tiempo"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tipos-de-bpo",
+          "titulo": "Tipos de BPO: Back Office vs. Front Office",
+          "bloques": [
+            {
+              "tema": "Clasificación según contacto con el cliente",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Back office",
+                  "definicion": "Procesos internos que el cliente final no ve.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Recursos humanos",
+                    "Contabilidad",
+                    "Procesamiento de nómina",
+                    "Soporte de infraestructura de TI"
+                  ]
+                },
+                {
+                  "nombre": "Front office",
+                  "definicion": "Procesos que tienen contacto directo con el cliente final.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Call centers",
+                    "Atención al cliente",
+                    "Soporte técnico de primer nivel",
+                    "Ventas telefónicas"
+                  ]
+                }
+              ],
+              "conclusion": "El riesgo reputacional es distinto: un fallo en front office lo nota el cliente final inmediatamente."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "por-que-tercerizar",
+          "titulo": "Por Qué las Empresas Tercerizan",
+          "bloques": [
+            {
+              "tema": "Motivadores principales del BPO",
+              "detalles": {
+                "etiqueta": "Ventajas",
+                "items": [
+                  "Reducir costos operativos en procesos sin expertise único",
+                  "Enfocar los recursos propios en lo que diferencia al negocio",
+                  "Acceder a expertise especializado sin formarlo puertas adentro",
+                  "Escalar rápido (por ejemplo, en temporada alta) sin invertir en personal o infraestructura permanente",
+                  "Mejorar el nivel de servicio donde un proveedor especializado lo hace mejor"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "riesgos-de-tercerizar",
+          "titulo": "Los Riesgos de Tercerizar",
+          "bloques": [
+            {
+              "tema": "Riesgos a considerar antes de delegar",
+              "definicion": "Tercerizar no es gratis ni está libre de riesgo; conviene no idealizarlo.",
+              "detalles": {
+                "etiqueta": "Riesgos clave",
+                "items": [
+                  "Pérdida de control directo sobre la calidad del proceso",
+                  "Dependencia fuerte de un proveedor externo (quiebra, suba de precios o baja de calidad)",
+                  "Riesgos de seguridad y manejo de datos sensibles fuera de la organización",
+                  "Fricción de comunicación por otra zona horaria o idioma",
+                  "Pérdida de conocimiento interno si luego hace falta traer el proceso de vuelta"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "prueba-de-modularidad",
+          "titulo": "¿Qué Tercerizar? La Prueba de Modularidad",
+          "bloques": [
+            {
+              "tema": "Prueba de desacoplamiento de procesos",
+              "definicion": "¿Podrías sacar este proceso de la empresa y dárselo a otro sin desenredar dependencias ocultas con el resto del negocio?",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Si la respuesta es SÍ",
+                  "definicion": "El proceso está desacoplado y es un buen candidato para tercerizar."
+                },
+                {
+                  "nombre": "Si la respuesta es NO",
+                  "definicion": "Depende de decisiones internas y conocimiento tácito; tercerizarlo va a doler sin importar qué tan bien redactado esté el contrato."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "core-vs-commodity",
+          "titulo": "Core vs. Commodity: La Regla Práctica",
+          "bloques": [
+            {
+              "tema": "Diferenciar ventaja competitiva de proceso estándar",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Commodity",
+                  "definicion": "Proceso estándar que no te diferencia de la competencia; cualquier proveedor especializado lo hace igual o mejor.",
+                  "etiqueta_items": "Decisión",
+                  "items": [
+                    "Buen candidato a tercerizar"
+                  ]
+                },
+                {
+                  "nombre": "Core",
+                  "definicion": "Constituye tu ventaja competitiva real y propiedad intelectual de negocio.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Para una fintech, el algoritmo de scoring crediticio es core y no se terceriza"
+                  ]
+                }
+              ],
+              "conclusion": "Pregunta clave: si tercerizara esto, ¿seguiría siendo la misma empresa frente a mis competidores?"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "que-es-un-sla",
+          "titulo": "¿Qué es un SLA?",
+          "bloques": [
+            {
+              "tema": "Service Level Agreement (SLA)",
+              "definicion": "Acuerdo de nivel de servicio, normalmente parte de un contrato más amplio, que define qué nivel se espera del proveedor con métricas medibles y consecuencias si no se cumplen.",
+              "detalles": {
+                "etiqueta": "Diferencia clave",
+                "items": [
+                  "No es una promesa vaga como dar buen servicio",
+                  "Es una especificación medible: 99.9% de disponibilidad mensual y tiempo de respuesta a incidentes críticos menor a 1 hora"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "componentes-de-un-sla",
+          "titulo": "Los Componentes de un SLA",
+          "bloques": [
+            {
+              "tema": "Elementos esenciales del acuerdo",
+              "detalles": {
+                "etiqueta": "Componentes",
+                "items": [
+                  "Descripción del servicio: qué se entrega exactamente con el mayor detalle posible",
+                  "Métricas de desempeño: disponibilidad (uptime), tiempo de respuesta, tiempo de resolución y tasa de error",
+                  "Objetivos y umbrales: los números concretos que la métrica debe cumplir",
+                  "Responsabilidades de cada parte: qué le toca al proveedor y qué al cliente",
+                  "Penalizaciones: créditos de servicio, descuentos o compensaciones por incumplimiento",
+                  "Proceso de escalamiento: qué pasa y a quién se avisa cuando algo falla"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sla-como-interfaz",
+          "titulo": "El SLA como Interfaz",
+          "bloques": [
+            {
+              "tema": "Contrato sin acoplamiento de implementación",
+              "definicion": "Un SLA cumple la misma función que una interfaz en código: define QUÉ se espera, sin decir CÓMO el proveedor lo logra por dentro.",
+              "detalles": {
+                "etiqueta": "Equivalencia arquitectónica",
+                "items": [
+                  "A tu empresa no le importa cómo logra el proveedor el 99.9% de uptime, solo que lo cumpla",
+                  "Cambiar de proveedor equivale a reemplazar un adaptador sin tocar el núcleo, siempre que cumpla el mismo contrato"
+                ]
+              },
+              "diagrama_mermaid": "graph LR\n  N((Núcleo de Negocio)) -->|Depende de| SLA[Contrato SLA / Interfaz]\n  P1[Proveedor A] -.->|Implementa| SLA\n  P2[Proveedor B] -.->|Reemplaza sin tocar Núcleo| SLA"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ejemplo-pasarelas-de-pago",
+          "titulo": "Ejemplo: Pasarelas de Pago",
+          "bloques": [
+            {
+              "tema": "Núcleo, adaptador y SLA en pagos",
+              "definicion": "Casi ninguna aplicación construye su propio procesador de pagos; se terceriza en Stripe, PayPal o Mercado Pago.",
+              "detalles": {
+                "etiqueta": "Cómo se conectan",
+                "items": [
+                  "La aplicación depende de una interfaz propia como IPaymentGateway",
+                  "Cada proveedor concreto actúa como un adaptador reemplazable detrás de esa interfaz",
+                  "El SLA (disponibilidad, tiempo de respuesta de API, tasa de éxito) permite cambiar de proveedor sin reescribir la aplicación"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sla-ambiguo-dependencia-oculta",
+          "titulo": "Un SLA Ambiguo es una Dependencia Oculta",
+          "bloques": [
+            {
+              "tema": "El costo de no especificar métricas",
+              "definicion": "Si el contrato no define métricas claras, tu empresa depende de la buena voluntad o interpretación del proveedor en lugar de un compromiso verificable.",
+              "conclusion": "Es equivalente a depender de una clase concreta sin contrato explícito: no sabés qué esperar hasta que falla, y ahí ya es tarde para negociar."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "evaluacion-de-proveedores-rfi-rfp",
+          "titulo": "Métodos de Evaluación de Proveedores",
+          "bloques": [
+            {
+              "tema": "RFI, RFP y criterios de comparación",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "RFI (Request for Information)",
+                  "definicion": "Se pide información general a varios proveedores posibles para conocer el mercado antes de decidir con quién avanzar."
+                },
+                {
+                  "nombre": "RFP (Request for Proposal)",
+                  "definicion": "Se pide una propuesta formal y comparable a los candidatos preseleccionados (precio, alcance, tiempos, referencias)."
+                }
+              ],
+              "detalles": {
+                "etiqueta": "Criterios típicos de comparación",
+                "items": [
+                  "Costo",
+                  "Calidad histórica",
+                  "Capacidad técnica",
+                  "Estabilidad financiera",
+                  "Referencias de otros clientes",
+                  "Cumplimiento normativo (ej. protección de datos)"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "matriz-decision-ponderada",
+          "titulo": "Matriz de Decisión Ponderada",
+          "bloques": [
+            {
+              "tema": "Comparación objetiva de proveedores",
+              "definicion": "Se listan criterios importantes, se les asigna un peso según su relevancia y se puntúa a cada proveedor en cada criterio.",
+              "tabla": {
+                "columnas": [
+                  "Criterio",
+                  "Peso",
+                  "Puntaje Proveedor A",
+                  "Contribución ponderada"
+                ],
+                "filas": [
+                  [
+                    "Costo",
+                    "30%",
+                    "8",
+                    "2.4"
+                  ],
+                  [
+                    "Calidad",
+                    "40%",
+                    "6",
+                    "2.4"
+                  ],
+                  [
+                    "Soporte",
+                    "30%",
+                    "7",
+                    "2.1"
+                  ],
+                  [
+                    "Total",
+                    "100%",
+                    "-",
+                    "6.9"
+                  ]
+                ]
+              },
+              "conclusion": "No gana automáticamente el más barato ni el de mayor calidad aislada, sino el que mejor balancea lo que la empresa definió como importante."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "vendor-management",
+          "titulo": "Contratación y Seguimiento Continuo",
+          "bloques": [
+            {
+              "tema": "Vendor Management (gestión de proveedores)",
+              "definicion": "Firmar el contrato no es el final del trabajo, sino el comienzo de una relación que debe gestionarse activamente.",
+              "detalles": {
+                "etiqueta": "Prácticas de seguimiento",
+                "items": [
+                  "Reportes periódicos de cumplimiento de las métricas del SLA",
+                  "Reuniones de revisión (business reviews) para discutir desempeño y ajustar lo necesario",
+                  "Dashboards de KPIs para monitorear el servicio en tiempo real y no solo a fin de mes"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "software-factory",
+          "titulo": "Software Factory",
+          "bloques": [
+            {
+              "tema": "Modelo industrial de desarrollo tercerizado",
+              "definicion": "Modelo donde el proveedor opera con procesos estandarizados y repetibles, como una línea de producción, en vez de un equipo artesanal a medida.",
+              "detalles": {
+                "etiqueta": "Rasgos distintivos",
+                "items": [
+                  "Certificaciones de calidad de proceso (como CMMI o ISO)",
+                  "Equipos que rotan según la demanda de distintos proyectos en paralelo",
+                  "Métricas de productividad estandarizadas (velocidad de entrega, story points completados)"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sobre-ingenieria-en-tercerizacion",
+          "titulo": "Sobre-ingeniería Aplicada a Contratos",
+          "bloques": [
+            {
+              "tema": "Formalidad proporcional al riesgo",
+              "definicion": "No tercerizar ni sobre-formalizar lo que todavía no lo necesita.",
+              "detalles": {
+                "etiqueta": "Ejemplo",
+                "items": [
+                  "Una relación corta, de bajo riesgo y con un proveedor de confianza no necesita un SLA de 40 páginas"
+                ]
+              },
+              "conclusion": "La formalidad del contrato debe ser proporcional al riesgo y tamaño real de la relación, no un máximo por costumbre."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-unidad-03",
+          "titulo": "En Síntesis — Unidad 03",
+          "bloques": [
+            {
+              "tema": "Ideas clave de BPO y SLA",
+              "detalles": {
+                "etiqueta": "Resumen",
+                "items": [
+                  "BPO es delegar un proceso de negocio completo a un tercero, no solo una tarea puntual",
+                  "La prueba de modularidad sirve tanto para código como para procesos de negocio",
+                  "Un SLA es, en esencia, una interfaz: define qué se espera, no cómo se logra",
+                  "Un SLA ambiguo es una dependencia oculta",
+                  "La formalidad del contrato debe ser proporcional al riesgo real"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}

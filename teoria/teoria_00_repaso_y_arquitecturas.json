@@ -1,0 +1,762 @@
+{
+  "modulo": "Unidad 00",
+  "titulo_general": "Repaso General y Tipos de Arquitectura",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Repaso de fundamentos de programación, programación orientada a objetos, buenas prácticas, principios SOLID, patrones de diseño, escalabilidad y comparación de arquitecturas en diagramas (Capas, Hexagonal y ECS).",
+  "secciones": [
+    {
+      "titulo": "Repaso General de Ingeniería de Software",
+      "subtemas": [
+        {
+          "id": "objetivo-de-la-clase",
+          "titulo": "Objetivo de la Clase",
+          "bloques": [
+            {
+              "tema": "Bases de la materia",
+              "definicion": "Todo lo que viene en Ingeniería de Software se apoya en estas seis áreas fundamentales.",
+              "detalles": {
+                "etiqueta": "Temas de repaso",
+                "items": [
+                  "Fundamentos de programación",
+                  "Programación orientada a objetos",
+                  "Buenas prácticas de desarrollo",
+                  "Principios SOLID",
+                  "Arquitectura de software",
+                  "Escalabilidad"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "que-es-programar",
+          "titulo": "¿Qué es Programar?",
+          "bloques": [
+            {
+              "tema": "Programar",
+              "definicion": "Consiste en describir algoritmos que una computadora puede ejecutar.",
+              "detalles": {
+                "etiqueta": "Elementos principales",
+                "items": [
+                  "Variables",
+                  "Estructuras de control",
+                  "Funciones",
+                  "Estructuras de datos"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "variables-y-tipos-de-datos",
+          "titulo": "Variables y Tipos de Datos",
+          "bloques": [
+            {
+              "tema": "Variables y tipos",
+              "definicion": "Una variable es un espacio de memoria que almacena información.",
+              "layout_conceptos": "lista",
+              "conceptos": [
+                {
+                  "nombre": "Tipos comunes",
+                  "etiqueta_items": "Valores",
+                  "items": [
+                    "int",
+                    "float",
+                    "double",
+                    "bool",
+                    "char",
+                    "string"
+                  ]
+                },
+                {
+                  "nombre": "Qué define el tipo",
+                  "etiqueta_items": "Características",
+                  "items": [
+                    "Qué valores puede contener",
+                    "Cuánto espacio ocupa en memoria",
+                    "Qué operaciones permite"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "operadores",
+          "titulo": "Operadores",
+          "bloques": [
+            {
+              "tema": "Operadores",
+              "definicion": "Permiten manipular valores dentro de expresiones, condiciones y decisiones.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Aritméticos",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "+",
+                    "-",
+                    "*",
+                    "/"
+                  ]
+                },
+                {
+                  "nombre": "Comparación",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "==",
+                    "!=",
+                    ">",
+                    "<"
+                  ]
+                },
+                {
+                  "nombre": "Lógicos",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "&&",
+                    "||",
+                    "!"
+                  ]
+                }
+              ],
+              "conclusion": "Se usan principalmente en condiciones y decisiones."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "estructuras-de-control",
+          "titulo": "Estructuras de Control",
+          "bloques": [
+            {
+              "tema": "Estructuras de control",
+              "definicion": "Permiten controlar el flujo de ejecución del programa.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Condicionales",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "if",
+                    "else if",
+                    "else",
+                    "switch"
+                  ]
+                },
+                {
+                  "nombre": "Bucles",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "for",
+                    "while",
+                    "do while",
+                    "foreach"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "funciones-o-metodos",
+          "titulo": "Funciones o Métodos",
+          "bloques": [
+            {
+              "tema": "Funciones o métodos",
+              "definicion": "Una función es un bloque reutilizable de código.",
+              "detalles": {
+                "etiqueta": "Ventajas",
+                "items": [
+                  "Modularidad",
+                  "Reutilización",
+                  "Legibilidad"
+                ]
+              },
+              "conclusion": "Principio importante: dividir problemas grandes en funciones pequeñas."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "programacion-orientada-a-objetos",
+          "titulo": "Programación Orientada a Objetos",
+          "bloques": [
+            {
+              "tema": "Programación Orientada a Objetos (POO)",
+              "definicion": "Paradigma que modela el software a partir de objetos.",
+              "detalles": {
+                "etiqueta": "Conceptos clave",
+                "items": [
+                  "Clases",
+                  "Objetos",
+                  "Encapsulamiento",
+                  "Herencia",
+                  "Polimorfismo",
+                  "Abstracción"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "clase-y-objeto",
+          "titulo": "Clase y Objeto",
+          "bloques": [
+            {
+              "tema": "Clase y Objeto",
+              "definicion": "Diferencia entre la definición abstracta y su instancia en ejecución.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Clase",
+                  "definicion": "Plantilla que define propiedades y comportamientos.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Vehículo"
+                  ]
+                },
+                {
+                  "nombre": "Objeto",
+                  "definicion": "Instancia concreta de una clase.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Auto"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "encapsulamiento",
+          "titulo": "Encapsulamiento",
+          "bloques": [
+            {
+              "tema": "Encapsulamiento",
+              "definicion": "Consiste en ocultar los detalles internos de un objeto y exponer solo los métodos necesarios.",
+              "detalles": {
+                "etiqueta": "Ventajas",
+                "items": [
+                  "Seguridad",
+                  "Control del estado",
+                  "Menor acoplamiento"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "herencia-y-polimorfismo",
+          "titulo": "Herencia y Polimorfismo",
+          "bloques": [
+            {
+              "tema": "Herencia y Polimorfismo",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Herencia",
+                  "definicion": "Una clase puede extender otra.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Animal → Perro"
+                  ]
+                },
+                {
+                  "nombre": "Polimorfismo",
+                  "definicion": "Diferentes objetos pueden responder de forma distinta al mismo mensaje."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "interfaces",
+          "titulo": "Interfaces",
+          "bloques": [
+            {
+              "tema": "Interfaces",
+              "definicion": "Una interfaz define un contrato: especifica qué métodos debe tener una clase, pero no cómo implementarlos.",
+              "detalles": {
+                "etiqueta": "Ventajas",
+                "items": [
+                  "Desacoplamiento",
+                  "Flexibilidad",
+                  "Intercambiar implementaciones"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "eventos-y-delegados",
+          "titulo": "Eventos y Delegados",
+          "bloques": [
+            {
+              "tema": "Eventos y Delegados",
+              "definicion": "Permiten que los objetos se comuniquen entre sí; un evento notifica que algo ocurrió.",
+              "detalles": {
+                "etiqueta": "Ejemplos",
+                "items": [
+                  "Botón → evento Click"
+                ]
+              },
+              "conclusion": "Este mecanismo implementa el patrón Observer."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tipos-de-errores",
+          "titulo": "Tipos de Errores",
+          "bloques": [
+            {
+              "tema": "Categorías principales de errores",
+              "layout_conceptos": "escalonada",
+              "conceptos": [
+                {
+                  "nombre": "Errores de compilación",
+                  "definicion": "El código no compila."
+                },
+                {
+                  "nombre": "Errores de ejecución",
+                  "definicion": "El programa falla al ejecutarse."
+                },
+                {
+                  "nombre": "Errores lógicos",
+                  "definicion": "El programa funciona pero produce resultados incorrectos."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "buenas-practicas-de-desarrollo",
+          "titulo": "Buenas Prácticas de Desarrollo",
+          "bloques": [
+            {
+              "tema": "Principios y código limpio",
+              "layout_conceptos": "lista",
+              "conceptos": [
+                {
+                  "nombre": "Principios importantes",
+                  "etiqueta_items": "Reglas",
+                  "items": [
+                    "DRY (Don't Repeat Yourself)",
+                    "KISS (Keep It Simple)"
+                  ]
+                },
+                {
+                  "nombre": "Código limpio",
+                  "etiqueta_items": "Características",
+                  "items": [
+                    "Nombres claros",
+                    "Funciones pequeñas",
+                    "Evitar duplicación"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "principios-solid",
+          "titulo": "Principios SOLID",
+          "bloques": [
+            {
+              "tema": "Principios SOLID",
+              "definicion": "Conjunto de cinco principios para diseñar software mantenible.",
+              "detalles": {
+                "etiqueta": "Principios",
+                "items": [
+                  "S – Single Responsibility",
+                  "O – Open Closed",
+                  "L – Liskov Substitution",
+                  "I – Interface Segregation",
+                  "D – Dependency Inversion"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "patrones-de-diseno",
+          "titulo": "Patrones de Diseño",
+          "bloques": [
+            {
+              "tema": "Patrones de Diseño",
+              "definicion": "Soluciones reutilizables a problemas comunes que permiten diseñar sistemas flexibles y escalables.",
+              "detalles": {
+                "etiqueta": "Patrones importantes",
+                "items": [
+                  "Factory",
+                  "Observer",
+                  "Strategy",
+                  "Facade",
+                  "Object Pool"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "arquitectura-de-software",
+          "titulo": "Arquitectura de Software",
+          "bloques": [
+            {
+              "tema": "Organización en capas",
+              "definicion": "Los sistemas modernos se organizan en capas para separar responsabilidades.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Capas típicas",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Aplicación",
+                    "Servicios",
+                    "Persistencia",
+                    "Base de datos"
+                  ]
+                },
+                {
+                  "nombre": "Beneficios",
+                  "etiqueta_items": "Ventajas",
+                  "items": [
+                    "Mantenimiento",
+                    "Escalabilidad",
+                    "Evolución del sistema"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph TD\n  A[Aplicación] --> B[Servicios]\n  B --> C[Persistencia]\n  C --> D[Base de datos]"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "escalabilidad",
+          "titulo": "Escalabilidad",
+          "bloques": [
+            {
+              "tema": "Escalabilidad",
+              "definicion": "Capacidad de un sistema para soportar crecimiento.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Escalado vertical",
+                  "definicion": "Más recursos en un mismo servidor."
+                },
+                {
+                  "nombre": "Escalado horizontal",
+                  "definicion": "Más servidores trabajando juntos."
+                }
+              ],
+              "conclusion": "Diseñar para escalar es, en el fondo, una decisión de arquitectura."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Tipos de Arquitectura y Diagramas de Clases",
+      "subtemas": [
+        {
+          "id": "repaso-general-antes-del-parcial",
+          "titulo": "Repaso General — Antes del Parcial",
+          "bloques": [
+            {
+              "tema": "Ejes principales del repaso",
+              "definicion": "Conceptos clave evaluados antes del primer parcial.",
+              "detalles": {
+                "etiqueta": "Temas clave",
+                "items": [
+                  "Frontera núcleo / adaptadores y dirección de dependencias hacia adentro",
+                  "SOLID con foco en Inversión de Dependencias",
+                  "Los 4 niveles de resolución de dependencias",
+                  "Composición sobre herencia",
+                  "Patrones vistos y cuándo NO conviene forzarlos",
+                  "Mock vs. stub vs. fake",
+                  "SLA como interfaz"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "arquitecturas-en-diagramas",
+          "titulo": "Arquitecturas en Diagramas",
+          "bloques": [
+            {
+              "tema": "Visión desde arriba",
+              "definicion": "Comparamos tres formas distintas de organizar la arquitectura de un sistema en diagramas de cajas y flechas.",
+              "layout_conceptos": "escalonada",
+              "conceptos": [
+                {
+                  "nombre": "1. Arquitectura en Capas",
+                  "definicion": "Flujo vertical descendente: la presentación depende de negocio y negocio de los datos."
+                },
+                {
+                  "nombre": "2. Arquitectura Hexagonal",
+                  "definicion": "El núcleo de dominio queda aislado en el centro; los adaptadores externos implementan sus puertos."
+                },
+                {
+                  "nombre": "3. Entity-Component-System",
+                  "definicion": "Datos puros en componentes y lógica desacoplada en sistemas que iteran sobre entidades."
+                }
+              ],
+              "conclusion": "Las tres responden siempre la misma pregunta: ¿Hacia dónde apuntan las dependencias?"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "arquitectura-en-capas",
+          "titulo": "Arquitectura en Capas (Layered)",
+          "bloques": [
+            {
+              "tema": "Arquitectura en Capas",
+              "definicion": "Cada capa depende directamente de la de abajo; las dependencias apuntan siempre hacia la base de datos.",
+              "detalles": {
+                "etiqueta": "Estructura",
+                "items": [
+                  "Presentación (UI)",
+                  "Lógica de Negocio",
+                  "Acceso a Datos (DAL)",
+                  "Base de Datos"
+                ]
+              },
+              "diagrama_mermaid": "graph TD\n  UI[Presentación - UI] --> BL[Lógica de Negocio]\n  BL --> DAL[Acceso a Datos - DAL]\n  DAL --> DB[(Base de Datos)]"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "arquitectura-hexagonal",
+          "titulo": "Arquitectura Hexagonal (Puertos y Adaptadores)",
+          "bloques": [
+            {
+              "tema": "Arquitectura Hexagonal",
+              "definicion": "Todas las flechas apuntan hacia adentro, hacia el núcleo de reglas de negocio, sin importar de qué lado vengan.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Puertos de entrada",
+                  "etiqueta_items": "Adaptadores",
+                  "items": [
+                    "App móvil / UI Web",
+                    "API externa"
+                  ]
+                },
+                {
+                  "nombre": "Puertos de salida",
+                  "etiqueta_items": "Adaptadores",
+                  "items": [
+                    "Base de Datos",
+                    "Servicio de Pago"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph LR\n  UI[App móvil / UI Web] --> PI1[Puerto de entrada]\n  API[API externa] --> PI2[Puerto de entrada]\n  PI1 --> N((NÚCLEO: reglas de negocio))\n  PI2 --> N\n  DB[(Base de Datos)] --> PO1[Puerto de salida]\n  PAY[Servicio de Pago] --> PO2[Puerto de salida]\n  PO1 --> N\n  PO2 --> N"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "entity-component-system-ecs",
+          "titulo": "Entity-Component-System (ECS)",
+          "bloques": [
+            {
+              "tema": "Entity-Component-System (ECS)",
+              "definicion": "Modelo orientado a datos usado en videojuegos donde los Components no tienen lógica y los Systems no tienen estado propio.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Entity",
+                  "definicion": "Solo un identificador único.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "Entidad #42"
+                  ]
+                },
+                {
+                  "nombre": "Components",
+                  "definicion": "Solo datos puros sin lógica.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "PositionComponent {x, y}",
+                    "VelocityComponent {dx, dy}",
+                    "HealthComponent {hp}"
+                  ]
+                },
+                {
+                  "nombre": "Systems",
+                  "definicion": "Comportamiento puro; no se llaman entre sí y solo leen y escriben Components.",
+                  "etiqueta_items": "Ejemplos",
+                  "items": [
+                    "MovementSystem",
+                    "CombatSystem"
+                  ]
+                }
+              ],
+              "diagrama_mermaid": "graph TD\n  E[Entidad #42] --> C1[PositionComponent x, y]\n  E --> C2[VelocityComponent dx, dy]\n  E --> C3[HealthComponent hp]\n  S1[MovementSystem] --> C1\n  S1 --> C2\n  S2[CombatSystem] --> C3"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "cuando-conviene-cada-arquitectura",
+          "titulo": "¿Cuándo Conviene Cada Arquitectura?",
+          "bloques": [
+            {
+              "tema": "Criterio de selección",
+              "definicion": "Ninguna arquitectura es mejor en abstracto; cada una responde al problema que se quiere resolver.",
+              "tabla": {
+                "columnas": [
+                  "Arquitectura",
+                  "Dirección de dependencias",
+                  "Cuándo conviene"
+                ],
+                "filas": [
+                  [
+                    "Capas (Layered)",
+                    "Hacia abajo, hacia la base de datos",
+                    "Aplicaciones de gestión convencionales, CRUDs y sistemas administrativos"
+                  ],
+                  [
+                    "Hexagonal",
+                    "Hacia adentro, hacia el núcleo",
+                    "Dominios complejos a proteger y testear aislados, o con infraestructura reemplazable"
+                  ],
+                  [
+                    "ECS",
+                    "Systems operan sobre Components de Entities",
+                    "Videojuegos y simulaciones en tiempo real con muchos objetos dinámicos"
+                  ]
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "sintesis-de-arquitecturas",
+          "titulo": "En Síntesis",
+          "bloques": [
+            {
+              "tema": "Dirección de las dependencias",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Capas",
+                  "definicion": "Las dependencias apuntan hacia abajo, hacia la base de datos."
+                },
+                {
+                  "nombre": "Hexagonal",
+                  "definicion": "Las dependencias apuntan hacia adentro, hacia el núcleo, desde cualquier lado."
+                },
+                {
+                  "nombre": "ECS",
+                  "definicion": "Entities son solo IDs, Components son solo datos, Systems son solo comportamiento; nada hereda de nada."
+                }
+              ],
+              "conclusion": "Elegir bien es el mismo ejercicio de criterio que con SOLID: usar la herramienta que el problema pide."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}

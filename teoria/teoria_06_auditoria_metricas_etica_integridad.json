@@ -1,0 +1,485 @@
+{
+  "modulo": "Unidad 06",
+  "titulo_general": "Auditoría, Cumplimiento, Métricas y KPIs; Ética e Integridad del Código",
+  "institucion": "UADE",
+  "catedra": "Ingeniería de Software",
+  "profesor": null,
+  "descripcion": "Auditoría (ISO 19011), tipos y hallazgos, evidencia y trazabilidad, modelo de tres líneas (IIA), cumplimiento, métricas/KPIs/KRIs, GQM, métricas DORA, ley de Goodhart, ética profesional (ACM/IEEE-CS), caso Volkswagen, integridad técnica y cadena de suministro (xz Utils), hash vs. firma digital vs. HMAC, y bonus en Java.",
+  "secciones": [
+    {
+      "titulo": "Clase 9 (Parte A): Auditoría, Cumplimiento, Métricas y KPIs",
+      "subtemas": [
+        {
+          "id": "objetivo-unidad-06",
+          "titulo": "Objetivo de la Clase",
+          "bloques": [
+            {
+              "tema": "Cerrar el ciclo Evaluar – Dirigir – Monitorear",
+              "definicion": "Medir y verificar solo sirve si lo que se mide y se registra es confiable.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Parte A — Monitorear",
+                  "definicion": "Auditoría, cumplimiento, métricas y KPIs para saber si lo decidido se está cumpliendo."
+                },
+                {
+                  "nombre": "Parte B — Confianza",
+                  "definicion": "Ética profesional e integridad del código (incluyendo bonus en Java con SHA-256 y HMAC)."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "que-es-una-auditoria",
+          "titulo": "¿Qué es una Auditoría? (ISO 19011)",
+          "bloques": [
+            {
+              "tema": "Proceso sistemático, independiente y documentado",
+              "definicion": "Obtiene evidencia y la evalúa objetivamente para determinar en qué medida se cumplen los criterios de auditoría.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Criterio",
+                  "definicion": "Contra qué se compara (ley, norma, política o contrato)."
+                },
+                {
+                  "nombre": "Evidencia",
+                  "definicion": "Con qué se afirma algo (registros, configuraciones, tickets, entrevistas)."
+                },
+                {
+                  "nombre": "Independencia",
+                  "definicion": "Quien audita no es quien hizo el trabajo auditado."
+                },
+                {
+                  "nombre": "Informe",
+                  "definicion": "Constancia de lo encontrado, bueno y malo."
+                }
+              ],
+              "conclusion": "Como la VTV: no repara el auto, mide contra una norma y deja un informe; no busca culpables sino dar confianza."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "tipos-y-proceso-de-auditoria",
+          "titulo": "Tipos de Auditoría, Proceso y Hallazgos",
+          "bloques": [
+            {
+              "tema": "Clasificación, etapas y resultados",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Según quién audita",
+                  "etiqueta_items": "Tipos",
+                  "items": [
+                    "Interna: área independiente dentro de la organización",
+                    "Externa 2.ª parte: un cliente audita a su proveedor (SLA)",
+                    "Externa 3.ª parte: organismo independiente certifica (ISO 27001, SOC 2)"
+                  ]
+                },
+                {
+                  "nombre": "Proceso en 5 pasos",
+                  "etiqueta_items": "Etapas",
+                  "items": [
+                    "1. Planificar",
+                    "2. Recolectar evidencia",
+                    "3. Evaluar contra criterio",
+                    "4. Informar hallazgos",
+                    "5. Dar seguimiento"
+                  ]
+                },
+                {
+                  "nombre": "Tipos de hallazgo",
+                  "etiqueta_items": "Categorías",
+                  "items": [
+                    "Conformidad: cumple el criterio",
+                    "No conformidad mayor o menor",
+                    "Observación u oportunidad de mejora"
+                  ]
+                }
+              ],
+              "conclusion": "Estar certificado no significa ser seguro, sino cumplir los requisitos de la norma dentro del alcance auditado."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "evidencia-y-trazabilidad",
+          "titulo": "Evidencia y Trazabilidad",
+          "bloques": [
+            {
+              "tema": "Requisitos de un registro confiable",
+              "definicion": "Para un auditor, si no está registrado, no pasó. Un buen registro responde: quién, qué, cuándo, desde dónde y con qué resultado.",
+              "detalles": {
+                "etiqueta": "Controles clave",
+                "items": [
+                  "Relojes sincronizados para reconstruir secuencias",
+                  "Minimización: no guardar contraseñas, claves ni datos personales innecesarios",
+                  "Retención definida por política, no por espacio en disco",
+                  "Protección contra alteración (inmutabilidad / detección de cambios)",
+                  "Segregación de funciones: quien escribe un cambio no lo aprueba ni despliega solo (ej. pull request con aprobación)"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "modelo-de-tres-lineas",
+          "titulo": "Modelo de Tres Líneas (IIA, 2020)",
+          "bloques": [
+            {
+              "tema": "Quién audita a quién sin que nadie se controle solo",
+              "definicion": "Las líneas son roles, no cajas del organigrama.",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Órgano de gobierno",
+                  "definicion": "Rinde cuentas, fija el rumbo y el apetito de riesgo, y supervisa."
+                },
+                {
+                  "nombre": "1.ª línea — Gestión",
+                  "definicion": "Equipos de desarrollo y operación; entregan productos y son dueños de los riesgos."
+                },
+                {
+                  "nombre": "2.ª línea — Expertos de apoyo",
+                  "definicion": "Riesgos, cumplimiento, seguridad y calidad; asesoran, monitorean y desafían."
+                },
+                {
+                  "nombre": "3.ª línea — Auditoría",
+                  "definicion": "Aseguramiento independiente y objetivo; responde al órgano de gobierno, no a la gestión."
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "cumplimiento-en-la-practica",
+          "titulo": "Cumplimiento en la Práctica",
+          "bloques": [
+            {
+              "tema": "De la obligación a la evidencia continua",
+              "definicion": "Ciclo: identificar obligaciones → traducir a controles → implementar y reunir evidencia → monitorear y corregir.",
+              "layout_conceptos": "grid-3",
+              "conceptos": [
+                {
+                  "nombre": "Control preventivo",
+                  "definicion": "Evita el problema (ej. ramas protegidas)."
+                },
+                {
+                  "nombre": "Control detectivo",
+                  "definicion": "Lo descubre (ej. alertas, revisión de registros)."
+                },
+                {
+                  "nombre": "Control correctivo",
+                  "definicion": "Lo repara (ej. rollback, plan de respuesta)."
+                }
+              ],
+              "conclusion": "Cumplir sigue siendo el piso, no el techo."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "metricas-kpis-kris-y-sli-slo-sla",
+          "titulo": "Métricas, KPIs, KRIs y SLI / SLO / SLA",
+          "bloques": [
+            {
+              "tema": "Medición de desempeño y riesgo",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Indicadores",
+                  "etiqueta_items": "Definiciones",
+                  "items": [
+                    "Métrica: cualquier medición (líneas, CPU, commits)",
+                    "KPI: métrica elegida para saber si logramos un objetivo",
+                    "KRI: señal de alerta temprana de que un riesgo crece"
+                  ]
+                },
+                {
+                  "nombre": "Acuerdos de servicio",
+                  "etiqueta_items": "Niveles",
+                  "items": [
+                    "SLI: lo que se mide realmente (disponibilidad real)",
+                    "SLO: objetivo interno (margen de seguridad)",
+                    "SLA: compromiso contractual con consecuencias"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "gqm-y-dora",
+          "titulo": "Enfoque GQM y Métricas DORA",
+          "bloques": [
+            {
+              "tema": "Elegir qué medir y balancear velocidad con estabilidad",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "GQM (Goal – Question – Metric)",
+                  "definicion": "Ir de arriba hacia abajo: definir la Meta, derivar Preguntas y recién ahí elegir Métricas accionables con dueño y umbral."
+                },
+                {
+                  "nombre": "DORA (Velocidad + Estabilidad)",
+                  "etiqueta_items": "Métricas",
+                  "items": [
+                    "Velocidad: plazo de cambio, frecuencia de despliegues, tiempo de recuperación",
+                    "Estabilidad: tasa de cambios fallidos y tasa de retrabajo"
+                  ]
+                }
+              ],
+              "conclusion": "No usar métricas DORA para comparar equipos ni como metas impuestas porque se terminan manipulando."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "ley-de-goodhart",
+          "titulo": "La Trampa de las Métricas: Ley de Goodhart",
+          "bloques": [
+            {
+              "tema": "Cuando una medida se convierte en objetivo, deja de ser una buena medida",
+              "definicion": "Al premiar o castigar un número, se optimiza el número y no el propósito real.",
+              "detalles": {
+                "etiqueta": "Ejemplos y defensas",
+                "items": [
+                  "Líneas de código por día → código inflado",
+                  "100% cobertura como meta → tests sin asserts reales",
+                  "Bugs cerrados por semana → se cierran sin arreglar",
+                  "Defensas: usar métricas que se tensionen entre sí (velocidad vs. estabilidad) y medir para aprender, no para castigar"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    },
+    {
+      "titulo": "Clase 9 (Parte B): Ética Profesional e Integridad del Código",
+      "subtemas": [
+        {
+          "id": "etica-profesional-y-codigo-acm-ieee",
+          "titulo": "Ética Profesional y Código ACM/IEEE-CS",
+          "bloques": [
+            {
+              "tema": "Por qué importa la ética en software",
+              "definicion": "El software decide sobre personas, tiene asimetría de información, escala millones de veces y enfrenta presiones de plazo. Legal no es sinónimo de ético.",
+              "detalles": {
+                "etiqueta": "8 principios ACM/IEEE-CS (1999)",
+                "items": [
+                  "1. Público (el interés público va primero si choca con cliente/empleador)",
+                  "2. Cliente y empleador",
+                  "3. Producto",
+                  "4. Juicio independiente",
+                  "5. Gestión ética",
+                  "6. Profesión",
+                  "7. Colegas",
+                  "8. Uno mismo (aprendizaje continuo)"
+                ]
+              },
+              "conclusion": "Tres preguntas guía: ¿es legal? ¿es honesto con los afectados? ¿lo defendería en público?"
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "caso-volkswagen-2015",
+          "titulo": "Caso: Cuando el Código Miente (Volkswagen, 2015)",
+          "bloques": [
+            {
+              "tema": "Ley de Goodhart con consecuencias penales",
+              "definicion": "El software de motores diésel detectaba pruebas de laboratorio para cumplir límites de emisiones, pero en ruta emitía muy por encima.",
+              "detalles": {
+                "etiqueta": "Consecuencias",
+                "items": [
+                  "Retiro de hasta 11 millones de autos en el mundo",
+                  "Declaración de culpabilidad por fraude y obstrucción en 2017",
+                  "Multas y acuerdos por miles de millones de dólares"
+                ]
+              },
+              "conclusion": "El sistema pasaba la prueba optimizando la métrica y no el propósito."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "integridad-del-codigo-y-cadena-de-suministro",
+          "titulo": "Integridad del Código y Cadena de Suministro (xz Utils)",
+          "bloques": [
+            {
+              "tema": "Integridad técnica e integridad profesional",
+              "layout_conceptos": "grid-2",
+              "conceptos": [
+                {
+                  "nombre": "Dos sentidos de la integridad",
+                  "etiqueta_items": "Definiciones",
+                  "items": [
+                    "Técnica: código y datos no alterados sin autorización ni rastro",
+                    "Profesional: el código hace lo que dice y se escribe con honestidad"
+                  ]
+                },
+                {
+                  "nombre": "Caso xz Utils (CVE-2024-3094)",
+                  "etiqueta_items": "Lecciones",
+                  "items": [
+                    "Colaborador ganó confianza por 2 años e inyectó backdoor en archivos de distribución (no en el repo visible)",
+                    "Lo que se revisa no es necesariamente lo que se ejecuta; la confianza no reemplaza controles"
+                  ]
+                }
+              ]
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "controles-y-diferencia-hash-firma-mac",
+          "titulo": "Controles de Integridad: Hash, Firma Digital y MAC",
+          "bloques": [
+            {
+              "tema": "Mecanismos criptográficos de verificación",
+              "tabla": {
+                "columnas": [
+                  "Mecanismo",
+                  "Qué prueba",
+                  "Limitación / Regla de oro"
+                ],
+                "filas": [
+                  [
+                    "Hash (ej. SHA-256)",
+                    "Detecta si cambió un solo byte del contenido",
+                    "No dice quién lo cambió; debe llegar por canal confiable"
+                  ],
+                  [
+                    "Firma digital",
+                    "Prueba integridad y autoría (clave privada/pública)",
+                    "Requiere gestión segura de clave privada"
+                  ],
+                  [
+                    "MAC / HMAC",
+                    "Huella con clave secreta compartida",
+                    "Solo quien tiene la clave puede generar un MAC válido"
+                  ]
+                ]
+              },
+              "detalles": {
+                "etiqueta": "Controles de suministro",
+                "items": [
+                  "Ramas protegidas, PRs revisados, MFA y commits firmados",
+                  "Lockfiles, escaneo de vulnerabilidades, CI reproducible, hashes y SBOM"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        },
+        {
+          "id": "bonus-java-sha256",
+          "titulo": "Bonus en Java (1): Verificar Archivo con SHA-256",
+          "bloques": [
+            {
+              "tema": "Verificar integridad de un artefacto descargado",
+              "definicion": "Se calcula el SHA-256 del archivo y se compara en tiempo constante (MessageDigest.isEqual) contra el hash publicado por otro canal.",
+              "conclusion": "Si cambia un solo byte del archivo, la huella cambia por completo."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// PARTE 1 — Verificar un archivo contra el hash que publicó su autor\n    // ========================================================================\n\n    // Un hash es una \"huella digital\" del contenido: si cambia UN solo byte,\n    // la huella cambia por completo.\n    static byte[] sha256(Path file) throws IOException, GeneralSecurityException {\n        return MessageDigest.getInstance(\"SHA-256\").digest(Files.readAllBytes(file));\n    }\n\n    // Compara contra el hash publicado. isEqual compara en tiempo constante\n    // (buena práctica al comparar valores de seguridad).\n    static boolean matchesPublishedHash(Path file, String publishedHex)\n            throws IOException, GeneralSecurityException {\n        byte[] expected = HexFormat.of().parseHex(publishedHex);\n        return MessageDigest.isEqual(sha256(file), expected);\n    }\n\n    // ========================================================================",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "bonus-java-hmac-auditlog",
+          "titulo": "Bonus en Java (2): Registro de Auditoría con HMAC",
+          "bloques": [
+            {
+              "tema": "Cadena de auditoría a prueba de alteraciones",
+              "definicion": "Cada entrada guarda el MAC de la anterior (prevMac) calculado con HmacSHA256 y una clave secreta fuera de la base.",
+              "detalles": {
+                "etiqueta": "Límites de la demo",
+                "items": [
+                  "Detecta alteración o borrado intermedio (firstBrokenEntry), pero no previene la edición",
+                  "Si el atacante obtiene la clave, puede reescribir la cadena",
+                  "Borrar las últimas entradas no rompe el enlace: en producción se guarda el último MAC externamente y se usa almacenamiento append-only"
+                ]
+              }
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": "// PARTE 2 — Registro de auditoría a prueba de alteraciones\n    // ========================================================================\n\n    // Cada entrada guarda el MAC de la anterior (prevMac): forman una cadena.\n    record Entry(int index, String actor, String action, String prevMac, String mac) { }\n\n    static class AuditLog {\n        private static final String GENESIS = \"GENESIS\";\n        private final byte[] key;                       // clave secreta, guardada FUERA de la base\n        private final List<Entry> entries = new ArrayList<>();\n\n        AuditLog(byte[] key) { this.key = key; }\n\n        static AuditLog fromEntries(byte[] key, List<Entry> list) {\n            AuditLog log = new AuditLog(key);\n            log.entries.addAll(list);\n            return log;\n        }\n\n        void append(String actor, String action) throws GeneralSecurityException {\n            String prev = entries.isEmpty() ? GENESIS : entries.get(entries.size() - 1).mac();\n            int index = entries.size();\n            entries.add(new Entry(index, actor, action, prev, mac(index, actor, action, prev)));\n        }\n\n        // Devuelve el índice de la primera entrada rota, o -1 si todo está íntegro.\n        int firstBrokenEntry() throws GeneralSecurityException {\n            String expectedPrev = GENESIS;\n            for (Entry e : entries) {\n                boolean linked = e.prevMac().equals(expectedPrev);          // ¿encaja con la anterior?\n                boolean authentic = same(e.mac(), mac(e.index(), e.actor(), e.action(), e.prevMac()));\n                if (!linked || !authentic) return e.index();\n                expectedPrev = e.mac();\n            }\n            return -1;\n        }\n\n        List<Entry> snapshot() { return Collections.unmodifiableList(entries); }\n\n        // HMAC-SHA256: un hash que además necesita la clave. Sin la clave, alguien que\n        // edite la base no puede recalcular un MAC válido. (Un hash simple no alcanza:\n        // cualquiera puede recalcularlo.)\n        // Simplificación didáctica: el separador \"|\" podría confundirse si un campo lo\n        // contiene; en producción se serializan los campos con longitud o en JSON.\n        private String mac(int index, String actor, String action, String prev)\n                throws GeneralSecurityException {\n            Mac hmac = Mac.getInstance(\"HmacSHA256\");\n            hmac.init(new SecretKeySpec(key, \"HmacSHA256\"));\n            String data = index + \"|\" + actor + \"|\" + action + \"|\" + prev;\n            return HexFormat.of().formatHex(hmac.doFinal(data.getBytes(StandardCharsets.UTF_8)));\n        }\n\n        private static boolean same(String a, String b) {\n            return MessageDigest.isEqual(a.getBytes(StandardCharsets.UTF_8), b.getBytes(StandardCharsets.UTF_8));\n        }\n    }",
+          "analisis_complejidad": null
+        },
+        {
+          "id": "integridad-profesional-y-cierre",
+          "titulo": "Integridad Profesional y Cierre de la Materia",
+          "bloques": [
+            {
+              "tema": "El hilo transversal: proporcionalidad",
+              "detalles": {
+                "etiqueta": "Prácticas diarias y síntesis",
+                "items": [
+                  "No tocar un test para que pase; reportar defectos y limitaciones",
+                  "Revisar y asumir responsabilidad por código generado por IA",
+                  "Núcleo y adaptadores: las normas son adaptadores, la ética es el núcleo",
+                  "Proporcionalidad en arquitectura, optimización, gobernanza, auditoría y controles"
+                ]
+              },
+              "conclusion": "Ingenio y Diseño: pensar antes de tipear y poder explicar por qué se decidió así."
+            }
+          ],
+          "animaciones": null,
+          "pseudocodigo": null,
+          "codigo": null,
+          "analisis_complejidad": null
+        }
+      ]
+    }
+  ]
+}
