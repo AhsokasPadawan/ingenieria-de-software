@@ -23,31 +23,24 @@ export function SlideHeader({
 }: SlideHeaderProps) {
   return (
     <div
-      className={`shrink-0 border-b pb-2.5 ${sectionTheme.cardBorderClass} flex items-center justify-between gap-3`}
+      className={`shrink-0 border-b pb-2.5 ${sectionTheme.cardBorderClass} grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-1.5 sm:gap-x-3`}
     >
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <span
-            className={`rounded-md px-2.5 py-0.5 text-xs font-black uppercase tracking-wider ${sectionTheme.slideBadgeClass}`}
-          >
-            {isExercise && exerciseNumber !== undefined
-              ? `Ejercicio #${exerciseNumber}`
-              : `Diapositiva #${moduleSlideIndex + 1}`}
-          </span>
-          <h1
-            className={`text-xs sm:text-sm font-black uppercase tracking-wider truncate ${sectionTheme.slideHeaderClass}`}
-          >
-            {slide.moduleTitle}
-          </h1>
-        </div>
-        <h2
-          className={`text-3xl sm:text-4xl md:text-5xl font-black tracking-tight truncate mt-0.5 ${sectionTheme.titleTextClass}`}
+      <div className="min-w-0 flex items-center gap-2">
+        <span
+          className={`shrink-0 rounded-md px-2.5 py-0.5 text-xs font-black uppercase tracking-wider ${sectionTheme.slideBadgeClass}`}
         >
-          {slide.conceptTitle}
-        </h2>
+          {isExercise && exerciseNumber !== undefined
+            ? `Ejercicio #${exerciseNumber}`
+            : `Diapositiva #${moduleSlideIndex + 1}`}
+        </span>
+        <h1
+          className={`text-xs sm:text-sm font-black uppercase tracking-wider truncate ${sectionTheme.slideHeaderClass}`}
+        >
+          {slide.moduleTitle}
+        </h1>
       </div>
 
-      <div className="shrink-0 flex items-center gap-2">
+      <div className="shrink-0 flex items-center gap-2 sm:row-span-2">
         {onOpenWorkspace && (
           <button
             type="button"
@@ -79,6 +72,12 @@ export function SlideHeader({
           </div>
         </div>
       </div>
+
+      <h2
+        className={`col-span-2 sm:col-span-1 text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight sm:truncate mt-0.5 ${sectionTheme.titleTextClass}`}
+      >
+        {slide.conceptTitle}
+      </h2>
     </div>
   );
 }
