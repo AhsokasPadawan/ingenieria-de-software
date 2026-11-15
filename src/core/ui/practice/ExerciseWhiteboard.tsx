@@ -8,11 +8,20 @@ import {
 } from '../../domain/studyPreferencesStorage';
 import {
   createWhiteboardElement,
+  getTextFontSize,
   renderWhiteboardScene,
   updateWhiteboardElement,
 } from './whiteboardCanvasRenderer';
 import { WhiteboardToolbar } from './WhiteboardToolbar';
 import { triggerDataUrlDownload } from './workspaceDownloadHelpers';
+
+interface ActiveTextInput {
+  x: number;
+  y: number;
+  value: string;
+  color: string;
+  strokeWidth: number;
+}
 
 export interface ExerciseWhiteboardProps {
   exerciseId: string;
@@ -37,7 +46,11 @@ export function ExerciseWhiteboard({
   const [selectedStrokeWidth, setSelectedStrokeWidth] = useState<number>(4);
   const [activeDrawingElement, setActiveDrawingElement] =
     useState<WhiteboardElement | null>(null);
+  const [activeTextInput, setActiveTextInput] =
+    useState<ActiveTextInput | null>(null);
   const isDrawingRef = useRef(false);
+  const isCancellingTextRef = useRef(false);
+  const wasTextOpenOnPointerDownRef = useRef(false);
 
   const redrawCanvas = (overrideActiveElement?: WhiteboardElement | null) => {
     const canvas = canvasRef.current;
@@ -77,7 +90,7 @@ export function ExerciseWhiteboard({
   }, [elements, activeDrawingElement]);
 
   const getCanvasPointerPosition = (
-    event: React.PointerEvent<HTMLCanvasElement>,
+    event: React.MouseEvent<HTMLCanvasElement>,
   ): WhiteboardPoint => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
@@ -88,8 +101,40 @@ export function ExerciseWhiteboard({
     };
   };
 
+  const commitActiveTextInput = (draftToCommit: ActiveTextInput | null = activeTextInput) => {
+    if (isCancellingTextRef.current) {
+      isCancellingTextRef.current = false;
+      return;
+    }
+    if (!draftToCommit) return;
+    setActiveTextInput(null);
+    if (draftToCommit.value.trim().length === 0) return;
+
+    const textElement: WhiteboardElement = {
+      id: `${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      tool: 'text',
+      color: draftToCommit.color,
+      strokeWidth: draftToCommit.strokeWidth,
+      startX: draftToCommit.x,
+      startY: draftToCommit.y,
+      text: draftToCommit.value,
+    };
+    const nextElements = [...elements, textElement];
+    setElements(nextElements);
+    setRedoStack([]);
+    saveExerciseWhiteboard(exerciseId, nextElements);
+  };
+
   const handlePointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
     if (event.button !== 0) return;
+    if (activeTextInput) {
+      wasTextOpenOnPointerDownRef.current = true;
+      commitActiveTextInput(activeTextInput);
+      return;
+    }
+    wasTextOpenOnPointerDownRef.current = false;
+    if (selectedTool === 'text') return;
+
     isDrawingRef.current = true;
     const newElement = createWhiteboardElement(
       `${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
@@ -100,6 +145,26 @@ export function ExerciseWhiteboard({
     );
     setActiveDrawingElement(newElement);
     redrawCanvas(newElement);
+  };
+
+  const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (wasTextOpenOnPointerDownRef.current) {
+      wasTextOpenOnPointerDownRef.current = false;
+      return;
+    }
+    if (selectedTool !== 'text') return;
+    const pointerPosition = getCanvasPointerPosition(event);
+    const rect = containerRef.current?.getBoundingClientRect();
+    const maxX = rect ? Math.max(8, Math.floor(rect.width) - 160) : pointerPosition.x;
+    const maxY = rect ? Math.max(8, Math.floor(rect.height) - 40) : pointerPosition.y;
+    isCancellingTextRef.current = false;
+    setActiveTextInput({
+      x: Math.max(8, Math.min(pointerPosition.x, maxX)),
+      y: Math.max(8, Math.min(pointerPosition.y, maxY)),
+      value: '',
+      color: selectedColor,
+      strokeWidth: selectedStrokeWidth,
+    });
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLCanvasElement>) => {
@@ -172,17 +237,56 @@ export function ExerciseWhiteboard({
         onDownload={handleDownload}
       />
 
-      <div ref={containerRef} className="relative flex-1 min-h-0 w-full overflow-hidden select-none cursor-crosshair bg-zinc-950">
+      <div
+        ref={containerRef}
+        className={`relative flex-1 min-h-0 w-full overflow-hidden select-none bg-zinc-950 ${
+          selectedTool === 'text' ? 'cursor-text' : 'cursor-crosshair'
+        }`}
+      >
         <canvas
           ref={canvasRef}
           role="img"
           aria-label={`Pizarrón para bocetar ${exerciseTitle}`}
           onPointerDown={handlePointerDown}
+          onClick={handleCanvasClick}
           onPointerMove={handlePointerMove}
           onPointerUp={finalizeDrawing}
           onPointerLeave={finalizeDrawing}
           className="touch-none absolute inset-0 block h-full w-full"
         />
+        {activeTextInput && (
+          <textarea
+            autoFocus
+            aria-label="Texto del pizarrón"
+            placeholder="Escribe aquí..."
+            value={activeTextInput.value}
+            onChange={(event) =>
+              setActiveTextInput((current) =>
+                current ? { ...current, value: event.target.value } : null,
+              )
+            }
+            onBlur={() => commitActiveTextInput(activeTextInput)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                commitActiveTextInput(activeTextInput);
+              } else if (event.key === 'Escape') {
+                event.preventDefault();
+                isCancellingTextRef.current = true;
+                setActiveTextInput(null);
+              }
+            }}
+            style={{
+              left: activeTextInput.x,
+              top: activeTextInput.y,
+              color: activeTextInput.color,
+              fontSize: `${getTextFontSize(activeTextInput.strokeWidth)}px`,
+              lineHeight: 1.25,
+            }}
+            rows={2}
+            className="absolute z-10 min-w-[150px] resize rounded border border-fuchsia-500/80 bg-zinc-900/90 px-1.5 py-0.5 font-medium outline-none placeholder:text-zinc-500"
+          />
+        )}
       </div>
     </div>
   );

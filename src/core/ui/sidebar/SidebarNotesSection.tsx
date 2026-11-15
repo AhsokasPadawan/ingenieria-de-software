@@ -13,7 +13,7 @@ export function SidebarNotesSection({
   activeNoteId,
   onSelectNote,
 }: SidebarNotesSectionProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <div className="border-t border-zinc-200 pt-3 dark:border-zinc-800">

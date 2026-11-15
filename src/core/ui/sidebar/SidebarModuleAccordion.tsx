@@ -48,9 +48,7 @@ export function SidebarModuleAccordion({
 }: SidebarModuleAccordionProps) {
   const theme = SECTION_THEMES[moduleItem.id];
   const [prevPracticeTabId, setPrevPracticeTabId] = useState<string | undefined>(activePracticeTabId);
-  const [openPracticeTabId, setOpenPracticeTabId] = useState<string | null>(
-    activePracticeTabId ?? practiceTabs?.[0]?.id ?? null,
-  );
+  const [openPracticeTabId, setOpenPracticeTabId] = useState<string | null>(null);
 
   if (prevPracticeTabId !== activePracticeTabId) {
     setPrevPracticeTabId(activePracticeTabId);

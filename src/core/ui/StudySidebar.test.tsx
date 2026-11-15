@@ -60,6 +60,8 @@ describe('StudySidebar', () => {
       />,
     );
 
+    expect(screen.queryByRole('button', { name: /Propiedades Derivadas/i })).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /1\. Fundamentos del Curso/i }));
     await user.click(screen.getByRole('button', { name: /Propiedades Derivadas/i }));
 
     expect(screen.getByText('Física Experimental I')).toBeInTheDocument();
@@ -122,6 +124,10 @@ describe('StudySidebar', () => {
     );
 
     const notesToggle = screen.getByRole('button', { name: /Apuntes para descargar/i });
+    expect(notesToggle).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('button', { name: /Resumen Unidad 1/i })).not.toBeInTheDocument();
+
+    await user.click(notesToggle);
     expect(notesToggle).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('button', { name: /Resumen Unidad 1/i })).toBeInTheDocument();
 
@@ -129,6 +135,8 @@ describe('StudySidebar', () => {
     expect(notesToggle).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByRole('button', { name: /Resumen Unidad 1/i })).not.toBeInTheDocument();
 
+    await user.click(screen.getByRole('button', { name: /2\. Práctica Integradora/i }));
+    await user.click(screen.getByRole('button', { name: /Ejercicios Prácticos/i }));
     await user.click(screen.getByRole('button', { name: /#1 · Ejercicio de Prueba/i }));
     expect(onSelectPracticeItem).toHaveBeenCalledWith('exercises', 'ex-1');
   });

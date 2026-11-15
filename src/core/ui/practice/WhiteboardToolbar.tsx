@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { Circle, Download, Eraser, Minus, MoveRight, Pencil, RotateCcw, RotateCw, Square, Trash2 } from 'lucide-react';
+import { Circle, Download, Eraser, Minus, MoveRight, Pencil, RotateCcw, RotateCw, Square, Trash2, Triangle, Type } from 'lucide-react';
 import { WhiteboardTool } from '../../domain/studyPreferencesStorage';
 
 export interface WhiteboardToolbarProps {
@@ -18,14 +18,16 @@ export interface WhiteboardToolbarProps {
   onDownload: () => void;
 }
 
-const ORDERED_TOOLS: readonly WhiteboardTool[] = ['pencil', 'rectangle', 'circle', 'arrow', 'line', 'eraser'];
+const ORDERED_TOOLS: readonly WhiteboardTool[] = ['pencil', 'rectangle', 'circle', 'triangle', 'arrow', 'line', 'text', 'eraser'];
 
 const TOOL_ICONS: Record<WhiteboardTool, ComponentType<{ className?: string }>> = {
   pencil: Pencil,
   rectangle: Square,
   circle: Circle,
+  triangle: Triangle,
   arrow: MoveRight,
   line: Minus,
+  text: Type,
   eraser: Eraser,
 };
 
@@ -33,8 +35,10 @@ const TOOL_LABELS: Record<WhiteboardTool, string> = {
   pencil: 'Lápiz libre',
   rectangle: 'Rectángulo',
   circle: 'Círculo / Nodo',
+  triangle: 'Triángulo',
   arrow: 'Flecha / Arista dirigida',
   line: 'Línea',
+  text: 'Caja de texto',
   eraser: 'Borrador',
 };
 

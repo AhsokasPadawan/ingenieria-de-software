@@ -117,8 +117,10 @@ export type WhiteboardTool =
   | 'pencil'
   | 'rectangle'
   | 'circle'
+  | 'triangle'
   | 'arrow'
   | 'line'
+  | 'text'
   | 'eraser';
 
 export interface WhiteboardPoint {
@@ -136,6 +138,7 @@ export interface WhiteboardElement {
   startY?: number;
   endX?: number;
   endY?: number;
+  text?: string;
 }
 
 export function loadExerciseWhiteboard(

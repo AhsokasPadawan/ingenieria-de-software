@@ -160,4 +160,41 @@ describe('ExamPracticeView', () => {
     await user.click(screen.getByRole('button', { name: /Expandir consigna/i }));
     expect(screen.getByText(/Consigna Formal/i)).toBeInTheDocument();
   });
+
+  it('supports triangle and text box tools on the whiteboard and persists committed text', async () => {
+    const user = userEvent.setup();
+    render(
+      <ExamPracticeView
+        exercises={[SYNTHETIC_EXERCISES[0]]}
+        completedItemIds={[]}
+        selectedExerciseId="ex-1-optics"
+        onSelectExercise={vi.fn()}
+        onToggleCompletedItem={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByRole('tab', { name: /^Pizarrón$/i }));
+    const toolbar = screen.getByRole('toolbar', { name: /Herramientas de dibujo/i });
+
+    const triangleButton = within(toolbar).getByRole('button', { name: /Triángulo/i });
+    await user.click(triangleButton);
+    expect(triangleButton).toHaveAttribute('aria-pressed', 'true');
+
+    const textButton = within(toolbar).getByRole('button', { name: /Caja de texto/i });
+    await user.click(textButton);
+    expect(textButton).toHaveAttribute('aria-pressed', 'true');
+
+    const canvas = screen.getByRole('img', {
+      name: /Pizarrón para bocetar Refracción en Lente Convergente/i,
+    });
+    await user.click(canvas);
+
+    const textInput = screen.getByRole('textbox', { name: /Texto del pizarrón/i });
+    await user.type(textInput, 'Nodo A{enter}');
+
+    expect(screen.queryByRole('textbox', { name: /Texto del pizarrón/i })).not.toBeInTheDocument();
+    const storedWhiteboard = localStorage.getItem('study-platform:whiteboard:ex-1-optics');
+    expect(storedWhiteboard).toContain('"tool":"text"');
+    expect(storedWhiteboard).toContain('"text":"Nodo A"');
+  });
 });

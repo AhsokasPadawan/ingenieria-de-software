@@ -126,4 +126,55 @@ describe('PresentationSlideView', () => {
 
     expect(screen.getByTestId('custom-visualizer')).toHaveTextContent('Renderizando: pendulum-sim');
   });
+
+  it('renders structuredBlocks theory slides with concepts and details', () => {
+    const structuredTheorySlide: ConceptSlide = {
+      id: 'slide-structured-1',
+      moduleId: 'module-1',
+      moduleTitle: 'Módulo 1: Dinámica',
+      conceptTitle: 'Principios de Diseño',
+      conceptSubtitle: 'Cohesión y Acoplamiento',
+      badgeLabel: 'Teoría',
+      slideKind: 'theory',
+      partIndex: 1,
+      totalParts: 1,
+      theoryData: {
+        summary: '',
+        bulletPoints: [],
+        blocks: [
+          {
+            tema: 'Modularidad',
+            definicion: 'Dividir el sistema en componentes independientes.',
+            layout_conceptos: 'grid-2',
+            conceptos: [
+              { nombre: 'Alta Cohesión', definicion: 'Responsabilidades enfocadas.' },
+              { nombre: 'Bajo Acoplamiento', definicion: 'Dependencias mínimas.' },
+            ],
+            detalles: {
+              etiqueta: 'Beneficios',
+              items: ['Facilita el mantenimiento.'],
+            },
+          },
+        ],
+      },
+    };
+
+    render(
+      <PresentationSlideView
+        slide={structuredTheorySlide}
+        currentSlideIndex={0}
+        totalSlidesCount={1}
+        moduleSlideIndex={0}
+        moduleSlidesCount={1}
+        onNavigatePrevious={vi.fn()}
+        onNavigateNext={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText('Modularidad')).toBeInTheDocument();
+    expect(screen.getByText('Alta Cohesión')).toBeInTheDocument();
+    expect(screen.getByText('Bajo Acoplamiento')).toBeInTheDocument();
+    expect(screen.getByText('Beneficios')).toBeInTheDocument();
+    expect(screen.getByText('Facilita el mantenimiento.')).toBeInTheDocument();
+  });
 });

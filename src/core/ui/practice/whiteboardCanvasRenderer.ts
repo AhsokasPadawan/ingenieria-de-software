@@ -106,6 +106,44 @@ function drawArrow(ctx: CanvasRenderingContext2D, element: WhiteboardElement) {
   ctx.fill();
 }
 
+function drawTriangle(ctx: CanvasRenderingContext2D, element: WhiteboardElement) {
+  const startX = element.startX ?? 0;
+  const startY = element.startY ?? 0;
+  const endX = element.endX ?? 0;
+  const endY = element.endY ?? 0;
+  const minX = Math.min(startX, endX);
+  const maxX = Math.max(startX, endX);
+  const minY = Math.min(startY, endY);
+  const maxY = Math.max(startY, endY);
+  ctx.strokeStyle = element.color;
+  ctx.lineWidth = element.strokeWidth;
+  ctx.beginPath();
+  ctx.moveTo((minX + maxX) / 2, minY);
+  ctx.lineTo(maxX, maxY);
+  ctx.lineTo(minX, maxY);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+export function getTextFontSize(strokeWidth: number): number {
+  return 12 + strokeWidth * 2;
+}
+
+function drawText(ctx: CanvasRenderingContext2D, element: WhiteboardElement) {
+  const textContent = element.text ?? '';
+  if (textContent.trim().length === 0) return;
+  const fontSize = getTextFontSize(element.strokeWidth);
+  const originX = element.startX ?? 0;
+  const originY = element.startY ?? 0;
+  const lineHeight = fontSize * 1.25;
+  ctx.fillStyle = element.color;
+  ctx.font = `500 ${fontSize}px ui-sans-serif, system-ui, -apple-system, sans-serif`;
+  ctx.textBaseline = 'top';
+  textContent.split('\n').forEach((line, index) => {
+    ctx.fillText(line, originX, originY + index * lineHeight);
+  });
+}
+
 export const ELEMENT_DRAWERS: Record<
   WhiteboardTool,
   (ctx: CanvasRenderingContext2D, element: WhiteboardElement) => void
@@ -114,8 +152,10 @@ export const ELEMENT_DRAWERS: Record<
   eraser: drawEraserStroke,
   rectangle: drawRectangle,
   circle: drawCircle,
+  triangle: drawTriangle,
   arrow: drawArrow,
   line: drawLine,
+  text: drawText,
 };
 
 const FREEHAND_TOOLS = new Set<WhiteboardTool>(['pencil', 'eraser']);

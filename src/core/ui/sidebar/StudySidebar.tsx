@@ -77,7 +77,7 @@ export function StudySidebar({
   onCloseDrawer,
 }: StudySidebarProps) {
   const [prevActiveModuleId, setPrevActiveModuleId] = useState<ModuleId>(activeModuleId);
-  const [openModuleId, setOpenModuleId] = useState<ModuleId | null>(activeModuleId);
+  const [openModuleId, setOpenModuleId] = useState<ModuleId | null>(null);
 
   if (prevActiveModuleId !== activeModuleId) {
     setPrevActiveModuleId(activeModuleId);
